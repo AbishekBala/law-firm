@@ -27,22 +27,16 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-neutral-100">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-neutral-100/80 backdrop-blur-sm">
       <div className="container-max">
-        <div className={`flex items-center justify-between h-20 px-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex items-center justify-between h-16 px-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="bg-legal-navy text-white w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl">
-              A
-            </div>
-            <div className="hidden md:block">
-              <div className="text-legal-navy font-bold text-xl">
-                Ali Bin Fahad Law Firm
-              </div>
-              <div className="text-neutral-600 text-sm">
-                & Intellectual Property LLC
-              </div>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/src/assets/logo-new.png" 
+              alt="Ali Bin Fahad Law Firm & Intellectual Property LLC" 
+              className="h-10 w-auto max-w-[280px] object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -64,21 +58,23 @@ const Header = () => {
 
           {/* Actions */}
           <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
-            {/* Language Toggle */}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="hidden md:flex items-center space-x-1 hover:bg-accent/10 hover:text-accent transition-colors"
-              onClick={toggleLanguage}
-            >
-              <Globe className="h-4 w-4" />
-              <span className="text-sm font-medium">
-                {language === 'en' ? 'العربية' : 'English'}
-              </span>
-            </Button>
+            {/* Language Toggle with fixed width container to prevent layout shift */}
+            <div className="w-20 flex justify-center">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hidden md:flex items-center space-x-1 hover:bg-accent/10 hover:text-accent transition-all duration-300 transform hover:scale-105 w-auto px-2"
+                onClick={toggleLanguage}
+              >
+                <Globe className="h-4 w-4" />
+                <span className="text-sm font-medium transition-all duration-300">
+                  {language === 'en' ? 'عربي' : 'EN'}
+                </span>
+              </Button>
+            </div>
 
             {/* Schedule Consultation Button */}
-            <Button className="btn-primary hidden md:inline-flex shadow-button hover:shadow-lg transition-all duration-300">
+            <Button className="btn-primary hidden md:inline-flex shadow-button hover:shadow-lg transition-all duration-300 hover:scale-105">
               {t('scheduleConsultation')}
             </Button>
 
@@ -114,7 +110,7 @@ const Header = () => {
               ))}
               <div className="px-4 py-3">
                 <Button className="btn-primary w-full">
-                  Schedule Consultation
+                  {t('scheduleConsultation')}
                 </Button>
               </div>
             </nav>

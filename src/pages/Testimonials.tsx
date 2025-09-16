@@ -1,5 +1,6 @@
 import { Star, Quote } from 'lucide-react';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
+import { AnimatedSection } from '@/components/AnimatedSection';
 import { useTranslation } from '@/hooks/useLanguage';
 
 const Testimonials = () => {
@@ -78,109 +79,95 @@ const Testimonials = () => {
   return (
     <div>
       {/* Header */}
-      <section className="bg-legal-navy text-white py-20">
-        <div className="container-max text-center px-4">
-          <h1 className="heading-lg mb-6">Client Testimonials</h1>
-          <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
-            What our clients say about our legal services
-          </p>
-        </div>
-      </section>
+      <AnimatedSection animation="fadeInUp">
+        <section className="bg-legal-navy text-white py-20">
+          <div className="container-max text-center px-4">
+            <h1 className="heading-lg mb-6">Client Testimonials</h1>
+            <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
+              What our clients say about our legal services
+            </p>
+          </div>
+        </section>
+      </AnimatedSection>
 
       {/* Stats Section */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16">
-            {stats.map((stat, index) => (
-              <div key={index} className="card-premium will-change-transform">
-                <AnimatedCounter 
-                  value={stat.number} 
-                  label={stat.label}
-                  className="text-accent"
-                  duration={2000 + index * 300}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial-card">
-                {/* Rating */}
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-accent fill-current" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <div className="relative mb-6">
-                  <Quote className="h-8 w-8 text-accent/20 absolute -top-2 -left-2" />
-                  <p className="text-neutral-600 leading-relaxed pl-6">
-                    "{testimonial.quote}"
-                  </p>
-                </div>
-
-                {/* Service */}
-                <div className="mb-4">
-                  <span className="bg-accent/10 text-accent text-sm px-3 py-1 rounded-full font-medium">
-                    {testimonial.service}
-                  </span>
-                </div>
-
-                {/* Client */}
-                <div className="flex items-center">
-                  <div className="bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center font-semibold mr-4">
-                    {testimonial.client.avatar}
+      <AnimatedSection animation="fadeInUp">
+        <section className="section-padding bg-white">
+          <div className="container-max">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16">
+              {stats.map((stat, index) => (
+                <AnimatedSection 
+                  key={index} 
+                  animation="scaleIn" 
+                  delay={index * 100}
+                >
+                  <div className="card-premium will-change-transform">
+                    <AnimatedCounter 
+                      value={stat.number} 
+                      label={stat.label}
+                      className="text-accent"
+                      duration={2000 + index * 300}
+                    />
                   </div>
-                  <div>
-                    <div className="font-semibold text-legal-navy">
-                      {testimonial.client.name}
+                </AnimatedSection>
+              ))}
+            </div>
+
+            {/* Testimonials Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <AnimatedSection 
+                  key={index}
+                  animation="fadeInUp"
+                  delay={index * 150}
+                >
+                  <div className="testimonial-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    {/* Rating */}
+                    <div className="flex items-center mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className="h-5 w-5 text-accent fill-current transform group-hover:scale-110 transition-transform duration-300"
+                        />
+                      ))}
                     </div>
-                    <div className="text-sm text-neutral-600">
-                      {testimonial.client.title}
+
+                    {/* Quote */}
+                    <div className="relative mb-6">
+                      <Quote className="h-8 w-8 text-accent/20 absolute -top-2 -left-2 group-hover:text-accent/40 transition-colors duration-300" />
+                      <p className="text-neutral-600 leading-relaxed pl-6">
+                        "{testimonial.quote}"
+                      </p>
+                    </div>
+
+                    {/* Service */}
+                    <div className="mb-4">
+                      <span className="bg-accent/10 text-accent text-sm px-3 py-1 rounded-full font-medium">
+                        {testimonial.service}
+                      </span>
+                    </div>
+
+                    {/* Client */}
+                    <div className="flex items-center">
+                      <div className="bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center font-semibold mr-4">
+                        {testimonial.client.avatar}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-legal-navy">
+                          {testimonial.client.name}
+                        </div>
+                        <div className="text-sm text-neutral-600">
+                          {testimonial.client.title}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Indicators */}
-      <section className="section-padding bg-neutral-50">
-        <div className="container-max text-center">
-          <h2 className="heading-md text-legal-navy mb-8">Trusted by Leading Organizations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card-premium will-change-transform">
-              <AnimatedCounter 
-                value="500+" 
-                label="Businesses Served"
-                className="text-accent"
-                duration={2500}
-              />
-            </div>
-            <div className="card-premium will-change-transform">
-              <AnimatedCounter 
-                value="98%" 
-                label="Client Satisfaction"
-                className="text-accent"
-                duration={2800}
-              />
-            </div>
-            <div className="card-premium will-change-transform">
-              <AnimatedCounter 
-                value="15+" 
-                label="Years of Excellence"
-                className="text-accent"
-                duration={3100}
-              />
+                </AnimatedSection>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   );
 };

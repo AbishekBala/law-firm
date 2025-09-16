@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from '@/hooks/useLanguage';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -55,7 +57,7 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Our Office',
+      title: t('ourOffice'),
       details: [
         'King Fahd Road',
         'Al Olaya District',
@@ -64,17 +66,17 @@ const Contact = () => {
     },
     {
       icon: Phone,
-      title: 'Phone',
+      title: t('phone'),
       details: ['+966 55 753 6255']
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: t('email'),
       details: ['info@abf.sa', 'legal@abf.sa']
     },
     {
       icon: Clock,
-      title: 'Business Hours',
+      title: t('businessHours'),
       details: [
         'Sunday - Thursday: 8:00 AM - 6:00 PM',
         'Friday - Saturday: Closed'
@@ -87,9 +89,9 @@ const Contact = () => {
       {/* Header */}
       <section className="bg-legal-navy text-white py-20">
         <div className="container-max text-center px-4">
-          <h1 className="heading-lg mb-6">Contact Us</h1>
+          <h1 className="heading-lg mb-6">{t('contactTitle')}</h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
-            Get in touch with our legal experts
+            {t('contactDescription')}
           </p>
         </div>
       </section>
@@ -125,11 +127,10 @@ const Contact = () => {
                   <Shield className="h-6 w-6 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-blue-900 mb-2">
-                      Secure & Confidential
+                      {t('secureConfidential')}
                     </h4>
                     <p className="text-blue-700 text-sm leading-relaxed">
-                      All communications are protected by attorney-client privilege and 
-                      encrypted for your privacy and security.
+                      {t('secureConfidentialDesc')}
                     </p>
                   </div>
                 </div>
@@ -139,17 +140,17 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="bg-neutral-50 rounded-2xl p-8">
               <h2 className="text-2xl font-semibold text-legal-navy mb-2">
-                Send us a Message
+                {t('sendUsMessage')}
               </h2>
               <p className="text-neutral-600 mb-8">
-                Fill out the form below and we'll get back to you within 24 hours.
+                {t('sendUsMessageDesc')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-neutral-700 mb-2">
-                      Full Name *
+                      {t('fullName')} *
                     </label>
                     <Input
                       name="fullName"
@@ -162,7 +163,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-neutral-700 mb-2">
-                      Phone Number
+                      {t('phoneNumber')}
                     </label>
                     <Input
                       name="phone"
@@ -176,7 +177,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Email Address *
+                    {t('emailAddress')} *
                   </label>
                   <Input
                     name="email"
@@ -191,7 +192,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Subject *
+                    {t('subject')} *
                   </label>
                   <Input
                     name="subject"
@@ -205,7 +206,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Message *
+                    {t('message')} *
                   </label>
                   <Textarea
                     name="message"
@@ -219,13 +220,12 @@ const Contact = () => {
                 </div>
 
                 <Button type="submit" className="w-full btn-primary">
-                  Send Message
+                  {t('sendMessage')}
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
 
                 <p className="text-xs text-neutral-500 text-center">
-                  By submitting this form, you agree to our privacy policy and consent to be 
-                  contacted regarding your inquiry.
+                  {t('privacyNotice')}
                 </p>
               </form>
             </div>

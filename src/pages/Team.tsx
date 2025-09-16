@@ -1,6 +1,8 @@
 import { ArrowRight, Mail, Phone, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TeamMemberModal } from '@/components/TeamMemberModal';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { LazyImage } from '@/components/LazyImage';
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useLanguage';
 import teamAli from '@/assets/hero-lawyer.jpg';
@@ -54,90 +56,99 @@ const Team = () => {
   return (
     <div>
       {/* Header */}
-      <section className="bg-legal-navy text-white py-20">
-        <div className="container-max text-center px-4">
-          <h1 className="heading-lg mb-6">Our Expert Legal Team</h1>
-          <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
-            Meet the experienced professionals dedicated to your success
-          </p>
-        </div>
-      </section>
+      <AnimatedSection animation="fadeInUp">
+        <section className="bg-legal-navy text-white py-20">
+          <div className="container-max text-center px-4">
+            <h1 className="heading-lg mb-6">Our Expert Legal Team</h1>
+            <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
+              Meet the experienced professionals dedicated to your success
+            </p>
+          </div>
+        </section>
+      </AnimatedSection>
 
       {/* Team Grid */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <div 
-                key={index} 
-                className="team-card will-change-transform"
-                onClick={() => setSelectedMember(member)}
-              >
-                <div className="h-80 overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <div className="mb-4">
-                    <h3 className="text-lg font-bold text-legal-navy mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-accent font-semibold mb-2 text-sm">
-                      {member.title}
-                    </p>
-                    <p className="text-xs text-neutral-600 mb-3">
-                      {member.specialization}
-                    </p>
-                  </div>
-                  
-                  <p className="text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {member.description}
-                  </p>
-                  
-                  <div className="mb-4">
-                    <div className="flex flex-wrap gap-1 mb-3">
-                      {member.areas.slice(0, 2).map((area, areaIndex) => (
-                        <span 
-                          key={areaIndex}
-                          className="bg-accent/10 text-accent text-xs px-2 py-1 rounded-full font-medium"
-                        >
-                          {area}
-                        </span>
-                      ))}
-                      {member.areas.length > 2 && (
-                        <span className="text-xs text-neutral-500 px-2 py-1">
-                          +{member.areas.length - 2} more
-                        </span>
-                      )}
+      <AnimatedSection animation="fadeInUp">
+        <section className="section-padding bg-white">
+          <div className="container-max">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <AnimatedSection 
+                  key={index}
+                  animation="scaleIn"
+                  delay={index * 100}
+                >
+                  <div 
+                    className="team-card will-change-transform"
+                    onClick={() => setSelectedMember(member)}
+                  >
+                    <div className="h-80 overflow-hidden">
+                      <LazyImage 
+                        src={member.image} 
+                        alt={member.name}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
                     </div>
                     
-                    <div className="flex items-center text-xs text-neutral-600">
-                      <div className="w-2 h-2 bg-accent rounded-full mr-2"></div>
-                      {member.credentials}
+                    <div className="p-6">
+                      <div className="mb-4">
+                        <h3 className="text-lg font-bold text-legal-navy mb-1">
+                          {member.name}
+                        </h3>
+                        <p className="text-accent font-semibold mb-2 text-sm">
+                          {member.title}
+                        </p>
+                        <p className="text-xs text-neutral-600 mb-3">
+                          {member.specialization}
+                        </p>
+                      </div>
+                      
+                      <p className="text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        {member.description}
+                      </p>
+                      
+                      <div className="mb-4">
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {member.areas.slice(0, 2).map((area, areaIndex) => (
+                            <span 
+                              key={areaIndex}
+                              className="bg-accent/10 text-accent text-xs px-2 py-1 rounded-full font-medium"
+                            >
+                              {area}
+                            </span>
+                          ))}
+                          {member.areas.length > 2 && (
+                            <span className="text-xs text-neutral-500 px-2 py-1">
+                              +{member.areas.length - 2} more
+                            </span>
+                          )}
+                        </div>
+                        
+                        <div className="flex items-center text-xs text-neutral-600">
+                          <div className="w-2 h-2 bg-accent rounded-full mr-2"></div>
+                          {member.credentials}
+                        </div>
+                      </div>
+                      
+                      <div className="flex space-x-2">
+                        <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
+                          <Mail className="h-3 w-3" />
+                        </Button>
+                        <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
+                          <Phone className="h-3 w-3" />
+                        </Button>
+                        <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
+                          <Linkedin className="h-3 w-3" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="flex space-x-2">
-                    <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
-                      <Mail className="h-3 w-3" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
-                      <Phone className="h-3 w-3" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
-                      <Linkedin className="h-3 w-3" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Team Member Modal */}
       <TeamMemberModal 
@@ -147,24 +158,26 @@ const Team = () => {
       />
 
       {/* CTA Section */}
-      <section className="section-padding bg-legal-navy text-white">
-        <div className="container-max text-center">
-          <h2 className="heading-md mb-6">Ready to Work with Our Team?</h2>
-          <p className="text-xl text-neutral-200 mb-8 max-w-3xl mx-auto">
-            Connect with our experienced legal professionals who are committed to providing 
-            exceptional service and results.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="btn-primary shadow-button hover:shadow-lg transition-all duration-300">
-              {t('scheduleConsultation')}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button className="btn-secondary hover:scale-105 transition-transform duration-300">
-              {t('contactUs')}
-            </Button>
+      <AnimatedSection animation="fadeInUp">
+        <section className="section-padding bg-legal-navy text-white">
+          <div className="container-max text-center">
+            <h2 className="heading-md mb-6">Ready to Work with Our Team?</h2>
+            <p className="text-xl text-neutral-200 mb-8 max-w-3xl mx-auto">
+              Connect with our experienced legal professionals who are committed to providing 
+              exceptional service and results.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button className="btn-primary shadow-button hover:shadow-lg transition-all duration-300">
+                {t('scheduleConsultation')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button className="btn-secondary hover:scale-105 transition-transform duration-300">
+                {t('contactUs')}
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   );
 };
