@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { LazyImage } from '@/components/LazyImage';
+import { GradientCard } from '@/components/ui/gradient-card';
 import { useTranslation } from '@/hooks/useLanguage';
 import heroLawyer from '@/assets/hero-lawyer.jpg';
 import heroOffice from '@/assets/hero-office.jpg';
@@ -20,7 +21,7 @@ const Home = () => {
     {
       icon: Scale,
       title: 'Legal Expertise',
-      description: '15+ years of specialized experience in Saudi Arabian law',
+      description: 'Specialized experience in Saudi Arabian law',
     },
     {
       icon: Clock,
@@ -30,7 +31,7 @@ const Home = () => {
     {
       icon: CheckCircle,
       title: 'Success Record',
-      description: '98% success rate in cases handled',
+      description: 'Proven track record in cases handled',
     },
   ];
 
@@ -72,17 +73,17 @@ const Home = () => {
         <div className="hero-content container-max w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
             {/* Left Side - Main Content */}
-            <AnimatedSection animation="fadeInLeft" className="text-white">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <AnimatedSection animation="fadeInLeft" className="text-white flex flex-col justify-center min-h-[400px]">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
                 {t('heroTitle')}
               </h1>
-              <div className="gold-accent text-xl md:text-2xl font-semibold mb-6">
+              <div className="gold-accent text-lg md:text-xl font-semibold mb-8">
                 {t('heroSubtitle')}
               </div>
-              <p className="text-lg text-neutral-200 mb-8 leading-relaxed">
+              <p className="text-base text-neutral-200 mb-12 leading-relaxed">
                 {t('heroDescription')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-6">
                 <Button className="btn-primary shadow-button hover:shadow-lg transition-all duration-300">
                   {t('scheduleConsultation')}
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -94,14 +95,18 @@ const Home = () => {
             </AnimatedSection>
 
             {/* Right Side - Professional Showcase */}
-            <AnimatedSection animation="fadeInRight" delay={200} className="hidden lg:block relative -mt-8">
+            <AnimatedSection animation="fadeInRight" delay={200} className="hidden lg:block relative -mt-12">
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <div className="text-center mb-8">
-                  <div className="bg-accent/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Scale className="h-8 w-8 text-accent" />
+                <div className="mb-8">
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="bg-accent/20 w-12 h-12 rounded-2xl flex items-center justify-center mr-4">
+                      <Scale className="h-6 w-6 text-accent" />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold text-white mb-1">Premier Legal Solutions</h3>
+                      <p className="text-neutral-200">Trusted by clients across Saudi Arabia</p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Premier Legal Solutions</h3>
-                  <p className="text-neutral-200">Trusted by 500+ clients across Saudi Arabia</p>
                 </div>
                 
                 <div className="space-y-6">
@@ -118,23 +123,24 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-            </AnimatedSection>
-          </div>
-          
-          {/* Stats with Animation - Positioned at bottom */}
-          <div className="mt-16 px-4">
-            <div className="grid grid-cols-3 gap-8 max-w-lg">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <stat.icon className="h-8 w-8 text-accent mx-auto mb-2" />
-                  <AnimatedCounter 
-                    value={stat.number} 
-                    label={stat.label}
-                    duration={2000 + index * 200}
-                  />
+              
+              {/* Stats below the card */}
+              <div className="mt-8">
+                <div className="grid grid-cols-3 gap-6">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <stat.icon className="h-6 w-6 text-accent mx-auto mb-2" />
+                      <AnimatedCounter 
+                        value={stat.number} 
+                        label={stat.label}
+                        duration={2000 + index * 200}
+                        className="text-white"
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -197,17 +203,11 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {coreValues.map((value, index) => (
                 <AnimatedSection key={index} animation="scaleIn" delay={index * 100}>
-                  <div className="card-premium text-center h-full flex flex-col">
-                    <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                      <value.icon className="h-8 w-8 text-accent" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-legal-navy mb-4">
-                      {value.title}
-                    </h3>
-                    <p className="text-neutral-600 leading-relaxed flex-grow">
-                      {value.description}
-                    </p>
-                  </div>
+                  <GradientCard
+                    icon={value.icon}
+                    title={value.title}
+                    description={value.description}
+                  />
                 </AnimatedSection>
               ))}
             </div>
