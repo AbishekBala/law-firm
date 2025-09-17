@@ -4,6 +4,7 @@ import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { LazyImage } from '@/components/LazyImage';
 import { GradientCard } from '@/components/ui/gradient-card';
+import RotatingText from '@/components/RotatingText';
 import { useTranslation } from '@/hooks/useLanguage';
 import heroLawyer from '@/assets/hero-lawyer.jpg';
 import heroOffice from '@/assets/hero-office.jpg';
@@ -62,7 +63,7 @@ const Home = () => {
     <div>
       {/* Hero Section */}
       <section 
-        className="hero-section h-[85vh] flex items-center pt-16"
+        className="hero-section h-[85vh] flex items-center pt-8"
         style={{
           backgroundImage: `url(${heroOffice})`,
           backgroundSize: 'cover',
@@ -70,17 +71,17 @@ const Home = () => {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="hero-content container-max w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
+        <div className="hero-content container-max w-full px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start lg:items-center">
             {/* Left Side - Main Content */}
-            <AnimatedSection animation="fadeInLeft" className="text-white flex flex-col justify-center min-h-[400px]">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+            <AnimatedSection animation="fadeInLeft" className="text-white flex flex-col justify-center px-4 lg:px-0">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
                 {t('heroTitle')}
               </h1>
-              <div className="gold-accent text-lg md:text-xl font-semibold mb-8">
+              <div className="gold-accent text-lg md:text-xl font-semibold mb-6">
                 {t('heroSubtitle')}
               </div>
-              <p className="text-base text-neutral-200 mb-12 leading-relaxed">
+              <p className="text-base text-neutral-200 mb-8 leading-relaxed">
                 {t('heroDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
@@ -95,29 +96,29 @@ const Home = () => {
             </AnimatedSection>
 
             {/* Right Side - Professional Showcase */}
-            <AnimatedSection animation="fadeInRight" delay={200} className="hidden lg:block relative -mt-12">
+            <AnimatedSection animation="fadeInRight" delay={200} className="hidden lg:block relative px-4 lg:px-0">
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <div className="mb-8">
+                <div className="mb-6">
                   <div className="flex items-center justify-center mb-4">
                     <div className="bg-accent/20 w-12 h-12 rounded-2xl flex items-center justify-center mr-4">
                       <Scale className="h-6 w-6 text-accent" />
                     </div>
                     <div className="text-center">
-                      <h3 className="text-2xl font-bold text-white mb-1">Premier Legal Solutions</h3>
-                      <p className="text-neutral-200">Trusted by clients across Saudi Arabia</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-1 leading-tight">Premier Legal Solutions</h3>
+                      <p className="text-neutral-200 text-sm md:text-base">Trusted by clients across Saudi Arabia</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {showcaseFeatures.map((feature, index) => (
                     <div key={index} className="flex items-start space-x-4">
-                      <div className="bg-accent/20 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <feature.icon className="h-6 w-6 text-accent" />
+                      <div className="bg-accent/20 w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <feature.icon className="h-5 w-5 text-accent" />
                       </div>
                       <div>
-                        <h4 className="text-white font-semibold mb-1">{feature.title}</h4>
-                        <p className="text-neutral-200 text-sm">{feature.description}</p>
+                        <h4 className="text-white font-semibold mb-1 text-sm">{feature.title}</h4>
+                        <p className="text-neutral-200 text-xs leading-relaxed">{feature.description}</p>
                       </div>
                     </div>
                   ))}
@@ -125,16 +126,17 @@ const Home = () => {
               </div>
               
               {/* Stats below the card */}
-              <div className="mt-8">
-                <div className="grid grid-cols-3 gap-6">
+              <div className="mt-4">
+                <div className="grid grid-cols-3 gap-3">
                   {stats.map((stat, index) => (
                     <div key={index} className="text-center">
-                      <stat.icon className="h-6 w-6 text-accent mx-auto mb-2" />
+                      <stat.icon className="h-4 w-4 text-accent mx-auto mb-1" />
                       <AnimatedCounter 
                         value={stat.number} 
                         label={stat.label}
                         duration={2000 + index * 200}
                         className="text-white"
+                        size="sm"
                       />
                     </div>
                   ))}
@@ -152,7 +154,19 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="flex flex-col">
                 <h2 className="heading-lg text-legal-navy mb-6">
-                  Our Legal Excellence
+                  Our Legal{' '}
+                  <RotatingText
+                    texts={['Excellence', 'Expertise', 'Solutions', 'Innovation']}
+                    mainClassName="inline-flex px-3 py-1 bg-gradient-to-r from-accent to-yellow-500 text-white overflow-hidden rounded-lg"
+                    staggerFrom="last"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={3000}
+                  />
                 </h2>
                 <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
                   Ali Bin Fahad Law Firm & Intellectual Property LLC stands as a 
