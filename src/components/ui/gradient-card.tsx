@@ -12,56 +12,27 @@ interface GradientCardProps {
 export const GradientCard = ({ icon: Icon, title, description }: GradientCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [rotation, setRotation] = useState({ x: 0, y: 0 });
-
-  // Handle mouse movement for 3D effect
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect();
-
-      // Calculate mouse position relative to card center
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      // Calculate rotation (limited range for subtle effect)
-      const rotateX = -(y / rect.height) * 5; // Max 5 degrees rotation
-      const rotateY = (x / rect.width) * 5; // Max 5 degrees rotation
-
-      setRotation({ x: rotateX, y: rotateY });
-    }
-  };
-
-  // Reset rotation when not hovering
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setRotation({ x: 0, y: 0 });
-  };
 
   return (
     <motion.div
       ref={cardRef}
-      className="relative rounded-3xl overflow-hidden border border-gray-200"
+      className="relative rounded-3xl overflow-hidden border border-gray-200 bg-white"
       style={{
         width: "100%",
         height: "350px",
-        transformStyle: "preserve-3d",
-        backgroundColor: "#ffffff",
       }}
       initial={{ y: 0 }}
       animate={{
-        y: isHovered ? -8 : 0,
-        rotateX: rotation.x,
-        rotateY: rotation.y,
-        perspective: 1000,
+        y: isHovered ? -4 : 0,
       }}
       transition={{
         type: "spring",
-        stiffness: 300,
-        damping: 20
+        stiffness: 400,
+        damping: 25
       }}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ scale: 1.02 }}
     >
       {/* Subtle glass reflection overlay */}
       <motion.div

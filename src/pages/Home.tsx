@@ -3,14 +3,16 @@ import { Button } from '@/components/ui/button';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { LazyImage } from '@/components/LazyImage';
-import { GradientCard } from '@/components/ui/gradient-card';
+import { GradientCard } from '@/components/ui/gradient-card-optimized';
 import RotatingText from '@/components/RotatingText';
 import { useTranslation } from '@/hooks/useLanguage';
+import { useOptimizedAnimation } from '@/hooks/useOptimizedAnimation';
 import heroLawyer from '@/assets/hero-lawyer.jpg';
 import heroOffice from '@/assets/hero-office.jpg';
 
 const Home = () => {
   const { t } = useTranslation();
+  const { isVisible, elementRef } = useOptimizedAnimation();
   
   const stats = [
     { number: '15+', label: t('yearsExperience'), icon: Award },
@@ -149,56 +151,186 @@ const Home = () => {
 
       {/* Our Legal Excellence */}
       <AnimatedSection animation="fadeInUp">
-        <section className="section-padding bg-white">
-          <div className="container-max">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="flex flex-col">
-                <h2 className="heading-lg text-legal-navy mb-6">
-                  Our Legal{' '}
-                  <RotatingText
-                    texts={['Excellence', 'Expertise', 'Solutions', 'Innovation']}
-                    mainClassName="inline-flex px-3 py-1 bg-gradient-to-r from-accent to-yellow-500 text-white overflow-hidden rounded-lg"
-                    staggerFrom="last"
-                    initial={{ y: "100%" }}
-                    animate={{ y: 0 }}
-                    exit={{ y: "-120%" }}
-                    staggerDuration={0.025}
-                    splitLevelClassName="overflow-hidden"
-                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    rotationInterval={3000}
-                  />
-                </h2>
-                <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
-                  Ali Bin Fahad Law Firm & Intellectual Property LLC stands as a 
-                  beacon of legal excellence in Saudi Arabia. With thorough expertise 
-                  and unwavering commitment to our clients, we provide comprehensive 
-                  legal solutions that drive success and protect your interests.
-                </p>
-                <div className="grid grid-cols-2 gap-8 mb-10">
-                  <AnimatedCounter 
-                    value="15+" 
-                    label="Years"
-                    className="text-legal-navy"
-                  />
-                  <AnimatedCounter 
-                    value="500+" 
-                    label="Clients"
-                    className="text-legal-navy"
-                  />
-                </div>
-                <div className="flex justify-start">
-                  <Button className="btn-outline hover:scale-105 transition-transform duration-300">
-                    {t('learnMore')}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+        <section className="section-padding bg-gradient-to-br from-neutral-50 via-white to-amber-50/30 relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-20 left-10 w-32 h-32 bg-accent rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-10 w-40 h-40 bg-legal-navy rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="container-max relative z-10 px-4 sm:px-6 lg:px-12">
+            {/* Mobile Section Header - Show only on mobile */}
+            <div className="lg:hidden text-center mb-8">
+              <div className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-accent/10 rounded-full border border-accent/20 mb-2 sm:mb-3">
+                <Scale className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-accent mr-1.5 sm:mr-2" />
+                <span className="text-xs font-medium text-accent">Professional Legal Services</span>
+              </div>
+              
+              <h2 className="text-2xl sm:text-3xl font-bold text-legal-navy mb-2 sm:mb-3 leading-tight">
+                Our Legal{' '}
+                <RotatingText
+                  texts={['Excellence', 'Expertise', 'Solutions', 'Innovation']}
+                  mainClassName="inline-flex px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-accent via-yellow-500 to-amber-600 text-white overflow-hidden rounded-md sm:rounded-lg shadow-lg text-sm sm:text-base"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={3000}
+                />
+              </h2>
+              
+              <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-accent to-yellow-500 rounded-full mx-auto"></div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center max-w-6xl mx-auto">
+              
+              {/* Enhanced Image Section - Mobile First Order */}
+              <div className="lg:col-span-5 order-1 lg:order-2 relative mb-8 lg:mb-0">
+                <div className="relative group max-w-xs sm:max-w-sm lg:max-w-md mx-auto">
+                  {/* Decorative background elements - Optimized for mobile */}
+                  <div className="absolute -inset-2 sm:-inset-3 bg-gradient-to-r from-black/15 to-black/25 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl group-hover:blur-xl sm:group-hover:blur-2xl transition-all duration-500"></div>
+                  
+                  {/* Main image container - Mobile optimized */}
+                  <div className="relative bg-white rounded-xl sm:rounded-2xl p-1 sm:p-1.5 shadow-lg sm:shadow-xl">
+                    <LazyImage 
+                      src={heroLawyer} 
+                      alt="Professional lawyer Ali Bin Fahad" 
+                      className="rounded-lg sm:rounded-xl w-full h-auto object-cover shadow-md sm:shadow-lg"
+                    />
+                    
+                    {/* Overlay badge - Mobile optimized */}
+                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-white/95 backdrop-blur-sm rounded-md sm:rounded-lg px-2 sm:px-3 py-1 sm:py-1.5 shadow-md sm:shadow-lg">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
+                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs font-medium text-legal-navy">Available for Consultation</span>
+                      </div>
+                    </div>
+
+                    {/* Bottom testimonial card - Hidden on mobile, shown on hover for desktop */}
+                    <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 bg-white/95 backdrop-blur-sm rounded-md sm:rounded-lg p-2 sm:p-3 shadow-md sm:shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hidden sm:block">
+                      <div className="flex items-start space-x-1.5 sm:space-x-2">
+                        <div className="flex-shrink-0">
+                          <div className="w-5 sm:w-6 h-5 sm:h-6 bg-accent/10 rounded-full flex items-center justify-center">
+                            <Scale className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent" />
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-xs text-neutral-600 italic">"Exceptional legal expertise and professional service"</p>
+                          <p className="text-xs text-neutral-500 mt-0.5">- Satisfied Client</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="relative">
-                <LazyImage 
-                  src={heroLawyer} 
-                  alt="Professional lawyer" 
-                  className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
-                />
+
+              {/* Content Section - Mobile Second Order */}
+              <div className="lg:col-span-7 order-2 lg:order-1 flex flex-col">
+                {/* Enhanced Header - Desktop only */}
+                <div className="mb-4 sm:mb-6 text-center lg:text-left hidden lg:block">
+                  <div className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-accent/10 rounded-full border border-accent/20 mb-2 sm:mb-3">
+                    <Scale className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-accent mr-1.5 sm:mr-2" />
+                    <span className="text-xs font-medium text-accent">Professional Legal Services</span>
+                  </div>
+                  
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-legal-navy mb-2 sm:mb-3 leading-tight">
+                    Our Legal{' '}
+                    <RotatingText
+                      texts={['Excellence', 'Expertise', 'Solutions', 'Innovation']}
+                      mainClassName="inline-flex px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-accent via-yellow-500 to-amber-600 text-white overflow-hidden rounded-md sm:rounded-lg shadow-lg text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+                      staggerFrom="last"
+                      initial={{ y: "100%" }}
+                      animate={{ y: 0 }}
+                      exit={{ y: "-120%" }}
+                      staggerDuration={0.025}
+                      splitLevelClassName="overflow-hidden"
+                      transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                      rotationInterval={3000}
+                    />
+                  </h2>
+                  
+                  <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-accent to-yellow-500 rounded-full mb-3 sm:mb-4 mx-auto lg:mx-0"></div>
+                </div>
+
+                {/* Enhanced Description - Mobile optimized */}
+                <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-center lg:text-left">
+                  <p className="text-base sm:text-lg text-neutral-700 leading-relaxed font-medium">
+                    Ali Bin Fahad Law Firm & Intellectual Property LLC stands as a 
+                    <span className="text-accent font-semibold"> beacon of legal excellence</span> in Saudi Arabia.
+                  </p>
+                  <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
+                    With thorough expertise and unwavering commitment to our clients, we provide 
+                    comprehensive legal solutions that drive success and protect your interests.
+                  </p>
+                </div>
+
+                {/* Enhanced Stats Grid - Mobile optimized */}
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-sm mx-auto lg:max-w-none lg:mx-0">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2.5 sm:p-3 border border-neutral-200/50 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div className="flex items-center justify-center lg:justify-start mb-1 sm:mb-1.5">
+                      <div className="w-5 sm:w-6 h-5 sm:h-6 bg-accent/10 rounded-md flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                        <Award className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent" />
+                      </div>
+                    </div>
+                    <div className="text-center lg:text-left">
+                      <AnimatedCounter 
+                        value="15+" 
+                        label="Years of Excellence"
+                        className="text-legal-navy"
+                        size="sm"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2.5 sm:p-3 border border-neutral-200/50 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div className="flex items-center justify-center lg:justify-start mb-1 sm:mb-1.5">
+                      <div className="w-5 sm:w-6 h-5 sm:h-6 bg-accent/10 rounded-md flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                        <Users className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent" />
+                      </div>
+                    </div>
+                    <div className="text-center lg:text-left">
+                      <AnimatedCounter 
+                        value="500+" 
+                        label="Satisfied Clients"
+                        className="text-legal-navy"
+                        size="sm"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Enhanced CTA Section - Mobile optimized */}
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center lg:items-start mb-4 sm:mb-6">
+                  <Button className="btn-primary group hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto">
+                    {t('learnMore')}
+                    <ArrowRight className="ml-2 h-3 w-3 sm:h-3.5 sm:w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  
+                  <Button variant="outline" className="border-2 border-legal-navy text-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-300 text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto">
+                    View Our Services
+                  </Button>
+                </div>
+
+                {/* Trust Indicators - Mobile optimized */}
+                <div className="pt-4 sm:pt-6 border-t border-neutral-200">
+                  <div className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-4 text-xs text-neutral-500">
+                    <div className="flex items-center">
+                      <Shield className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1 sm:mr-1.5 text-accent" />
+                      <span>Licensed & Certified</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1 sm:mr-1.5 text-accent" />
+                      <span>98% Success Rate</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1 sm:mr-1.5 text-accent" />
+                      <span>24/7 Support</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -214,15 +346,27 @@ const Home = () => {
               The principles that guide our practice and define our commitment to excellence
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div 
+              ref={elementRef}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            >
               {coreValues.map((value, index) => (
-                <AnimatedSection key={index} animation="scaleIn" delay={index * 100}>
+                <div
+                  key={index}
+                  className={`transform transition-all duration-500 ease-out ${
+                    isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-5 scale-95'
+                  }`}
+                  style={{
+                    transitionDelay: isVisible ? `${index * 150}ms` : '0ms',
+                    willChange: 'transform, opacity',
+                  }}
+                >
                   <GradientCard
                     icon={value.icon}
                     title={value.title}
                     description={value.description}
                   />
-                </AnimatedSection>
+                </div>
               ))}
             </div>
           </div>
