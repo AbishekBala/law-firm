@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
 import WhyChooseUs from "./pages/WhyChooseUs";
 import Team from "./pages/Team";
 import Testimonials from "./pages/Testimonials";
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/team" element={<Team />} />
             <Route path="/testimonials" element={<Testimonials />} />
