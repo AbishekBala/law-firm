@@ -39,15 +39,15 @@ export const StickyScroll = ({
   });
 
   const backgroundColors = [
-    "rgb(15 23 42)", // slate-900
-    "rgb(0 0 0)", // black
-    "rgb(23 23 23)", // neutral-900
+    "rgb(17 24 39)", // slate-900 - deep navy
+    "rgb(30 41 59)", // slate-700 - medium navy
+    "rgb(45 55 72)", // slate-600 - lighter navy
   ];
 
   const linearGradients = [
-    "linear-gradient(to bottom right, rgb(6 182 212), rgb(16 185 129))", // cyan-500 to emerald-500
-    "linear-gradient(to bottom right, rgb(236 72 153), rgb(99 102 241))", // pink-500 to indigo-500
-    "linear-gradient(to bottom right, rgb(249 115 22), rgb(234 179 8))", // orange-500 to yellow-500
+    "linear-gradient(to bottom right, rgb(251 191 36), rgb(217 119 6))", // amber gold gradient
+    "linear-gradient(to bottom right, rgb(59 130 246), rgb(29 78 216))", // blue gradient
+    "linear-gradient(to bottom right, rgb(251 191 36), rgb(17 24 39))", // gold to dark navy
   ];
 
   const [backgroundGradient, setBackgroundGradient] = useState(
@@ -63,32 +63,53 @@ export const StickyScroll = ({
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10"
+      transition={{
+        duration: 0.5,
+        ease: "easeInOut"
+      }}
+      className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-lg p-10 scroll-smooth snap-y snap-mandatory shadow-lg border border-slate-200/20"
       ref={ref}
+      style={{
+        scrollSnapType: 'y mandatory',
+        scrollBehavior: 'smooth'
+      }}
     >
       <div className="div relative flex items-start px-4">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-center">
           {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
+            <div key={item.title + index} className="min-h-[30rem] flex flex-col justify-center snap-start snap-always text-center" style={{ scrollSnapAlign: 'start' }}>
               <motion.h2
                 initial={{
                   opacity: 0,
+                  y: 20
                 }}
                 animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
+                  opacity: activeCard === index ? 1 : 0.4,
+                  y: activeCard === index ? 0 : 20
                 }}
-                className="text-2xl font-bold text-slate-100"
+                transition={{
+                  duration: 0.6,
+                  ease: "easeOut"
+                }}
+                className="text-3xl font-bold text-center mb-6 text-white"
               >
                 {item.title}
               </motion.h2>
               <motion.p
                 initial={{
                   opacity: 0,
+                  y: 20
                 }}
                 animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
+                  opacity: activeCard === index ? 1 : 0.4,
+                  y: activeCard === index ? 0 : 20
                 }}
-                className="text-kg text-slate-300 max-w-sm mt-10"
+                transition={{
+                  duration: 0.6,
+                  delay: 0.1,
+                  ease: "easeOut"
+                }}
+                className="text-lg max-w-lg mx-auto text-center leading-relaxed text-white/90"
               >
                 {item.description}
               </motion.p>
