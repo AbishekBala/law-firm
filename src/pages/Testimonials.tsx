@@ -80,12 +80,42 @@ const Testimonials = () => {
     <div>
       {/* Header */}
       <AnimatedSection animation="fadeInUp">
-        <section className="bg-legal-navy text-white py-20">
-          <div className="container-max text-center px-4">
-            <h1 className="heading-lg mb-6">Client Testimonials</h1>
-            <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
+        <section className="bg-gradient-to-br from-legal-navy via-legal-navy to-accent/20 text-white py-20 relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-64 h-64 border border-white/20 rounded-full"></div>
+            <div className="absolute bottom-10 right-10 w-48 h-48 border border-white/20 rounded-full"></div>
+            <div className="absolute top-1/2 left-1/4 w-32 h-32 border border-white/20 rounded-full"></div>
+          </div>
+          
+          {/* Quote Icon Background */}
+          <div className="absolute top-8 right-8 opacity-5">
+            <Quote className="h-48 w-48 text-white" />
+          </div>
+          
+          <div className="container-max text-center px-4 relative z-10">
+            <div className="inline-flex items-center justify-center mb-6">
+              <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-full px-6 py-2">
+                <span className="text-accent font-medium">Client Reviews</span>
+              </div>
+            </div>
+            <h1 className="heading-lg mb-6 bg-gradient-to-r from-white to-accent/90 bg-clip-text text-transparent">
+              Client Testimonials
+            </h1>
+            <p className="text-xl text-neutral-200 max-w-3xl mx-auto leading-relaxed">
               What our clients say about our legal services
             </p>
+            
+            {/* Decorative Elements */}
+            <div className="flex justify-center items-center mt-8 space-x-4">
+              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-24"></div>
+              <div className="flex space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 text-accent fill-current" />
+                ))}
+              </div>
+              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-24"></div>
+            </div>
           </div>
         </section>
       </AnimatedSection>
@@ -111,6 +141,16 @@ const Testimonials = () => {
                   </div>
                 </AnimatedSection>
               ))}
+            </div>
+
+            {/* All Testimonials Section */}
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-legal-navy mb-4">
+                Client Reviews
+              </h2>
+              <p className="text-neutral-600">
+                Read detailed testimonials from our satisfied clients
+              </p>
             </div>
 
             {/* Testimonials Grid */}
