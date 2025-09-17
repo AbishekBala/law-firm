@@ -2,7 +2,7 @@ import { ArrowRight, Mail, Phone, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TeamMemberModal } from '@/components/TeamMemberModal';
 import { AnimatedSection } from '@/components/AnimatedSection';
-import { LazyImage } from '@/components/LazyImage';
+import { Typewriter } from '@/components/ui/typewriter-text';
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useLanguage';
 import teamAli from '@/assets/hero-lawyer.jpg';
@@ -10,9 +10,19 @@ import teamSarah from '@/assets/team-sarah.jpg';
 import teamAhmed from '@/assets/team-ahmed.jpg';
 import teamFatima from '@/assets/team-fatima.jpg';
 
+interface TeamMember {
+  name: string;
+  title: string;
+  specialization: string;
+  credentials: string;
+  description: string;
+  areas: string[];
+  image: string;
+}
+
 const Team = () => {
   const { t } = useTranslation();
-  const [selectedMember, setSelectedMember] = useState<any>(null);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   
   const teamMembers = [
     {
@@ -59,7 +69,21 @@ const Team = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="bg-legal-navy text-white py-20">
           <div className="container-max text-center px-4">
-            <h1 className="heading-lg mb-6">Our Expert Legal Team</h1>
+            <h1 className="heading-lg mb-6">
+              <Typewriter
+                text={[
+                  "Our Expert Legal Team",
+                  "Professional Excellence", 
+                  "Experienced Lawyers",
+                  "Legal Specialists"
+                ]}
+                speed={80}
+                loop={true}
+                deleteSpeed={40}
+                delay={2000}
+                className="text-inherit"
+              />
+            </h1>
             <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
               Meet the experienced professionals dedicated to your success
             </p>
@@ -71,7 +95,7 @@ const Team = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="section-padding bg-white">
           <div className="container-max">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {teamMembers.map((member, index) => (
                 <AnimatedSection 
                   key={index}
@@ -79,26 +103,37 @@ const Team = () => {
                   delay={index * 100}
                 >
                   <div 
-                    className="team-card will-change-transform"
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer group transform hover:-translate-y-2"
                     onClick={() => setSelectedMember(member)}
                   >
-                    <div className="h-80 overflow-hidden">
-                      <LazyImage 
+                    <div className="relative h-80 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                      <img 
                         src={member.image} 
                         alt={member.name}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "data:image/svg+xml,%3Csvg width='320' height='320' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%236b7280'%3E%3Ctspan x='50%25' dy='-0.5em'%3EImage%3C/tspan%3E%3Ctspan x='50%25' dy='1em'%3ENot Available%3C/tspan%3E%3C/svg%3E";
+                        }}
                       />
+                      {/* Enhanced overlay for better readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-legal-navy/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                      {/* Professional badge overlay */}
+                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <span className="text-xs font-medium text-legal-navy">View Profile</span>
+                      </div>
                     </div>
                     
-                    <div className="p-6">
+                    <div className="p-6 bg-white">
                       <div className="mb-4">
-                        <h3 className="text-lg font-bold text-legal-navy mb-1">
+                        <h3 className="text-xl font-bold text-legal-navy mb-2 group-hover:text-accent transition-colors duration-300">
                           {member.name}
                         </h3>
                         <p className="text-accent font-semibold mb-2 text-sm">
                           {member.title}
                         </p>
-                        <p className="text-xs text-neutral-600 mb-3">
+                        <p className="text-xs text-neutral-600 mb-3 bg-neutral-50 px-3 py-1 rounded-full inline-block">
                           {member.specialization}
                         </p>
                       </div>
@@ -112,33 +147,45 @@ const Team = () => {
                           {member.areas.slice(0, 2).map((area, areaIndex) => (
                             <span 
                               key={areaIndex}
-                              className="bg-accent/10 text-accent text-xs px-2 py-1 rounded-full font-medium"
+                              className="bg-accent/10 text-accent text-xs px-3 py-1 rounded-full font-medium border border-accent/20"
                             >
                               {area}
                             </span>
                           ))}
                           {member.areas.length > 2 && (
-                            <span className="text-xs text-neutral-500 px-2 py-1">
+                            <span className="text-xs text-neutral-500 px-3 py-1 bg-neutral-100 rounded-full">
                               +{member.areas.length - 2} more
                             </span>
                           )}
                         </div>
                         
-                        <div className="flex items-center text-xs text-neutral-600">
-                          <div className="w-2 h-2 bg-accent rounded-full mr-2"></div>
-                          {member.credentials}
+                        <div className="flex items-center text-xs text-neutral-600 bg-neutral-50 px-3 py-2 rounded-lg">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                          <span className="font-medium">{member.credentials}</span>
                         </div>
                       </div>
                       
-                      <div className="flex space-x-2">
-                        <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
-                          <Mail className="h-3 w-3" />
+                      <div className="flex space-x-2 pt-4 border-t border-neutral-100">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="p-2 h-auto hover:bg-accent/10 hover:text-accent transition-all duration-200 rounded-full"
+                        >
+                          <Mail className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
-                          <Phone className="h-3 w-3" />
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="p-2 h-auto hover:bg-accent/10 hover:text-accent transition-all duration-200 rounded-full"
+                        >
+                          <Phone className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" className="p-2 h-auto hover:bg-accent/10">
-                          <Linkedin className="h-3 w-3" />
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="p-2 h-auto hover:bg-accent/10 hover:text-accent transition-all duration-200 rounded-full"
+                        >
+                          <Linkedin className="h-4 w-4" />
                         </Button>
                       </div>
                     </div>
