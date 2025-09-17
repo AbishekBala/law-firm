@@ -49,20 +49,31 @@ const WhyChooseUs = () => {
       {/* Features Grid */}
       <section className="section-padding bg-white">
         <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-legal-navy mb-4">What Sets Us Apart</h2>
+            <p className="text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+              Our comprehensive approach to legal services combines expertise, innovation, and unwavering commitment to client success.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="card-premium text-center group">
-                <div className="bg-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
-                  <feature.icon className="h-10 w-10 text-accent" />
+              <div key={index} className="group bg-white border border-neutral-100 hover:border-accent/30 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative z-10">
+                  <div className="bg-gradient-to-br from-accent/10 to-accent/20 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/20 group-hover:to-accent/30 transition-all duration-300 transform group-hover:scale-110 shadow-md">
+                    <feature.icon className="h-10 w-10 text-accent" />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-neutral-600 leading-relaxed text-sm md:text-base">
+                    {feature.description}
+                  </p>
                 </div>
-                
-                <h3 className="text-xl font-semibold text-legal-navy mb-4">
-                  {feature.title}
-                </h3>
-                
-                <p className="text-neutral-600 leading-relaxed">
-                  {feature.description}
-                </p>
               </div>
             ))}
           </div>
@@ -70,59 +81,112 @@ const WhyChooseUs = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-neutral-50">
-        <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="card-premium">
-              <div className="stat-number text-legal-navy">15+</div>
-              <p className="text-neutral-600 font-medium">Years of Excellence</p>
+      <section className="section-padding bg-gradient-to-br from-neutral-50 via-white to-accent/5 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 border border-accent/10 rounded-full"></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 bg-accent/5 rounded-full"></div>
+          <div className="absolute top-1/2 right-1/4 w-16 h-16 border border-accent/10 rounded-full"></div>
+        </div>
+        
+        <div className="container-max relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-legal-navy mb-4">Our Track Record</h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Numbers that speak to our commitment and success in delivering exceptional legal services
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="group">
+              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
+                  <p className="text-legal-navy font-semibold text-sm md:text-base">Years of Excellence</p>
+                </div>
+              </div>
             </div>
-            <div className="card-premium">
-              <div className="stat-number text-legal-navy">500+</div>
-              <p className="text-neutral-600 font-medium">Satisfied Clients</p>
+            
+            <div className="group">
+              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                  <p className="text-legal-navy font-semibold text-sm md:text-base">Satisfied Clients</p>
+                </div>
+              </div>
             </div>
-            <div className="card-premium">
-              <div className="stat-number text-legal-navy">98%</div>
-              <p className="text-neutral-600 font-medium">Success Rate</p>
+            
+            <div className="group">
+              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">98%</div>
+                  <p className="text-legal-navy font-semibold text-sm md:text-base">Success Rate</p>
+                </div>
+              </div>
             </div>
-            <div className="card-premium">
-              <div className="stat-number text-legal-navy">24/7</div>
-              <p className="text-neutral-600 font-medium">Client Support</p>
+            
+            <div className="group">
+              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                  <p className="text-legal-navy font-semibold text-sm md:text-base">Client Support</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Commitment Section */}
-      <section className="section-padding bg-legal-navy text-white">
-        <div className="container-max text-center">
-          <h2 className="heading-md mb-8">Our Commitment to Excellence</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-accent/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-accent" />
+      <section className="section-padding bg-gradient-to-br from-legal-navy via-legal-navy to-legal-navy/90 text-white relative overflow-hidden">
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-40 h-40 border border-accent/20 rounded-full opacity-30"></div>
+          <div className="absolute bottom-20 right-20 w-32 h-32 bg-accent/10 rounded-full opacity-40"></div>
+          <div className="absolute top-1/2 left-1/4 w-24 h-24 border border-accent/15 rounded-full opacity-25"></div>
+          <div className="absolute bottom-40 left-40 w-16 h-16 bg-accent/15 rounded-full opacity-30"></div>
+        </div>
+        
+        <div className="container-max text-center relative z-10">
+          <div className="max-w-4xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Commitment to Excellence</h2>
+            <p className="text-lg md:text-xl text-accent/90 leading-relaxed">
+              We don't just practice law – we perfect it. Our unwavering dedication to excellence drives every decision, every case, and every client relationship.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            <div className="group text-center">
+              <div className="bg-gradient-to-br from-accent/20 to-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
+                <Shield className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Trust & Reliability</h3>
-              <p className="text-neutral-300 text-sm">
-                Building lasting relationships through consistent, dependable legal service
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">Trust & Reliability</h3>
+              <p className="text-neutral-200 leading-relaxed">
+                Building lasting relationships through consistent, dependable legal service that you can count on when it matters most.
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-accent/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Award className="h-8 w-8 text-accent" />
+            
+            <div className="group text-center">
+              <div className="bg-gradient-to-br from-accent/20 to-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
+                <Award className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Quality Results</h3>
-              <p className="text-neutral-300 text-sm">
-                Delivering exceptional outcomes that exceed client expectations
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">Quality Results</h3>
+              <p className="text-neutral-200 leading-relaxed">
+                Delivering exceptional outcomes that exceed client expectations through meticulous preparation and strategic execution.
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-accent/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-accent" />
+            
+            <div className="group text-center">
+              <div className="bg-gradient-to-br from-accent/20 to-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
+                <Users className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Client Focus</h3>
-              <p className="text-neutral-300 text-sm">
-                Putting our clients' needs first in every decision and action
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">Client Focus</h3>
+              <p className="text-neutral-200 leading-relaxed">
+                Putting our clients' needs first in every decision and action, ensuring personalized attention and tailored solutions.
               </p>
             </div>
           </div>
