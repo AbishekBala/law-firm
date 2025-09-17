@@ -59,20 +59,20 @@ const Contact = () => {
       icon: MapPin,
       title: t('ourOffice'),
       details: [
-        'King Fahd Road',
-        'Al Olaya District',
-        'Riyadh 12213, Saudi Arabia'
+        'Riyadh, Al Izdihar Dist',
+        'Imam Saud Bin Abdulaziz Bin Muhammad Road',
+        'Saudi Arabia'
       ]
     },
     {
       icon: Phone,
       title: t('phone'),
-      details: ['+966 55 753 6255']
+      details: ['+966557536255']
     },
     {
       icon: Mail,
       title: t('email'),
-      details: ['info@abf.sa', 'legal@abf.sa']
+      details: ['info@abf.sa']
     },
     {
       icon: Clock,

@@ -5,6 +5,7 @@ import { AnimatedSection } from '@/components/AnimatedSection';
 import { LazyImage } from '@/components/LazyImage';
 import { StickyScroll } from '@/components/ui/sticky-scroll-reveal';
 import { useTranslation } from '@/hooks/useLanguage';
+import { useNavigate } from 'react-router-dom';
 import heroLawyer from '@/assets/hero-lawyer.jpg';
 import certificate1 from '@/assets/certificate1.png';
 import certificate2 from '@/assets/certificate2.png';
@@ -12,6 +13,7 @@ import certificate3 from '@/assets/certificate3.png';
 
 const About = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const stickyContent = [
     {
@@ -95,7 +97,10 @@ const About = () => {
                 <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
                   {t('aboutDescription2')}
                 </p>
-                <Button className="btn-outline">
+                <Button 
+                  onClick={() => navigate('/services')}
+                  className="btn-outline"
+                >
                   {t('learnAboutServices')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

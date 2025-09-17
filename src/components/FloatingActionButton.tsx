@@ -8,19 +8,19 @@ const FloatingActionButton = () => {
     {
       icon: Phone,
       label: 'Call Us',
-      href: 'tel:+966123456789',
+      href: 'tel:+966557536255',
       color: 'bg-blue-500 hover:bg-blue-600',
     },
     {
       icon: Mail,
       label: 'Email Us',
-      href: 'mailto:info@alibinfahadlaw.com',
+      href: 'mailto:info@abf.sa',
       color: 'bg-red-500 hover:bg-red-600',
     },
     {
       icon: 'whatsapp',
       label: 'WhatsApp',
-      href: 'https://wa.me/966123456789',
+      href: 'https://wa.me/966557536255',
       color: 'bg-green-500 hover:bg-green-600',
     }
   ];

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, Globe } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage, useTranslation } from '@/hooks/useLanguage';
@@ -7,6 +7,7 @@ import { useLanguage, useTranslation } from '@/hooks/useLanguage';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { language, setLanguage, isRTL } = useLanguage();
   const { t } = useTranslation();
 
@@ -74,7 +75,10 @@ const Header = () => {
             </div>
 
             {/* Schedule Consultation Button */}
-            <Button className="btn-primary hidden md:inline-flex shadow-button hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <Button 
+              onClick={() => navigate('/contact')}
+              className="btn-primary hidden md:inline-flex shadow-button hover:shadow-lg transition-all duration-300 hover:scale-105"
+            >
               {t('scheduleConsultation')}
             </Button>
 
@@ -109,7 +113,13 @@ const Header = () => {
                 </Link>
               ))}
               <div className="px-4 py-3">
-                <Button className="btn-primary w-full">
+                <Button 
+                  onClick={() => {
+                    navigate('/contact');
+                    setIsMenuOpen(false);
+                  }}
+                  className="btn-primary w-full"
+                >
                   {t('scheduleConsultation')}
                 </Button>
               </div>

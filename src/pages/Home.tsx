@@ -7,12 +7,14 @@ import { GradientCard } from '@/components/ui/gradient-card-optimized';
 import RotatingText from '@/components/RotatingText';
 import { useTranslation } from '@/hooks/useLanguage';
 import { useOptimizedAnimation } from '@/hooks/useOptimizedAnimation';
+import { useNavigate } from 'react-router-dom';
 import heroLawyer from '@/assets/hero-lawyer.jpg';
 import heroOffice from '@/assets/hero-office.jpg';
 
 const Home = () => {
   const { t } = useTranslation();
   const { isVisible, elementRef } = useOptimizedAnimation();
+  const navigate = useNavigate();
   
   const stats = [
     { number: '15+', label: t('yearsExperience'), icon: Award },
@@ -87,11 +89,17 @@ const Home = () => {
                 {t('heroDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <Button className="btn-primary shadow-button hover:shadow-lg transition-all duration-300">
+                <Button 
+                  onClick={() => navigate('/contact')}
+                  className="btn-primary shadow-button hover:shadow-lg transition-all duration-300"
+                >
                   {t('scheduleConsultation')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button className="btn-secondary hover:scale-105 transition-transform duration-300">
+                <Button 
+                  onClick={() => navigate('/services')}
+                  className="btn-secondary hover:scale-105 transition-transform duration-300"
+                >
                   {t('ourServices')}
                 </Button>
               </div>
@@ -304,12 +312,19 @@ const Home = () => {
 
                 {/* Enhanced CTA Section - Mobile optimized */}
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center lg:items-start mb-4 sm:mb-6">
-                  <Button className="btn-primary group hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto">
+                  <Button 
+                    onClick={() => navigate('/about')}
+                    className="btn-primary group hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto"
+                  >
                     {t('learnMore')}
                     <ArrowRight className="ml-2 h-3 w-3 sm:h-3.5 sm:w-3.5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   
-                  <Button variant="outline" className="border-2 border-legal-navy text-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-300 text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto">
+                  <Button 
+                    onClick={() => navigate('/services')}
+                    variant="outline" 
+                    className="border-2 border-legal-navy text-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-300 text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto"
+                  >
                     View Our Services
                   </Button>
                 </div>
@@ -383,7 +398,10 @@ const Home = () => {
               To be the leading law firm in Saudi Arabia, recognized for our expertise, integrity, and commitment to 
               delivering exceptional legal services that exceed client expectations.
             </p>
-            <Button className="btn-primary">
+            <Button 
+              onClick={() => navigate('/contact')}
+              className="btn-primary"
+            >
               Schedule Consultation
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

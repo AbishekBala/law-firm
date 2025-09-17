@@ -5,6 +5,7 @@ import { AnimatedSection } from '@/components/AnimatedSection';
 import { Typewriter } from '@/components/ui/typewriter-text';
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useLanguage';
+import { useNavigate } from 'react-router-dom';
 import teamAli from '@/assets/hero-lawyer.jpg';
 import teamSarah from '@/assets/team-sarah.jpg';
 import teamAhmed from '@/assets/team-ahmed.jpg';
@@ -22,6 +23,7 @@ interface TeamMember {
 
 const Team = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   
   const teamMembers = [
@@ -214,11 +216,17 @@ const Team = () => {
               exceptional service and results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="btn-primary shadow-button hover:shadow-lg transition-all duration-300">
+              <Button 
+                onClick={() => navigate('/contact')}
+                className="btn-primary shadow-button hover:shadow-lg transition-all duration-300"
+              >
                 {t('scheduleConsultation')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button className="btn-secondary hover:scale-105 transition-transform duration-300">
+              <Button 
+                onClick={() => navigate('/contact')}
+                className="btn-secondary hover:scale-105 transition-transform duration-300"
+              >
                 {t('contactUs')}
               </Button>
             </div>
