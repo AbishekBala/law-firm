@@ -4,6 +4,7 @@ import { MapPin, Phone, Mail, Linkedin, Twitter, Instagram, Award, Shield, Check
 const Footer = () => {
   const quickLinks = [
     { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'Why Choose Us', href: '/why-choose-us' },
     { name: 'Our Team', href: '/team' },
@@ -12,12 +13,12 @@ const Footer = () => {
   ];
 
   const legalServices = [
+    { name: 'Legal Consultation', href: '/services/legal-consultation' },
     { name: 'Company Formation', href: '/services/company-formation' },
-    { name: 'Litigation & Representation', href: '/services/litigation' },
-    { name: 'Bankruptcy & Debt Restructuring', href: '/services/bankruptcy' },
-    { name: 'Estate Liquidation', href: '/services/estate' },
-    { name: 'Trademark Services', href: '/services/trademark' },
-    { name: 'Legal Translation', href: '/services/translation' },
+    { name: 'Litigation & Representation', href: '/services/litigation-representation' },
+    { name: 'Trademark Services', href: '/services/trademark-services' },
+    { name: 'Contract Drafting', href: '/services/contract-drafting-notarization' },
+    { name: 'Legal Translation', href: '/services/legal-translation' },
   ];
 
   const certifications = [

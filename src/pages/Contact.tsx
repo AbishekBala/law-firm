@@ -3,6 +3,7 @@ import { MapPin, Phone, Mail, Clock, Send, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Typewriter } from '@/components/ui/typewriter-text';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from '@/hooks/useLanguage';
 
@@ -38,10 +39,33 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
+    // Create WhatsApp message
+    const whatsappMessage = `*New Legal Consultation Request*
+
+*Name:* ${formData.fullName}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone || 'Not provided'}
+*Subject:* ${formData.subject || 'General Inquiry'}
+
+*Message:*
+${formData.message}
+
+---
+Sent from Ali Bin Fahad Law Firm website contact form`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // WhatsApp URL with the phone number and message
+    const whatsappURL = `https://wa.me/966557536255?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappURL, '_blank');
+
+    // Show success message
     toast({
-      title: "Message Sent Successfully",
-      description: "We'll get back to you within 24 hours.",
+      title: "Redirecting to WhatsApp",
+      description: "Your message is ready to send via WhatsApp.",
     });
 
     // Reset form
@@ -89,7 +113,14 @@ const Contact = () => {
       {/* Header */}
       <section className="bg-legal-navy text-white py-20">
         <div className="container-max text-center px-4">
-          <h1 className="heading-lg mb-6">{t('contactTitle')}</h1>
+          <h1 className="heading-lg mb-6">
+            <Typewriter
+              text={t('contactTitle')}
+              speed={80}
+              loop={false}
+              className="text-inherit"
+            />
+          </h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
             {t('contactDescription')}
           </p>

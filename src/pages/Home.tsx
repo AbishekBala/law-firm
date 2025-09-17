@@ -5,6 +5,7 @@ import { AnimatedSection } from '@/components/AnimatedSection';
 import { LazyImage } from '@/components/LazyImage';
 import { GradientCard } from '@/components/ui/gradient-card-optimized';
 import RotatingText from '@/components/RotatingText';
+import { Typewriter } from '@/components/ui/typewriter-text';
 import { useTranslation } from '@/hooks/useLanguage';
 import { useOptimizedAnimation } from '@/hooks/useOptimizedAnimation';
 import { useNavigate } from 'react-router-dom';
@@ -80,7 +81,12 @@ const Home = () => {
             {/* Left Side - Main Content */}
             <AnimatedSection animation="fadeInLeft" className="text-white flex flex-col justify-center px-4 lg:px-0">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                {t('heroTitle')}
+                <Typewriter
+                  text="Premier Legal Excellence in Saudi Arabia"
+                  speed={80}
+                  loop={false}
+                  className="text-inherit"
+                />
               </h1>
               <div className="gold-accent text-lg md:text-xl font-semibold mb-6">
                 {t('heroSubtitle')}
@@ -275,37 +281,45 @@ const Home = () => {
                   </p>
                 </div>
 
-                {/* Enhanced Stats Grid - Mobile optimized */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-sm mx-auto lg:max-w-none lg:mx-0">
-                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2.5 sm:p-3 border border-neutral-200/50 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-                    <div className="flex items-center justify-center lg:justify-start mb-1 sm:mb-1.5">
-                      <div className="w-5 sm:w-6 h-5 sm:h-6 bg-accent/10 rounded-md flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                        <Award className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent" />
+                {/* Enhanced Stats - Side by Side Display */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8 text-center lg:text-left">
+                  {/* Years of Excellence */}
+                  <div className="group">
+                    <div className="flex items-center justify-center lg:justify-start mb-2">
+                      <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-r from-accent to-yellow-500 rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                        <Award className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                       </div>
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <AnimatedCounter 
-                        value="15+" 
-                        label="Years of Excellence"
-                        className="text-legal-navy"
-                        size="sm"
-                      />
+                      <div>
+                        <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-1">
+                          <AnimatedCounter 
+                            value="15+" 
+                            label=""
+                            className="!text-3xl sm:!text-4xl lg:!text-5xl"
+                            size="lg"
+                          />
+                        </div>
+                        <p className="text-base sm:text-lg font-semibold text-legal-navy">Years of Excellence</p>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2.5 sm:p-3 border border-neutral-200/50 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-                    <div className="flex items-center justify-center lg:justify-start mb-1 sm:mb-1.5">
-                      <div className="w-5 sm:w-6 h-5 sm:h-6 bg-accent/10 rounded-md flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                        <Users className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent" />
+
+                  {/* Satisfied Clients */}
+                  <div className="group">
+                    <div className="flex items-center justify-center lg:justify-start mb-2">
+                      <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-r from-accent to-yellow-500 rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                       </div>
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <AnimatedCounter 
-                        value="500+" 
-                        label="Satisfied Clients"
-                        className="text-legal-navy"
-                        size="sm"
-                      />
+                      <div>
+                        <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-1">
+                          <AnimatedCounter 
+                            value="500+" 
+                            label=""
+                            className="!text-3xl sm:!text-4xl lg:!text-5xl"
+                            size="lg"
+                          />
+                        </div>
+                        <p className="text-base sm:text-lg font-semibold text-legal-navy">Satisfied Clients</p>
+                      </div>
                     </div>
                   </div>
                 </div>

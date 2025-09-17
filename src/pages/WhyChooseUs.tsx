@@ -1,4 +1,7 @@
 import { Shield, Monitor, Users, Clock, Award, RefreshCw } from 'lucide-react';
+import { AnimatedCounter } from '@/components/AnimatedCounter';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { Typewriter } from '@/components/ui/typewriter-text';
 
 const WhyChooseUs = () => {
   const features = [
@@ -39,7 +42,14 @@ const WhyChooseUs = () => {
       {/* Header */}
       <section className="bg-legal-navy text-white py-20">
         <div className="container-max text-center px-4">
-          <h1 className="heading-lg mb-6">Why Choose Ali Bin Fahad Law Firm</h1>
+          <h1 className="heading-lg mb-6">
+            <Typewriter
+              text="Why Choose Ali Bin Fahad Law Firm"
+              speed={80}
+              loop={false}
+              className="text-inherit"
+            />
+          </h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
             Discover what sets us apart as your trusted legal partner in Saudi Arabia
           </p>
@@ -98,45 +108,69 @@ const WhyChooseUs = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            <div className="group">
-              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
-                  <p className="text-legal-navy font-semibold text-sm md:text-base">Years of Excellence</p>
+            <AnimatedSection animation="scaleIn" delay={0}>
+              <div className="group">
+                <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <AnimatedCounter 
+                      value="15+" 
+                      label="Years of Excellence"
+                      className="text-accent"
+                      duration={2000}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
             
-            <div className="group">
-              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
-                  <p className="text-legal-navy font-semibold text-sm md:text-base">Satisfied Clients</p>
+            <AnimatedSection animation="scaleIn" delay={200}>
+              <div className="group">
+                <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <AnimatedCounter 
+                      value="500+" 
+                      label="Satisfied Clients"
+                      className="text-accent"
+                      duration={2200}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
             
-            <div className="group">
-              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">98%</div>
-                  <p className="text-legal-navy font-semibold text-sm md:text-base">Success Rate</p>
+            <AnimatedSection animation="scaleIn" delay={400}>
+              <div className="group">
+                <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <AnimatedCounter 
+                      value="98%" 
+                      label="Success Rate"
+                      className="text-accent"
+                      duration={2400}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
             
-            <div className="group">
-              <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
-                  <p className="text-legal-navy font-semibold text-sm md:text-base">Client Support</p>
+            <AnimatedSection animation="scaleIn" delay={600}>
+              <div className="group">
+                <div className="bg-white border border-accent/20 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <AnimatedCounter 
+                      value="24/7" 
+                      label="Client Support"
+                      className="text-accent"
+                      duration={2600}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>

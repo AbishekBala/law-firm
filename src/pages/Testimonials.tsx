@@ -2,6 +2,7 @@ import { Star, Quote } from 'lucide-react';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { useTranslation } from '@/hooks/useLanguage';
+import { Typewriter } from '@/components/ui/typewriter-text';
 
 const Testimonials = () => {
   const { t } = useTranslation();
@@ -100,7 +101,12 @@ const Testimonials = () => {
               </div>
             </div>
             <h1 className="heading-lg mb-6 bg-gradient-to-r from-white to-accent/90 bg-clip-text text-transparent">
-              Client Testimonials
+              <Typewriter
+                text="Client Testimonials"
+                speed={80}
+                loop={false}
+                className="text-inherit"
+              />
             </h1>
             <p className="text-xl text-neutral-200 max-w-3xl mx-auto leading-relaxed">
               What our clients say about our legal services
