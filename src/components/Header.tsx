@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Phone, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage, useTranslation } from '@/hooks/useLanguage';
 
@@ -31,14 +31,14 @@ const Header = () => {
     { name: t('home'), href: '/' },
     { name: t('services'), href: '/services' },
     { name: t('whyChooseUs'), href: '/why-choose-us' },
-    { name: 'Blog', href: '/blog' },
+    { name: t('blog'), href: '/blog' },
     { name: t('contact'), href: '/contact' },
   ];
 
   const aboutDropdown = [
     { name: t('about'), href: '/about' },
     { name: t('team'), href: '/team' },
-    { name: 'Careers', href: '/careers' },
+    { name: t('careers'), href: '/careers' },
     { name: t('testimonials'), href: '/testimonials' },
   ];
 
@@ -92,7 +92,7 @@ const Header = () => {
                       : 'text-neutral-700 hover:bg-neutral-50'
                   }`}
                 >
-                  About Us
+                  {t('about')}
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${
                     isAboutDropdownOpen ? 'rotate-180' : ''
                   }`} />
@@ -137,8 +137,8 @@ const Header = () => {
                   
                   <div className="border-t border-neutral-100 mt-2 pt-3 px-4">
                     <p className="text-xs text-neutral-500 font-medium flex items-center">
-                      <div className="w-1 h-1 bg-accent rounded-full mr-2"></div>
-                      {language === 'en' ? 'Learn more about our firm' : 'تعرف على المزيد عن شركتنا'}
+              <span className="w-1 h-1 bg-accent rounded-full mr-2 inline-block"></span>
+                {t('learnMore')} {t('about').toLowerCase()} {t('ourJourney').toLowerCase()}
                     </p>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ const Header = () => {
             >
               <Globe className="h-4 w-4" />
               <span className="text-sm font-medium">
-                {language === 'en' ? 'عربي' : 'EN'}
+                {language === 'en' ? t('arabic') : t('english')}
               </span>
             </Button>
 
@@ -204,7 +204,7 @@ const Header = () => {
               {/* About Section Header */}
               <div className="px-6 py-2 border-t border-neutral-100 mt-2">
                 <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">
-                  About Us
+                  {t('about')}
                 </p>
               </div>
               
@@ -235,7 +235,7 @@ const Header = () => {
                   className="w-full justify-center"
                 >
                   <Globe className="h-4 w-4 mr-2" />
-                  {language === 'en' ? 'عربي' : 'English'}
+                  {language === 'en' ? t('arabic') : t('english')}
                 </Button>
               </div>
               

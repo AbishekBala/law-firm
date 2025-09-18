@@ -18,8 +18,8 @@ const About = () => {
 
   const stickyContent = [
     {
-      title: "Legal Excellence Foundation",
-      description: "Built on 15+ years of specialized experience in Saudi Arabian law, our firm has established itself as a cornerstone of legal expertise in the region.",
+      title: t('legalExcellenceFoundation'),
+      description: t('legalExcellenceFoundationDesc'),
       content: (
         <div className="h-full w-full bg-gradient-to-br from-accent/10 via-yellow-500/5 to-accent/20 border-2 border-accent/30 flex items-center justify-center p-8 rounded-2xl shadow-xl backdrop-blur-sm">
           <div className="text-center">
@@ -27,14 +27,14 @@ const About = () => {
               <Award className="h-12 w-12 text-white" />
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">15+ Years</h3>
-            <p className="text-lg text-white font-semibold">Legal Excellence</p>
+            <p className="text-lg text-white font-semibold">{t('excellenceFoundation')}</p>
           </div>
         </div>
       ),
     },
     {
-      title: "Client-Centered Approach", 
-      description: "We have successfully served over 500 clients, maintaining a 98% success rate through our personalized legal solutions and dedicated service.",
+      title: t('clientCenteredApproach'), 
+      description: t('clientCenteredApproachDesc'),
       content: (
         <div className="h-full w-full bg-gradient-to-br from-legal-navy via-legal-navy/90 to-accent/20 flex items-center justify-center text-white p-8 rounded-2xl shadow-xl">
           <div className="text-center">
@@ -42,7 +42,7 @@ const About = () => {
               <Users className="h-12 w-12 text-white" />
             </div>
             <h3 className="text-2xl font-bold text-accent mb-2">500+</h3>
-            <p className="text-lg text-accent font-semibold">Satisfied Clients</p>
+            <p className="text-lg text-accent font-semibold">{t('satisfiedClients')}</p>
           </div>
         </div>
       ),
@@ -130,9 +130,9 @@ const About = () => {
         <section className="section-padding bg-neutral-50">
           <div className="container-max">
             <div className="text-center mb-12">
-              <h2 className="heading-lg text-legal-navy mb-4">Our Legal Journey</h2>
+              <h2 className="heading-lg text-legal-navy mb-4">{t('ourLegalJourney')}</h2>
               <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                Discover how we've built our reputation as Saudi Arabia's premier law firm through dedication, innovation, and unwavering commitment to excellence.
+                {t('ourLegalJourneyDesc')}
               </p>
             </div>
             <StickyScroll content={stickyContent} />
@@ -145,9 +145,9 @@ const About = () => {
         <section className="section-padding bg-white">
           <div className="container-max">
             <div className="text-center mb-12">
-              <h2 className="heading-lg text-legal-navy mb-4">Our Goal</h2>
+              <h2 className="heading-lg text-legal-navy mb-4">{t('ourGoal')}</h2>
               <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                Our commitment to being the leading legal partner in Saudi Arabia through excellence and innovation
+                {t('ourGoalDesc')}
               </p>
             </div>
             
@@ -162,12 +162,12 @@ const About = () => {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-legal-navy">Leading Legal Partnership</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-legal-navy">{t('leadingLegalPartnership')}</h3>
                       <p className="text-lg leading-relaxed text-neutral-600 mb-4">
-                        At Ali Bin Fahad Law Firm & Intellectual Property LLC, our goal is to be the leading legal partner in Saudi Arabia, providing tailored and innovative solutions to businesses and individuals while safeguarding their legal and financial interests.
+                        {t('leadingLegalPartnershipDesc')}
                       </p>
                       <p className="text-lg leading-relaxed text-neutral-600">
-                        We focus on building long-term partnerships through trust, integrity, and professionalism, leveraging our expertise to provide practical strategies for evolving legal challenges.
+                        {t('partnershipFocus')}
                       </p>
                     </div>
                   </div>
@@ -182,10 +182,10 @@ const About = () => {
                     <div className="bg-legal-gold/10 border border-legal-gold w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
                       <Shield className="h-6 w-6 text-legal-gold" />
                     </div>
-                    <h4 className="text-xl font-semibold text-legal-navy">Our Commitment</h4>
+                    <h4 className="text-xl font-semibold text-legal-navy">{t('ourCommitment')}</h4>
                   </div>
                   <p className="text-neutral-600 leading-relaxed">
-                    We help clients navigate complex legal frameworks, protect intellectual property, facilitate business growth, and resolve disputes effectively with tailored support and guidance.
+                    {t('ourCommitmentDesc')}
                   </p>
                 </div>
                 
@@ -195,10 +195,10 @@ const About = () => {
                     <div className="bg-legal-gold/10 border border-legal-gold w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
                       <Award className="h-6 w-6 text-legal-gold" />
                     </div>
-                    <h4 className="text-xl font-semibold text-legal-navy">Excellence in Service</h4>
+                    <h4 className="text-xl font-semibold text-legal-navy">{t('excellenceInService')}</h4>
                   </div>
                   <p className="text-neutral-600 leading-relaxed">
-                    Excellence drives everything we do. Through dedication, accountability, and results-driven approaches, we deliver outstanding outcomes for local and international success.
+                    {t('excellenceInServiceDesc')}
                   </p>
                 </div>
               </div>

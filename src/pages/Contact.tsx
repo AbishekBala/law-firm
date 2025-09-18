@@ -102,8 +102,8 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
       icon: Clock,
       title: t('businessHours'),
       details: [
-        'Sunday - Thursday: 8:00 AM - 6:00 PM',
-        'Friday - Saturday: Closed'
+        t('sundayThursday'),
+        t('fridaySaturday')
       ]
     }
   ];
@@ -187,7 +187,7 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      placeholder="Your full name"
+                      placeholder={t('yourFullName')}
                       className="contact-input"
                       required
                     />
@@ -200,7 +200,7 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+966 XX XXX XXXX"
+                      placeholder={t('phonePlaceholder')}
                       className="contact-input"
                     />
                   </div>
@@ -215,7 +215,7 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="your.email@example.com"
+                    placeholder={t('emailPlaceholder')}
                     className="contact-input"
                     required
                   />
@@ -229,7 +229,7 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    placeholder="Brief description of your legal matter"
+                    placeholder={t('subjectPlaceholder')}
                     className="contact-input"
                     required
                   />
@@ -243,7 +243,7 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Please provide details about your legal inquiry..."
+                    placeholder={t('messagePlaceholder')}
                     rows={5}
                     className="contact-input resize-none"
                     required

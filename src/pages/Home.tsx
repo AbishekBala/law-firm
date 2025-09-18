@@ -26,41 +26,41 @@ const Home = () => {
   const showcaseFeatures = [
     {
       icon: Scale,
-      title: 'Legal Expertise',
-      description: 'Specialized experience in Saudi Arabian law',
+      title: t('legalExpertise'),
+      description: t('legalExpertiseDesc'),
     },
     {
       icon: Clock,
-      title: 'Rapid Response',
-      description: '24/7 legal consultation and emergency support',
+      title: t('rapidResponse'),
+      description: t('rapidResponseDesc'),
     },
     {
       icon: CheckCircle,
-      title: 'Success Record',
-      description: 'Proven track record in cases handled',
+      title: t('successRecord'),
+      description: t('successRecordDesc'),
     },
   ];
 
   const coreValues = [
     {
       icon: Award,
-      title: 'Legal Excellence',
-      description: 'Delivering exceptional legal services with precision, expertise, and unwavering attention to every case we handle.',
+      title: t('legalExcellence'),
+      description: t('legalExcellenceDesc'),
     },
     {
       icon: Shield,
-      title: 'Professional Integrity',
-      description: 'Maintaining the highest ethical standards and building trust through transparent, honest, and reliable legal counsel.',
+      title: t('professionalIntegrity'),
+      description: t('professionalIntegrityDesc'),
     },
     {
       icon: Lightbulb,
-      title: 'Innovative Solutions',
-      description: 'Leveraging cutting-edge legal strategies and modern technology to provide efficient and effective solutions.',
+      title: t('innovativeSolutions'),
+      description: t('innovativeSolutionsDesc'),
     },
     {
       icon: Heart,
-      title: 'Client-Centered Approach',
-      description: 'Placing our clients at the heart of everything we do, ensuring personalized service and exceptional results.',
+      title: t('clientCenteredApproach'),
+      description: t('clientCenteredApproachDesc'),
     },
   ];
 
@@ -81,7 +81,7 @@ const Home = () => {
             {/* Left Side - Main Content */}
             <AnimatedSection animation="fadeInLeft" className="text-white flex flex-col justify-center px-4 lg:px-0">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                Premier Legal Excellence in Saudi Arabia
+                {t('heroTitle')}
               </h1>
               <div className="gold-accent text-lg md:text-xl font-semibold mb-6">
                 {t('heroSubtitle')}
@@ -115,8 +115,8 @@ const Home = () => {
                       <Scale className="h-6 w-6 text-accent" />
                     </div>
                     <div className="text-center">
-                      <h3 className="text-xl md:text-2xl font-bold text-white mb-1 leading-tight">Premier Legal Solutions</h3>
-                      <p className="text-neutral-200 text-sm md:text-base">Trusted by clients across Saudi Arabia</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-1 leading-tight">{t('premierLegalSolutions')}</h3>
+                      <p className="text-neutral-200 text-sm md:text-base">{t('trustedByClients')}</p>
                     </div>
                   </div>
                 </div>
@@ -172,13 +172,13 @@ const Home = () => {
             <div className="lg:hidden text-center mb-8">
               <div className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-accent/10 rounded-full border border-accent/20 mb-2 sm:mb-3">
                 <Scale className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-accent mr-1.5 sm:mr-2" />
-                <span className="text-xs font-medium text-accent">Professional Legal Services</span>
+                <span className="text-xs font-medium text-accent">{t('professionalLegalServices')}</span>
               </div>
               
               <h2 className="text-2xl sm:text-3xl font-bold text-legal-navy mb-2 sm:mb-3 leading-tight">
                 Our Legal{' '}
                 <RotatingText
-                  texts={['Excellence', 'Expertise', 'Solutions', 'Innovation']}
+                  texts={[t('rotatingExcellence'), t('rotatingExpertise'), t('rotatingSolutions'), t('rotatingInnovation')]}
                   mainClassName="inline-flex px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-accent via-yellow-500 to-amber-600 text-white overflow-hidden rounded-md sm:rounded-lg shadow-lg text-sm sm:text-base"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
@@ -206,7 +206,7 @@ const Home = () => {
                   <div className="relative bg-white rounded-xl sm:rounded-2xl p-1 sm:p-1.5 shadow-lg sm:shadow-xl">
                     <LazyImage 
                       src={heroLawyer} 
-                      alt="Professional lawyer Ali Bin Fahad" 
+                      alt={t('heroAlt')} 
                       className="rounded-lg sm:rounded-xl w-full h-auto object-cover shadow-md sm:shadow-lg"
                     />
                     
@@ -214,7 +214,7 @@ const Home = () => {
                     <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-white/95 backdrop-blur-sm rounded-md sm:rounded-lg px-2 sm:px-3 py-1 sm:py-1.5 shadow-md sm:shadow-lg">
                       <div className="flex items-center space-x-1 sm:space-x-2">
                         <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs font-medium text-legal-navy">Available for Consultation</span>
+                        <span className="text-xs font-medium text-legal-navy">{t('availableForConsultation')}</span>
                       </div>
                     </div>
 
@@ -227,8 +227,8 @@ const Home = () => {
                           </div>
                         </div>
                         <div>
-                          <p className="text-xs text-neutral-600 italic">"Exceptional legal expertise and professional service"</p>
-                          <p className="text-xs text-neutral-500 mt-0.5">- Satisfied Client</p>
+                          <p className="text-xs text-neutral-600 italic">{t('testimonialQuote')}</p>
+                          <p className="text-xs text-neutral-500 mt-0.5">{t('testimonialAuthor')}</p>
                         </div>
                       </div>
                     </div>
@@ -242,13 +242,13 @@ const Home = () => {
                 <div className="mb-4 sm:mb-6 text-center lg:text-left hidden lg:block">
                   <div className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-accent/10 rounded-full border border-accent/20 mb-2 sm:mb-3">
                     <Scale className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-accent mr-1.5 sm:mr-2" />
-                    <span className="text-xs font-medium text-accent">Professional Legal Services</span>
+                    <span className="text-xs font-medium text-accent">{t('professionalLegalServices')}</span>
                   </div>
                   
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-legal-navy mb-2 sm:mb-3 leading-tight">
-                    Our Legal{' '}
-                    <RotatingText
-                      texts={['Excellence', 'Expertise', 'Solutions', 'Innovation']}
+                        {t('ourLegal')}{' '}
+                        <RotatingText
+                          texts={[t('rotatingExcellence'), t('rotatingExpertise'), t('rotatingSolutions'), t('rotatingInnovation')]}
                       mainClassName="inline-flex px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-accent via-yellow-500 to-amber-600 text-white overflow-hidden rounded-md sm:rounded-lg shadow-lg text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                       staggerFrom="last"
                       initial={{ y: "100%" }}
@@ -266,13 +266,13 @@ const Home = () => {
 
                 {/* Enhanced Description - Mobile optimized */}
                 <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-center lg:text-left">
-                  <p className="text-base sm:text-lg text-neutral-700 leading-relaxed font-medium">
-                    Ali Bin Fahad Law Firm & Intellectual Property LLC stands as a 
-                    <span className="text-accent font-semibold"> beacon of legal excellence</span> in Saudi Arabia.
+                    <p className="text-base sm:text-lg text-neutral-700 leading-relaxed font-medium">
+                    {t('heroLinePrefix')}{' '}
+                    <span className="text-accent font-semibold">{t('beaconPhrase')}</span>{' '}
+                    {t('inSaudiArabia')}
                   </p>
                   <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-                    With thorough expertise and unwavering commitment to our clients, we provide 
-                    comprehensive legal solutions that drive success and protect your interests.
+                    {t('heroDescription')}
                   </p>
                 </div>
 
@@ -293,7 +293,7 @@ const Home = () => {
                             size="lg"
                           />
                         </div>
-                        <p className="text-base sm:text-lg font-semibold text-legal-navy">Years of Excellence</p>
+                        <p className="text-base sm:text-lg font-semibold text-legal-navy">{t('yearsExperience')}</p>
                       </div>
                     </div>
                   </div>
@@ -313,7 +313,7 @@ const Home = () => {
                             size="lg"
                           />
                         </div>
-                        <p className="text-base sm:text-lg font-semibold text-legal-navy">Satisfied Clients</p>
+                        <p className="text-base sm:text-lg font-semibold text-legal-navy">{t('clientsServed')}</p>
                       </div>
                     </div>
                   </div>
@@ -334,7 +334,7 @@ const Home = () => {
                     variant="outline" 
                     className="border-2 border-legal-navy text-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-300 text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto"
                   >
-                    View Our Services
+                    {t('ourServices')}
                   </Button>
                 </div>
 
@@ -343,15 +343,15 @@ const Home = () => {
                   <div className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-4 text-xs text-neutral-500">
                     <div className="flex items-center">
                       <Shield className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1 sm:mr-1.5 text-accent" />
-                      <span>Licensed & Certified</span>
+                      <span>{t('licensedCertified')}</span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1 sm:mr-1.5 text-accent" />
-                      <span>98% Success Rate</span>
+                      <span>{t('successRateText')}</span>
                     </div>
                     <div className="flex items-center">
                       <Clock className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1 sm:mr-1.5 text-accent" />
-                      <span>24/7 Support</span>
+                      <span>{t('support247')}</span>
                     </div>
                   </div>
                 </div>
@@ -402,16 +402,15 @@ const Home = () => {
         <section className="section-padding bg-legal-navy text-white relative overflow-hidden mb-16">
           <div className="absolute inset-0 bg-gradient-to-br from-legal-navy via-legal-navy to-neutral-900"></div>
           <div className="container-max relative z-10 text-center">
-            <h2 className="heading-lg mb-8">Our Mission</h2>
+            <h2 className="heading-lg mb-8">{t('ourMission')}</h2>
             <p className="text-xl text-neutral-200 mb-8 max-w-4xl mx-auto leading-relaxed">
-              To be the leading law firm in Saudi Arabia, recognized for our expertise, integrity, and commitment to 
-              delivering exceptional legal services that exceed client expectations.
+              {t('missionDescription')}
             </p>
             <Button 
               onClick={() => navigate('/contact')}
               className="btn-primary"
             >
-              Schedule Consultation
+              {t('scheduleConsultation')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>

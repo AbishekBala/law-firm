@@ -1,5 +1,6 @@
 import { X, Mail, Phone, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/hooks/useLanguage';
 
 interface TeamMember {
   name: string;
@@ -12,13 +13,15 @@ interface TeamMember {
 }
 
 interface TeamMemberModalProps {
-  member: TeamMember;
+  member: TeamMember | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
 export const TeamMemberModal = ({ member, isOpen, onClose }: TeamMemberModalProps) => {
-  if (!isOpen) return null;
+  const { t } = useTranslation();
+
+  if (!isOpen || !member) return null;
 
   return (
     <div className="modal-overlay animate-fadeIn" onClick={onClose}>
@@ -58,17 +61,17 @@ export const TeamMemberModal = ({ member, isOpen, onClose }: TeamMemberModalProp
           <div className="p-6">
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-semibold text-legal-navy mb-1">Specialization</h3>
+                <h3 className="text-sm font-semibold text-legal-navy mb-1">{t('specialization')}</h3>
                 <p className="text-neutral-600 text-sm">{member.specialization}</p>
               </div>
               
               <div>
-                <h3 className="text-sm font-semibold text-legal-navy mb-1">About</h3>
+                <h3 className="text-sm font-semibold text-legal-navy mb-1">{t('about')}</h3>
                 <p className="text-neutral-600 text-sm leading-relaxed">{member.description}</p>
               </div>
               
               <div>
-                <h3 className="text-sm font-semibold text-legal-navy mb-2">Practice Areas</h3>
+                <h3 className="text-sm font-semibold text-legal-navy mb-2">{t('practiceAreas')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {member.areas.map((area, index) => (
                     <span 
@@ -82,7 +85,7 @@ export const TeamMemberModal = ({ member, isOpen, onClose }: TeamMemberModalProp
               </div>
               
               <div>
-                <h3 className="text-sm font-semibold text-legal-navy mb-1">Credentials</h3>
+                <h3 className="text-sm font-semibold text-legal-navy mb-1">{t('credentials')}</h3>
                 <div className="flex items-center text-neutral-600 text-sm">
                   <div className="w-2 h-2 bg-accent rounded-full mr-2"></div>
                   {member.credentials}
@@ -91,17 +94,32 @@ export const TeamMemberModal = ({ member, isOpen, onClose }: TeamMemberModalProp
               
               <div className="border-t border-neutral-200 pt-4">
                 <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 text-xs">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 text-xs"
+                    onClick={() => { window.location.href = `mailto:info@abf.sa?subject=${encodeURIComponent('Inquiry')}`; }}
+                  >
                     <Mail className="h-3 w-3" />
-                    Email
+                    {t('email')}
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 text-xs">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 text-xs"
+                    onClick={() => { window.location.href = 'tel:+966557536255'; }}
+                  >
                     <Phone className="h-3 w-3" />
-                    Call
+                    {t('call')}
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 text-xs">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 text-xs"
+                    onClick={() => { window.open('https://www.linkedin.com', '_blank'); }}
+                  >
                     <Linkedin className="h-3 w-3" />
-                    LinkedIn
+                    {t('linkedIn')}
                   </Button>
                 </div>
               </div>
@@ -175,17 +193,17 @@ export const TeamMemberModal = ({ member, isOpen, onClose }: TeamMemberModalProp
               <div className="border-t border-neutral-200 pt-6">
                 <h3 className="text-lg font-semibold text-legal-navy mb-4">Contact Information</h3>
                 <div className="flex space-x-3">
-                  <Button variant="outline" size="sm" className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" className="flex items-center gap-2" onClick={() => { window.location.href = `mailto:info@abf.sa?subject=${encodeURIComponent('Inquiry')}`; }}>
                     <Mail className="h-4 w-4" />
-                    Email
+                    {t('email')}
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" className="flex items-center gap-2" onClick={() => { window.location.href = 'tel:+966557536255'; }}>
                     <Phone className="h-4 w-4" />
-                    Call
+                    {t('call')}
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" className="flex items-center gap-2" onClick={() => { window.open('https://www.linkedin.com', '_blank'); }}>
                     <Linkedin className="h-4 w-4" />
-                    LinkedIn
+                    {t('linkedIn')}
                   </Button>
                 </div>
               </div>

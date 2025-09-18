@@ -30,10 +30,10 @@ const Services = () => {
           <h1 className="heading-lg mb-6">
             <Typewriter
               text={[
-                "Our Legal Services",
-                "Expert Legal Solutions", 
-                "Professional Legal Advice",
-                "Comprehensive Legal Support"
+                t('ourLegalServices'),
+                t('expertLegalSolutions'), 
+                t('professionalLegalAdvice'),
+                t('comprehensiveLegalSupport')
               ]}
               speed={80}
               loop={true}
@@ -110,14 +110,14 @@ const Services = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               <Typewriter
-                text="Ready to Get Started?"
+                text={t('readyToGetStarted')}
                 speed={80}
                 loop={false}
                 className="text-inherit"
               />
             </h2>
             <p className="text-lg md:text-xl text-neutral-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Don't let legal challenges hold your business back. Partner with Ali Bin Fahad Law Firm for expert legal solutions that protect your interests and drive your success forward.
+              {t('servicesCTA')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -125,7 +125,7 @@ const Services = () => {
                 onClick={() => navigate('/contact')}
                 className="bg-accent hover:bg-accent/90 text-legal-navy font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group w-full sm:w-auto"
               >
-                Schedule Free Consultation
+                {t('scheduleFreeConsultation')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
@@ -133,7 +133,7 @@ const Services = () => {
                 variant="outline" 
                 className="border-2 border-accent/80 bg-white/90 text-legal-navy hover:bg-accent hover:text-white hover:border-accent font-semibold px-8 py-3 rounded-xl backdrop-blur-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 w-full sm:w-auto"
               >
-                Contact Our Team
+                {t('contactOurTeam')}
               </Button>
             </div>
             
@@ -142,15 +142,15 @@ const Services = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 text-center">
                 <div className="text-white/90">
                   <div className="text-2xl md:text-3xl font-bold text-accent mb-2">500+</div>
-                  <div className="text-sm md:text-base">Successful Cases</div>
+                  <div className="text-sm md:text-base">{t('successfulCases')}</div>
                 </div>
                 <div className="text-white/90">
                   <div className="text-2xl md:text-3xl font-bold text-accent mb-2">15+</div>
-                  <div className="text-sm md:text-base">Years Experience</div>
+                  <div className="text-sm md:text-base">{t('yearsOfExcellence')}</div>
                 </div>
                 <div className="text-white/90">
                   <div className="text-2xl md:text-3xl font-bold text-accent mb-2">98%</div>
-                  <div className="text-sm md:text-base">Client Satisfaction</div>
+                  <div className="text-sm md:text-base">{t('clientSatisfaction')}</div>
                 </div>
               </div>
             </div>

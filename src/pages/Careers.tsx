@@ -164,9 +164,20 @@ const Careers = () => {
                           <Calendar className="h-3 w-3 mr-1" />
                           Posted {new Date(career.postedDate).toLocaleDateString()}
                         </div>
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           className="text-accent hover:text-accent hover:bg-accent/10 p-0 h-auto group-hover:translate-x-1 transition-transform font-medium text-sm"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            // navigate to career detail page
+                            try {
+                              // try a programmatic navigation if available
+                              const path = `/careers/${career.id}`;
+                              window.location.href = path;
+                            } catch {
+                              window.location.href = `/careers/${career.id}`;
+                            }
+                          }}
                         >
                           Apply Now
                           <ArrowRight className="ml-2 h-4 w-4" />

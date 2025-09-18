@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Linkedin, Twitter, Instagram, Award, Shield, CheckCircle } from 'lucide-react';
+import { useTranslation } from '@/hooks/useLanguage';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Why Choose Us', href: '/why-choose-us' },
-    { name: 'Our Team', href: '/team' },
-    { name: 'Testimonials', href: '/testimonials' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('home'), href: '/' },
+    { name: t('about'), href: '/about' },
+    { name: t('services'), href: '/services' },
+    { name: t('whyChooseUs'), href: '/why-choose-us' },
+    { name: t('team'), href: '/team' },
+    { name: t('testimonials'), href: '/testimonials' },
+    { name: t('contact'), href: '/contact' },
   ];
 
   const legalServices = [
@@ -39,8 +41,7 @@ const Footer = () => {
               <p className="text-accent text-sm font-medium">& Intellectual Property LLC</p>
             </div>
             <p className="text-neutral-300 mb-6 text-sm leading-relaxed">
-              Your trusted legal partner in Saudi Arabia, providing comprehensive 
-              legal solutions with excellence and integrity.
+              {t('footerDescription')}
             </p>
             
             {/* Contact Info */}
@@ -69,7 +70,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-accent font-semibold mb-6">Quick Links</h4>
+                        <h4 className="text-lg font-semibold mb-4">{t('quickLinks')}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -114,7 +115,7 @@ const Footer = () => {
             </ul>
 
             <div>
-              <h4 className="text-accent font-semibold mb-4">Follow Us</h4>
+              <h4 className="text-accent font-semibold mb-4">{t('followUs')}</h4>
               <div className="flex space-x-4">
                 <a 
                   href="#" 
@@ -146,7 +147,7 @@ const Footer = () => {
         <div className="border-t border-neutral-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-neutral-400">
-              © 2024 Ali Bin Fahad Law Firm & Intellectual Property LLC. All rights reserved.
+              © 2024 Ali Bin Fahad Law Firm & Intellectual Property LLC. {t('allRightsReserved')}
             </p>
             <div className="flex space-x-6 text-sm">
               <Link to="/privacy" className="text-neutral-400 hover:text-accent transition-colors">
