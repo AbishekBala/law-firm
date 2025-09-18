@@ -18,6 +18,7 @@ const Header = () => {
     { name: t('whyChooseUs'), href: '/why-choose-us' },
     { name: t('team'), href: '/team' },
     { name: t('testimonials'), href: '/testimonials' },
+    { name: 'Blog', href: '/blog' },
     { name: t('contact'), href: '/contact' },
   ];
 
