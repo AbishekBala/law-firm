@@ -81,12 +81,7 @@ const Home = () => {
             {/* Left Side - Main Content */}
             <AnimatedSection animation="fadeInLeft" className="text-white flex flex-col justify-center px-4 lg:px-0">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                <Typewriter
-                  text="Premier Legal Excellence in Saudi Arabia"
-                  speed={80}
-                  loop={false}
-                  className="text-inherit"
-                />
+                Premier Legal Excellence in Saudi Arabia
               </h1>
               <div className="gold-accent text-lg md:text-xl font-semibold mb-6">
                 {t('heroSubtitle')}
@@ -104,7 +99,7 @@ const Home = () => {
                 </Button>
                 <Button 
                   onClick={() => navigate('/services')}
-                  className="btn-secondary hover:scale-105 transition-transform duration-300"
+                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-legal-navy transition-all duration-300 font-medium"
                 >
                   {t('ourServices')}
                 </Button>
