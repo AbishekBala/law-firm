@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import logoNew from '@/assets/logo-new.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
@@ -55,7 +56,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <img 
-              src="/src/assets/logo-new.png" 
+              src={logoNew} 
               alt="Ali Bin Fahad Law Firm & Intellectual Property LLC" 
               className="h-12 w-auto max-w-[300px] object-contain"
             />
