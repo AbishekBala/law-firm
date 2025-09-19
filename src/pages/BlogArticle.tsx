@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock, User, Tag, Languages, Share2, Facebook, Twitter, Linkedin, Copy } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -9,12 +10,10 @@ import { blogPosts } from '@/data/blogData';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { LazyImage } from '@/components/LazyImage';
 
-type Language = 'en' | 'ar';
-
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [language, setLanguage] = useState<Language>('en');
+  const { language, setLanguage, isRTL } = useLanguage();
 
   const post = blogPosts.find(p => p.slug === slug);
 
@@ -56,7 +55,7 @@ const BlogArticle = () => {
   };
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'ar' : 'en');
+    setLanguage(language === 'en' ? 'ar' : 'en');
   };
 
   const copyToClipboard = () => {
@@ -94,7 +93,7 @@ const BlogArticle = () => {
     .slice(0, 3);
 
   return (
-    <div className={`min-h-screen ${language === 'ar' ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen ${isRTL ? 'rtl' : 'ltr'}`}>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-legal-navy via-legal-navy/95 to-legal-navy/90 text-white py-20 relative overflow-hidden">
         {/* Background Pattern */}

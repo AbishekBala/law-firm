@@ -8,71 +8,71 @@ const Testimonials = () => {
   const { t } = useTranslation();
   
   const stats = [
-    { number: '500+', label: 'Satisfied Clients' },
-    { number: '98%', label: 'Success Rate' },
-    { number: '4.9/5', label: 'Average Rating' },
+    { number: '500+', label: t('satisfiedClients') },
+    { number: '98%', label: t('successRate') },
+    { number: '4.9/5', label: t('averageRating') },
     { number: '15+', label: t('yearsExperience') },
   ];
 
   const testimonials = [
     {
       rating: 5,
-      quote: "Ali Bin Fahad Law Firm provided exceptional service for our company formation. Their expertise in Saudi Arabian law and prompt responses made the entire process seamless. Highly recommend their professional services.",
-      service: "Company Formation",
+      quote: t('testimonial1.quote'),
+      service: t('testimonial1.service'),
       client: {
-        name: "Mohammed Al-Rashid",
-        title: "CEO, Tech Solutions KSA",
-        avatar: "M"
+        name: t('testimonial1.clientName'),
+        title: t('testimonial1.clientTitle'),
+        avatar: 'M'
       }
     },
     {
       rating: 5,
-      quote: "Outstanding legal representation in our intellectual property case. The team demonstrated deep knowledge of trademark law and achieved better results than we expected. Professional, responsive, and results-driven.",
-      service: "Trademark Services",
+      quote: t('testimonial2.quote'),
+      service: t('testimonial2.service'),
       client: {
-        name: "Sarah Al-Mansouri",
-        title: "Entrepreneur & Business Owner",
-        avatar: "S"
+        name: t('testimonial2.clientName'),
+        title: t('testimonial2.clientTitle'),
+        avatar: 'S'
       }
     },
     {
       rating: 5,
-      quote: "The firm handled our complex commercial litigation with remarkable skill and attention to detail. Their strategic approach and thorough preparation resulted in a favorable outcome. Truly impressed with their professionalism.",
-      service: "Commercial Litigation",
+      quote: t('testimonial3.quote'),
+      service: t('testimonial3.service'),
       client: {
-        name: "Ahmed Bin Sultan",
-        title: "International Investor",
-        avatar: "A"
+        name: t('testimonial3.clientName'),
+        title: t('testimonial3.clientTitle'),
+        avatar: 'A'
       }
     },
     {
       rating: 5,
-      quote: "Excellent support with our estate planning needs. The team provided clear guidance through complex family law matters with sensitivity and expertise. Their bilingual service was particularly valuable for our family.",
-      service: "Estate Planning",
+      quote: t('testimonial4.quote'),
+      service: t('testimonial4.service'),
       client: {
-        name: "Fatima Al-Zahra",
-        title: "Family Business Owner",
-        avatar: "F"
+        name: t('testimonial4.clientName'),
+        title: t('testimonial4.clientTitle'),
+        avatar: 'F'
       }
     },
     {
       rating: 5,
-      quote: "Ali Bin Fahad Law Firm has been our trusted legal partner for over 3 years. Their consistent quality of service, deep understanding of regulatory requirements, and proactive approach make them invaluable to our business.",
-      service: "Corporate Compliance",
+      quote: t('testimonial5.quote'),
+      service: t('testimonial5.service'),
       client: {
-        name: "Khalid Al-Otaibi",
-        title: "Managing Director",
-        avatar: "K"
+        name: t('testimonial5.clientName'),
+        title: t('testimonial5.clientTitle'),
+        avatar: 'K'
       }
     },
     {
       rating: 5,
-      quote: "From startup incorporation to ongoing legal compliance, this firm has supported our growth journey every step of the way. Their innovative approach to legal solutions and understanding of modern business needs is exceptional.",
-      service: "Business Growth Support",
+      quote: t('testimonial6.quote'),
+      service: t('testimonial6.service'),
       client: {
-        name: "Nora Al-Saud",
-        title: "Tech Entrepreneur",
-        avatar: "N"
+        name: t('testimonial6.clientName'),
+        title: t('testimonial6.clientTitle'),
+        avatar: 'N'
       }
     }
   ];
@@ -97,19 +97,19 @@ const Testimonials = () => {
           <div className="container-max text-center px-4 relative z-10">
             <div className="inline-flex items-center justify-center mb-6">
               <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-full px-6 py-2">
-                <span className="text-accent font-medium">Client Reviews</span>
+                <span className="text-accent font-medium">{t('pageTitle')}</span>
               </div>
             </div>
             <h1 className="heading-lg mb-6 bg-gradient-to-r from-white to-accent/90 bg-clip-text text-transparent">
               <Typewriter
-                text="Client Testimonials"
+                text={t('pageTitle')}
                 speed={80}
                 loop={false}
                 className="text-inherit"
               />
             </h1>
             <p className="text-xl text-neutral-200 max-w-3xl mx-auto leading-relaxed">
-              What our clients say about our legal services
+              {t('pageSubtitle')}
             </p>
             
             {/* Decorative Elements */}
@@ -152,10 +152,10 @@ const Testimonials = () => {
             {/* All Testimonials Section */}
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-legal-navy mb-4">
-                Client Reviews
+                {t('pageTitle')}
               </h2>
               <p className="text-neutral-600">
-                Read detailed testimonials from our satisfied clients
+                {t('pageSubtitle')}
               </p>
             </div>
 

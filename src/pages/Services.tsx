@@ -62,11 +62,11 @@ const Services = () => {
                     </div>
                     
                     <h3 className="text-xl font-semibold text-legal-navy mb-4 leading-tight">
-                      {service.shortTitle}
+                      {t(`service_${service.id}_shortTitle`, service.shortTitle)}
                     </h3>
                     
                     <p className="text-neutral-600 mb-6 leading-relaxed text-sm line-clamp-4">
-                      {service.description}
+                      {t(`service_${service.id}_description`, service.description)}
                     </p>
                     
                     <div className="flex-grow">
@@ -74,7 +74,10 @@ const Services = () => {
                         {service.features.slice(0, 3).map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-start text-sm text-neutral-600">
                             <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0 mt-2"></div>
-                            <span className="leading-relaxed">{feature.split(':')[0]}</span>
+                            <span className="leading-relaxed">{t(
+                              `service_${service.id}_feature_${featureIndex}`,
+                              feature.split(':')[0]
+                            )}</span>
                           </li>
                         ))}
                       </ul>

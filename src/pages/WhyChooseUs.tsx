@@ -2,38 +2,41 @@ import { Shield, Monitor, Users, Clock, Award, RefreshCw } from 'lucide-react';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { Typewriter } from '@/components/ui/typewriter-text';
+import { useTranslation } from '@/hooks/useLanguage';
 
 const WhyChooseUs = () => {
+  const { t } = useTranslation();
+
   const features = [
     {
       icon: Shield,
-      title: 'Highest Standards of Integrity',
-      description: 'We uphold the highest ethical standards, providing honest and transparent legal services while adhering to professional excellence and Islamic principles.',
+      title: t('feature_highestStandardsIntegrity_label'),
+      description: t('feature_highestStandardsIntegrity_desc'),
     },
     {
       icon: Monitor,
-      title: 'Digital Legal Solutions',
-      description: 'Modern technology integration for efficient service delivery, including online consultations, document management, and real-time case tracking.',
+      title: t('feature_digitalLegalSolutions_label'),
+      description: t('feature_digitalLegalSolutions_desc'),
     },
     {
       icon: Users,
-      title: 'Expert Legal Team',
-      description: 'Our diverse team of specialized lawyers brings comprehensive expertise across all areas of law, ensuring the best possible outcomes.',
+      title: t('feature_expertLegalTeam_label'),
+      description: t('feature_expertLegalTeam_desc'),
     },
     {
       icon: Clock,
-      title: 'Rapid Response Time',
-      description: 'We understand the urgency of legal matters and guarantee prompt responses to all client inquiries through multiple communication channels.',
+      title: t('feature_rapidResponseTime_label'),
+      description: t('feature_rapidResponseTime_desc'),
     },
     {
       icon: Award,
-      title: 'Professional Excellence',
-      description: 'Our commitment to continuous improvement and professional development ensures we deliver cutting-edge legal solutions.',
+      title: t('feature_professionalExcellence_label'),
+      description: t('feature_professionalExcellence_desc'),
     },
     {
       icon: RefreshCw,
-      title: 'Ongoing Client Support',
-      description: 'Comprehensive follow-up services and regular updates keep you informed about your case progress and any legal developments.',
+      title: t('feature_ongoingClientSupport_label'),
+      description: t('feature_ongoingClientSupport_desc'),
     },
   ];
 
@@ -44,14 +47,14 @@ const WhyChooseUs = () => {
         <div className="container-max text-center px-4">
           <h1 className="heading-lg mb-6">
             <Typewriter
-              text="Why Choose Ali Bin Fahad Law Firm"
+              text={t('pageTitle')}
               speed={80}
               loop={false}
               className="text-inherit"
             />
           </h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
-            Discover what sets us apart as your trusted legal partner in Saudi Arabia
+            {t('pageSubtitle')}
           </p>
         </div>
       </section>
@@ -60,9 +63,9 @@ const WhyChooseUs = () => {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-legal-navy mb-4">What Sets Us Apart</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-legal-navy mb-4">{t('mainTitle')}</h2>
             <p className="text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              Our comprehensive approach to legal services combines expertise, innovation, and unwavering commitment to client success.
+              {t('mainDescription')}
             </p>
           </div>
           
@@ -101,9 +104,9 @@ const WhyChooseUs = () => {
         
         <div className="container-max relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-legal-navy mb-4">Our Track Record</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-legal-navy mb-4">{t('statsTitle')}</h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              Numbers that speak to our commitment and success in delivering exceptional legal services
+              {t('statsSubtitle')}
             </p>
           </div>
           
@@ -115,7 +118,7 @@ const WhyChooseUs = () => {
                   <div className="relative z-10">
                     <AnimatedCounter 
                       value="15+" 
-                      label="Years of Excellence"
+                      label={t('contact_label_years')}
                       className="text-accent"
                       duration={2000}
                     />
@@ -131,7 +134,7 @@ const WhyChooseUs = () => {
                   <div className="relative z-10">
                     <AnimatedCounter 
                       value="500+" 
-                      label="Satisfied Clients"
+                      label={t('contact_label_clients')}
                       className="text-accent"
                       duration={2200}
                     />
@@ -147,7 +150,7 @@ const WhyChooseUs = () => {
                   <div className="relative z-10">
                     <AnimatedCounter 
                       value="98%" 
-                      label="Success Rate"
+                      label={t('contact_label_success')}
                       className="text-accent"
                       duration={2400}
                     />
@@ -163,7 +166,7 @@ const WhyChooseUs = () => {
                   <div className="relative z-10">
                     <AnimatedCounter 
                       value="24/7" 
-                      label="Client Support"
+                      label={t('contact_label_support')}
                       className="text-accent"
                       duration={2600}
                     />
@@ -187,9 +190,9 @@ const WhyChooseUs = () => {
         
         <div className="container-max text-center relative z-10">
           <div className="max-w-4xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Commitment to Excellence</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t('ctaTitle') /* reuse as section heading */}</h2>
             <p className="text-lg md:text-xl text-accent/90 leading-relaxed">
-              We don't just practice law – we perfect it. Our unwavering dedication to excellence drives every decision, every case, and every client relationship.
+              {t('ctaDescription') /* reuse CTA description for commitment blurb */}
             </p>
           </div>
           
@@ -198,9 +201,9 @@ const WhyChooseUs = () => {
               <div className="bg-gradient-to-br from-accent/20 to-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
                 <Shield className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">Trust & Reliability</h3>
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">{t('trustReliability_title', 'Trust & Reliability')}</h3>
               <p className="text-neutral-200 leading-relaxed">
-                Building lasting relationships through consistent, dependable legal service that you can count on when it matters most.
+                {t('trustReliability_desc', 'Building lasting relationships through consistent, dependable legal service that you can count on when it matters most.')}
               </p>
             </div>
             
@@ -208,9 +211,9 @@ const WhyChooseUs = () => {
               <div className="bg-gradient-to-br from-accent/20 to-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
                 <Award className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">Quality Results</h3>
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">{t('qualityResults_title', 'Quality Results')}</h3>
               <p className="text-neutral-200 leading-relaxed">
-                Delivering exceptional outcomes that exceed client expectations through meticulous preparation and strategic execution.
+                {t('qualityResults_desc', 'Delivering exceptional outcomes that exceed client expectations through meticulous preparation and strategic execution.')}
               </p>
             </div>
             
@@ -218,9 +221,9 @@ const WhyChooseUs = () => {
               <div className="bg-gradient-to-br from-accent/20 to-accent/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
                 <Users className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">Client Focus</h3>
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300">{t('clientFocus_title', 'Client Focus')}</h3>
               <p className="text-neutral-200 leading-relaxed">
-                Putting our clients' needs first in every decision and action, ensuring personalized attention and tailored solutions.
+                {t('clientFocus_desc', "Putting our clients' needs first in every decision and action, ensuring personalized attention and tailored solutions.")}
               </p>
             </div>
           </div>
