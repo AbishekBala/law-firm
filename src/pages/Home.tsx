@@ -365,9 +365,9 @@ const Home = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="section-padding bg-neutral-50">
           <div className="container-max text-center">
-            <h2 className="heading-lg text-legal-navy mb-4">Our Core Values</h2>
+            <h2 className="heading-lg text-legal-navy mb-4">{t('coreValuesTitle')}</h2>
             <p className="text-xl text-neutral-600 mb-12 max-w-3xl mx-auto">
-              The principles that guide our practice and define our commitment to excellence
+              {t('coreValuesSubtitle')}
             </p>
             
             <div 

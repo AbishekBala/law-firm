@@ -28,6 +28,8 @@ export const homeTranslations = {
   testimonialAuthor: '- Satisfied Client',
 
     // Core Values
+  coreValuesTitle: 'Our Core Values',
+  coreValuesSubtitle: 'The principles that guide our practice and define our commitment to excellence',
     legalExcellence: 'Legal Excellence',
     legalExcellenceDesc: 'Delivering exceptional legal services with precision, expertise, and unwavering attention to every case we handle.',
     clientCenteredApproach: 'Client-Centered Approach',
@@ -91,6 +93,8 @@ export const homeTranslations = {
   testimonialAuthor: '- عميل راضٍ',
 
     // Core Values
+  coreValuesTitle: 'قيمنا الأساسية',
+  coreValuesSubtitle: 'المبادئ التي توجه ممارستنا وتحدد التزامنا بالتميز',
     legalExcellence: 'التميز القانوني',
     legalExcellenceDesc: 'تقديم خدمات قانونية استثنائية بدقة واحترافية ونتائج متميزة.',
     clientCenteredApproach: 'النهج المركز على العميل',

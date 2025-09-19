@@ -3,6 +3,10 @@ export const footerTranslations = {
     // Footer Description
     footerDescription: 'Your trusted legal partner in Saudi Arabia, providing comprehensive legal solutions with unmatched expertise.',
 
+  // Firm
+  firmName: 'Ali Bin Fahad Law Firm',
+  firmSubtitle: '& Intellectual Property LLC',
+
     // Quick Links
     quickLinks: 'Quick Links',
     home: 'Home',
@@ -16,9 +20,14 @@ export const footerTranslations = {
     // Services Links
     legalConsultation: 'Legal Consultation',
     companyFormation: 'Company Formation',
+  trademarkServices: 'Trademark Services',
+  contractDrafting: 'Contract Drafting',
+  legalTranslation: 'Legal Translation',
     intellectualProperty: 'Intellectual Property',
     litigation: 'Litigation',
     notaryServices: 'Notary Services',
+
+  legalServicesTitle: 'Legal Services',
 
     // Contact Information
     contactInfo: 'Contact Info',
@@ -50,6 +59,14 @@ export const footerTranslations = {
     cookiePolicy: 'Cookie Policy',
     disclaimer: 'Disclaimer',
 
+  certificationsTitle: 'Certifications',
+
+  // Certifications labels
+  saudiBarAssociation: 'Saudi Bar Association',
+  ministryOfJustice: 'Ministry of Justice',
+  saipRegistered: 'SAIP Registered',
+  iso9001: 'ISO 9001:2015 Certified',
+
     // Copyright
     allRightsReserved: 'All rights reserved.',
     copyright: '© 2025 Ali Bin Fahad Law Firm & Intellectual Property LLC. All rights reserved.',
@@ -62,6 +79,10 @@ export const footerTranslations = {
   ar: {
     // Footer Description
     footerDescription: 'شريكك القانوني الموثوق في المملكة العربية السعودية، نقدم حلولاً قانونية شاملة بخبرة لا تُضاهى.',
+
+  // Firm
+  firmName: 'مكتب المحامي علي بن فهد',
+  firmSubtitle: 'و الملكية الفكرية ذ.م.م',
 
     // Quick Links
     quickLinks: 'روابط سريعة',
@@ -76,9 +97,14 @@ export const footerTranslations = {
     // Services Links
     legalConsultation: 'الاستشارة القانونية',
     companyFormation: 'تأسيس الشركات',
+  trademarkServices: 'خدمات العلامات التجارية',
+  contractDrafting: 'صياغة العقود',
+  legalTranslation: 'الترجمة القانونية',
     intellectualProperty: 'الملكية الفكرية',
     litigation: 'التقاضي',
     notaryServices: 'خدمات الكاتب بالعدل',
+
+  legalServicesTitle: 'الخدمات القانونية',
 
     // Contact Information
     contactInfo: 'معلومات الاتصال',
@@ -109,6 +135,14 @@ export const footerTranslations = {
     termsOfService: 'شروط الخدمة',
     cookiePolicy: 'سياسة ملفات تعريف الارتباط',
     disclaimer: 'إخلاء مسؤولية',
+
+  certificationsTitle: 'الشهادات',
+
+  // Certifications labels
+  saudiBarAssociation: 'النقابة السعودية للمحامين',
+  ministryOfJustice: 'وزارة العدل',
+  saipRegistered: 'مسجل SAIP',
+  iso9001: 'معتمد ISO 9001:2015',
 
     // Copyright
     allRightsReserved: 'جميع الحقوق محفوظة.',

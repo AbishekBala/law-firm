@@ -15,19 +15,19 @@ const Footer = () => {
   ];
 
   const legalServices = [
-    { name: 'Legal Consultation', href: '/services/legal-consultation' },
-    { name: 'Company Formation', href: '/services/company-formation' },
-    { name: 'Litigation & Representation', href: '/services/litigation-representation' },
-    { name: 'Trademark Services', href: '/services/trademark-services' },
-    { name: 'Contract Drafting', href: '/services/contract-drafting-notarization' },
-    { name: 'Legal Translation', href: '/services/legal-translation' },
+    { name: 'Legal Consultation', nameKey: 'legalConsultation', href: '/services/legal-consultation' },
+    { name: 'Company Formation', nameKey: 'companyFormation', href: '/services/company-formation' },
+    { name: 'Litigation & Representation', nameKey: 'litigation', href: '/services/litigation-representation' },
+    { name: 'Trademark Services', nameKey: 'trademarkServices', href: '/services/trademark-services' },
+    { name: 'Contract Drafting', nameKey: 'contractDrafting', href: '/services/contract-drafting-notarization' },
+    { name: 'Legal Translation', nameKey: 'legalTranslation', href: '/services/legal-translation' },
   ];
 
   const certifications = [
-    { name: 'Saudi Bar Association', icon: Award },
-    { name: 'Ministry of Justice', icon: Shield },
-    { name: 'SAIP Registered', icon: CheckCircle },
-    { name: 'ISO 9001:2015 Certified', icon: Award },
+    { name: 'Saudi Bar Association', nameKey: 'saudiBarAssociation', icon: Award },
+    { name: 'Ministry of Justice', nameKey: 'ministryOfJustice', icon: Shield },
+    { name: 'SAIP Registered', nameKey: 'saipRegistered', icon: CheckCircle },
+    { name: 'ISO 9001:2015 Certified', nameKey: 'iso9001', icon: Award },
   ];
 
   return (
@@ -37,8 +37,8 @@ const Footer = () => {
           {/* Firm Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h3 className="text-xl font-bold mb-2">Ali Bin Fahad Law Firm</h3>
-              <p className="text-accent text-sm font-medium">& Intellectual Property LLC</p>
+              <h3 className="text-xl font-bold mb-2">{t('firmName')}</h3>
+              <p className="text-accent text-sm font-medium">{t('firmSubtitle')}</p>
             </div>
             <p className="text-neutral-300 mb-6 text-sm leading-relaxed">
               {t('footerDescription')}
@@ -87,7 +87,7 @@ const Footer = () => {
 
           {/* Legal Services */}
           <div>
-            <h4 className="text-accent font-semibold mb-6">Legal Services</h4>
+            <h4 className="text-accent font-semibold mb-6">{t('legalServicesTitle')}</h4>
             <ul className="space-y-3">
               {legalServices.map((service) => (
                 <li key={service.name}>
@@ -95,7 +95,7 @@ const Footer = () => {
                     to={service.href} 
                     className="text-sm text-neutral-300 hover:text-accent transition-colors"
                   >
-                    {service.name}
+                    {t(service.nameKey ?? service.name)}
                   </Link>
                 </li>
               ))}
@@ -104,12 +104,12 @@ const Footer = () => {
 
           {/* Certifications & Social */}
           <div>
-            <h4 className="text-accent font-semibold mb-6">Certifications</h4>
+            <h4 className="text-accent font-semibold mb-6">{t('certificationsTitle')}</h4>
             <ul className="space-y-3 mb-6">
               {certifications.map((cert) => (
                 <li key={cert.name} className="flex items-center space-x-2">
                   <cert.icon className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span className="text-sm text-neutral-300">{cert.name}</span>
+                  <span className="text-sm text-neutral-300">{t(cert.nameKey ?? cert.name)}</span>
                 </li>
               ))}
             </ul>
