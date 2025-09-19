@@ -149,6 +149,10 @@ const Header = () => {
 
           {/* Actions */}
           <div className={`flex items-center flex-shrink-0 ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+              {/* Admin Sign In Button -- prominent on top-right for desktop */}
+              <Link to="/admin/signin" className="hidden lg:inline-flex">
+                <Button variant="outline" size="sm" className="text-sm">Admin Sign In</Button>
+              </Link>
             {/* Language Toggle */}
             <Button 
               variant="ghost" 

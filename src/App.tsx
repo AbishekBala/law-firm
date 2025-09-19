@@ -17,6 +17,16 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Careers from "./pages/Careers";
 import CareerDetail from "./pages/CareerDetail";
+import AdminLayout from './pages/admin/AdminLayout';
+import SignIn from './pages/admin/SignIn';
+import Dashboard from './pages/admin/Dashboard';
+import BlogsList from './pages/admin/BlogsList';
+import BlogEditor from './pages/admin/BlogEditor';
+import CareersList from './pages/admin/CareersList';
+import CareerEditor from './pages/admin/CareerEditor';
+import TeamList from './pages/admin/TeamList';
+import TeamEditor from './pages/admin/TeamEditor';
+import { AdminPrivateRoute } from './services/adminAuth';
 
 const queryClient = new QueryClient();
 
@@ -40,6 +50,20 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/contact" element={<Contact />} />
+            {/* Admin area - local dev only */}
+            <Route path="/admin/signin" element={<SignIn />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminPrivateRoute><Dashboard /></AdminPrivateRoute>} />
+              <Route path="blogs" element={<AdminPrivateRoute><BlogsList /></AdminPrivateRoute>} />
+              <Route path="blogs/new" element={<AdminPrivateRoute><BlogEditor /></AdminPrivateRoute>} />
+              <Route path="blogs/:id" element={<AdminPrivateRoute><BlogEditor /></AdminPrivateRoute>} />
+              <Route path="careers" element={<AdminPrivateRoute><CareersList /></AdminPrivateRoute>} />
+              <Route path="careers/new" element={<AdminPrivateRoute><CareerEditor /></AdminPrivateRoute>} />
+              <Route path="careers/:id" element={<AdminPrivateRoute><CareerEditor /></AdminPrivateRoute>} />
+              <Route path="team" element={<AdminPrivateRoute><TeamList /></AdminPrivateRoute>} />
+              <Route path="team/new" element={<AdminPrivateRoute><TeamEditor /></AdminPrivateRoute>} />
+              <Route path="team/:id" element={<AdminPrivateRoute><TeamEditor /></AdminPrivateRoute>} />
+            </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

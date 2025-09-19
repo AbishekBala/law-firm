@@ -20,14 +20,17 @@ const Layout = ({ children }: LayoutProps) => {
     });
   }, [location.pathname]);
 
+  // hide global header/footer/fab on admin routes to show admin shell
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      {!isAdminRoute && <Header />}
       <main className="flex-1">
         {children}
       </main>
-      <Footer />
-      <FloatingActionButton />
+      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <FloatingActionButton />}
     </div>
   );
 };

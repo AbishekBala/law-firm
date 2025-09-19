@@ -367,6 +367,42 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
+  /* Admin specific styling */
+  .admin-fade-in {
+    animation: fadeIn 0.45s ease-out both;
+  }
+
+  .admin-card {
+    transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms;
+    will-change: transform, box-shadow;
+  }
+
+  .admin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px -10px rgba(14,27,44,0.12);
+  }
+
+  .admin-sidebar-link {
+    transition: background 220ms, color 220ms, transform 220ms;
+    display: block;
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+
+  .admin-sidebar-link.active {
+    background: linear-gradient(90deg, hsl(var(--legal-gold)), hsl(var(--legal-gold-light)));
+    color: white !important;
+    transform: translateX(4px);
+  }
+
+  .admin-ghost-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: white;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+
   @keyframes slideInRight {
     from { opacity: 0; transform: translateX(30px); }
     to { opacity: 1; transform: translateX(0); }
