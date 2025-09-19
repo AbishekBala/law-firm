@@ -5,6 +5,7 @@ export type BlogPost = {
   slug?: string;
   content: string;
   content_ar?: string;
+  tags?: string[];
   category?: string;
   featuredImage?: string;
   createdAt: string;
@@ -14,6 +15,7 @@ export type CareerItem = {
   id: string;
   title: string;
   title_ar?: string;
+  department?: string;
   location?: string;
   description: string;
   description_ar?: string;
@@ -69,6 +71,7 @@ export const BlogService = {
     const item: BlogPost = {
       id: uid(),
       title: data.title || 'Untitled',
+      tags: data.tags || [],
       slug: data.slug || undefined,
       content: data.content || '',
       category: data.category || 'general',
@@ -104,6 +107,7 @@ export const CareerService = {
     const item: CareerItem = {
       id: uid(),
       title: data.title || 'Untitled Position',
+      department: data.department || '',
       location: data.location || '',
       description: data.description || '',
       requirements: data.requirements || '',

@@ -395,6 +395,26 @@
     transform: translateX(4px);
   }
 
+  /* Compact admin utilities */
+  .admin-compact-sidebar {
+    width: 14rem; /* 224px (w-56) */
+    padding: 0.75rem !important;
+  }
+
+  .admin-compact-card {
+    padding: 0.75rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .admin-compact-text {
+    font-size: 0.85rem;
+  }
+
+  .admin-compact-heading {
+    font-size: 1.25rem;
+    line-height: 1.1;
+  }
+
   .admin-ghost-btn {
     background: transparent;
     border: 1px solid rgba(255,255,255,0.12);
