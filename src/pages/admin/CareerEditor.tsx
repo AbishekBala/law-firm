@@ -1,35 +1,41 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CareerService } from '@/services/storageService';
+import { CareerService, CareerItem } from '@/services/storageService';
 import { Button } from '@/components/ui/button';
 
 const CareerEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const existing = id ? CareerService.get(id) : null;
+  const existing = id ? (CareerService.get(id) as CareerItem | undefined) : undefined;
 
   const [title, setTitle] = useState(existing?.title || '');
+  const [titleAr, setTitleAr] = useState<string>(existing?.title_ar || '');
   const [location, setLocation] = useState(existing?.location || '');
   const [description, setDescription] = useState(existing?.description || '');
+  const [descriptionAr, setDescriptionAr] = useState<string>(existing?.description_ar || '');
   const [requirements, setRequirements] = useState(existing?.requirements || '');
+  const [requirementsAr, setRequirementsAr] = useState<string>(existing?.requirements_ar || '');
   const [applicationLink, setApplicationLink] = useState(existing?.applicationLink || '');
 
   useEffect(() => {
     if (existing) {
-      setTitle(existing.title);
+      setTitle(existing.title || '');
+      setTitleAr(existing.title_ar || '');
       setLocation(existing.location || '');
       setDescription(existing.description || '');
+      setDescriptionAr(existing.description_ar || '');
       setRequirements(existing.requirements || '');
+      setRequirementsAr(existing.requirements_ar || '');
       setApplicationLink(existing.applicationLink || '');
     }
-  }, [id]);
+  }, [id, existing]);
 
   const save = () => {
     if (!title) return alert('Title required');
     if (existing) {
-      CareerService.update(existing.id, { title, location, description, requirements, applicationLink });
+      CareerService.update(existing.id, { title, title_ar: titleAr, location, description, description_ar: descriptionAr, requirements, requirements_ar: requirementsAr, applicationLink });
     } else {
-      CareerService.create({ title, location, description, requirements, applicationLink });
+      CareerService.create({ title, title_ar: titleAr, location, description, description_ar: descriptionAr, requirements, requirements_ar: requirementsAr, applicationLink });
     }
     navigate('/admin/careers');
   };

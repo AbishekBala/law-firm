@@ -19,28 +19,34 @@ const Dashboard = () => {
         {/* Right: stats */}
         <div className="col-span-12 lg:col-span-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4">
-            <div className="bg-white rounded-lg p-5 shadow-md w-full sm:w-64 admin-card flex items-center justify-between">
+            <div className="bg-white rounded-2xl p-6 shadow-lg w-full sm:w-64 admin-card flex items-center justify-between border border-neutral-100">
               <div>
-                <div className="text-sm text-neutral-400">Total Blogs</div>
+                <div className="text-sm text-neutral-500">Total Blogs</div>
                 <div className="text-2xl font-bold text-legal-gold mt-2">{blogs.length}</div>
               </div>
-              <div className="text-2xl text-neutral-300"><FileText className="text-legal-navy" /></div>
+              <div className="h-12 w-12 rounded-full bg-legal-gold/10 flex items-center justify-center">
+                <FileText className="text-legal-gold" />
+              </div>
             </div>
 
-            <div className="bg-white rounded-lg p-5 shadow-md w-full sm:w-64 admin-card flex items-center justify-between">
+            <div className="bg-white rounded-2xl p-6 shadow-lg w-full sm:w-64 admin-card flex items-center justify-between border border-neutral-100">
               <div>
-                <div className="text-sm text-neutral-400">Open Positions</div>
+                <div className="text-sm text-neutral-500">Open Positions</div>
                 <div className="text-2xl font-bold text-legal-gold mt-2">{careers.length}</div>
               </div>
-              <div className="text-2xl text-neutral-300"><Briefcase className="text-green-500" /></div>
+              <div className="h-12 w-12 rounded-full bg-green-50 flex items-center justify-center">
+                <Briefcase className="text-green-600" />
+              </div>
             </div>
 
-            <div className="bg-white rounded-lg p-5 shadow-md w-full sm:w-64 admin-card flex items-center justify-between">
+            <div className="bg-white rounded-2xl p-6 shadow-lg w-full sm:w-64 admin-card flex items-center justify-between border border-neutral-100">
               <div>
-                <div className="text-sm text-neutral-400">Team Members</div>
+                <div className="text-sm text-neutral-500">Team Members</div>
                 <div className="text-2xl font-bold text-legal-gold mt-2">{team.length}</div>
               </div>
-              <div className="text-2xl text-neutral-300"><Users className="text-purple-500" /></div>
+              <div className="h-12 w-12 rounded-full bg-purple-50 flex items-center justify-center">
+                <Users className="text-purple-600" />
+              </div>
             </div>
           </div>
         </div>

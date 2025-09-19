@@ -1,8 +1,10 @@
 export type BlogPost = {
   id: string;
   title: string;
+  title_ar?: string;
   slug?: string;
   content: string;
+  content_ar?: string;
   category?: string;
   featuredImage?: string;
   createdAt: string;
@@ -11,9 +13,12 @@ export type BlogPost = {
 export type CareerItem = {
   id: string;
   title: string;
+  title_ar?: string;
   location?: string;
   description: string;
+  description_ar?: string;
   requirements?: string;
+  requirements_ar?: string;
   applicationLink?: string;
   createdAt: string;
 };
@@ -21,9 +26,12 @@ export type CareerItem = {
 export type TeamMember = {
   id: string;
   name: string;
+  name_ar?: string;
   role?: string;
+  role_ar?: string;
   photo?: string;
   bio?: string;
+  bio_ar?: string;
   social?: Record<string, string>;
   createdAt: string;
 };

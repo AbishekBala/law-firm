@@ -1,35 +1,41 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { TeamService } from '@/services/storageService';
+import { TeamService, TeamMember } from '@/services/storageService';
 import { Button } from '@/components/ui/button';
 
 const TeamEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const existing = id ? TeamService.get(id) : null;
+  const existing = id ? (TeamService.get(id) as TeamMember | undefined) : undefined;
 
   const [name, setName] = useState(existing?.name || '');
+  const [nameAr, setNameAr] = useState<string>(existing?.name_ar || '');
   const [role, setRole] = useState(existing?.role || '');
+  const [roleAr, setRoleAr] = useState<string>(existing?.role_ar || '');
   const [photo, setPhoto] = useState(existing?.photo || '');
   const [bio, setBio] = useState(existing?.bio || '');
+  const [bioAr, setBioAr] = useState<string>(existing?.bio_ar || '');
   const [social, setSocial] = useState<Record<string,string>>(existing?.social || {});
 
   useEffect(() => {
     if (existing) {
-      setName(existing.name);
+      setName(existing.name || '');
+      setNameAr(existing.name_ar || '');
       setRole(existing.role || '');
+      setRoleAr(existing.role_ar || '');
       setPhoto(existing.photo || '');
       setBio(existing.bio || '');
+      setBioAr(existing.bio_ar || '');
       setSocial(existing.social || {});
     }
-  }, [id]);
+  }, [id, existing]);
 
   const save = () => {
     if (!name) return alert('Name required');
     if (existing) {
-      TeamService.update(existing.id, { name, role, photo, bio, social });
+      TeamService.update(existing.id, { name, name_ar: nameAr, role, role_ar: roleAr, photo, bio, bio_ar: bioAr, social });
     } else {
-      TeamService.create({ name, role, photo, bio, social });
+      TeamService.create({ name, name_ar: nameAr, role, role_ar: roleAr, photo, bio, bio_ar: bioAr, social });
     }
     navigate('/admin/team');
   };
