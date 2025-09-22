@@ -60,14 +60,17 @@ const ServiceDetail = () => {
           {service.points && service.points.length > 0 && (
             <div className="mb-8">
               <h3 className="text-xl font-semibold mb-4">Key Features</h3>
-              <ul className="space-y-2">
+              <div className="flex flex-wrap gap-3 mt-3">
                 {service.points.map((point, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>{point}</span>
-                  </li>
+                  <button
+                    key={index}
+                    type="button"
+                    className="px-4 py-2 rounded-md text-sm font-medium bg-white text-legal-navy border-2 border-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-legal-navy/50"
+                  >
+                    {point}
+                  </button>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
         </div>

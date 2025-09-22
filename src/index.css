@@ -1,8 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: 'Tajawal', 'Inter', sans-serif;
+}
+
+/* Fix RTL spacing issues */
+[dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Fix RTL direction for dropdowns */
+[dir="rtl"] .rtl\:text-right {
+  text-align: right;
+}
+
+/* Fix RTL direction for flex items */
+[dir="rtl"] .rtl\:flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+/* Fix RTL padding */
+[dir="rtl"] .rtl\:pr-4 {
+  padding-right: 1rem;
+}
+
+/* Fix RTL margin */
+[dir="rtl"] .rtl\:ml-2 {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+/* Fix RTL border radius */
+[dir="rtl"] .rtl\:rounded-r-none {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
+/* Fix RTL dropdown arrow */
+[dir="rtl"] .rtl\:rotate-180 {
+  transform: rotate(180deg);
+}
 
 /* Premium Legal Design System for Ali Bin Fahad Law Firm */
 
@@ -145,6 +189,11 @@
 }
 
 @layer components {
+  /* RTL Font Family */
+  .font-sans-ar {
+    font-family: 'Tajawal', 'Inter', sans-serif;
+  }
+
   /* Premium Button Variants */
   .btn-primary {
     @apply bg-gradient-to-r from-accent to-accent/90 text-accent-foreground px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
