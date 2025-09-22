@@ -44,17 +44,17 @@ const Blog = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return language === 'ar' 
+    return language === 'ar'
       ? date.toLocaleDateString('ar-SA', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
       : date.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        });
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
   };
 
   const toggleLanguage = () => {
@@ -67,7 +67,7 @@ const Blog = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-legal-navy via-legal-navy/95 to-legal-navy/90 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-legal-navy/90 to-transparent"></div>
-        
+
         <div className="relative section-padding">
           <div className="container-max text-center">
             {/* Language Toggle */}
@@ -98,9 +98,9 @@ const Blog = () => {
                   <>ابق <span className="text-accent">مطلعاً</span> مع الأفكار القانونية المتخصصة</>
                 )}
               </h1>
-              
+
               <p className="text-xl md:text-2xl text-neutral-200 max-w-3xl mx-auto leading-relaxed mb-12">
-                {language === 'en' 
+                {language === 'en'
                   ? 'Discover the latest legal developments, expert analysis, and practical guidance from our experienced legal professionals.'
                   : 'اكتشف أحدث التطورات القانونية والتحليلات المتخصصة والإرشادات العملية من محترفينا القانونيين ذوي الخبرة.'
                 }
@@ -129,11 +129,10 @@ const Blog = () => {
                         key={category}
                         variant={selectedCategory === category ? "default" : "outline"}
                         onClick={() => setSelectedCategory(category)}
-                        className={`rounded-full px-6 py-3 text-base font-semibold transition-all duration-300 ${
-                          selectedCategory === category 
-                            ? 'bg-accent text-white border-accent hover:bg-accent/90 shadow-lg shadow-accent/30' 
-                            : 'bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-accent backdrop-blur-sm'
-                        }`}
+                        className={`rounded-full px-6 py-3 text-base font-semibold transition-all duration-300 ${selectedCategory === category
+                          ? 'bg-accent text-white border-accent hover:bg-accent/90 shadow-lg shadow-accent/30'
+                          : 'bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-accent backdrop-blur-sm'
+                          }`}
                       >
                         {category}
                       </Button>
@@ -157,7 +156,7 @@ const Blog = () => {
                   {language === 'en' ? 'No articles found' : 'لم يتم العثور على مقالات'}
                 </h3>
                 <p className="text-lg text-neutral-600 leading-relaxed">
-                  {language === 'en' 
+                  {language === 'en'
                     ? 'Try adjusting your search or filter criteria to find relevant legal articles.'
                     : 'حاول تعديل معايير البحث أو التصفية للعثور على مقالات قانونية ذات صلة.'
                   }
@@ -171,17 +170,17 @@ const Blog = () => {
                   {language === 'en' ? 'Latest Legal Insights' : 'أحدث الأفكار القانونية'}
                 </h2>
                 <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-                  {language === 'en' 
+                  {language === 'en'
                     ? 'Expert analysis and practical guidance from our legal professionals'
                     : 'التحليل المتخصص والإرشادات العملية من محترفينا القانونيين'
                   }
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 {filteredPosts.map((post, index) => (
                   <AnimatedSection key={post.id} delay={index * 0.1}>
-                    <article 
+                    <article
                       onClick={() => navigate(`/blog/${post.slug}`)}
                       className="bg-white rounded-3xl shadow-xl border border-neutral-100 overflow-hidden hover:shadow-2xl hover:shadow-legal-navy/5 transition-all duration-500 cursor-pointer group hover:-translate-y-3 h-full flex flex-col"
                     >
@@ -193,13 +192,7 @@ const Blog = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-legal-navy/80 via-legal-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        {/* Category Badge */}
-                        <div className={`absolute top-6 ${language === 'ar' ? 'right-6' : 'left-6'}`}>
-                          <Badge className="bg-accent text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg">
-                            {post.category[language]}
-                          </Badge>
-                        </div>
+
 
                         {/* Read More Arrow */}
                         <div className={`absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 ${language === 'ar' ? 'left-6' : 'right-6'}`}>
@@ -216,10 +209,6 @@ const Blog = () => {
                           <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" />
                             <span className="font-medium">{formatDate(post.date)}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <Clock className="w-4 h-4 mr-2" />
-                            <span className="font-medium">{post.readTime[language]}</span>
                           </div>
                         </div>
 
@@ -250,7 +239,7 @@ const Blog = () => {
                             </div>
                             <span className="text-base font-semibold text-legal-navy">{post.author}</span>
                           </div>
-                          
+
                           <div className="text-accent font-semibold text-sm group-hover:text-legal-navy transition-colors duration-300">
                             {language === 'en' ? 'Read More' : 'اقرأ المزيد'}
                           </div>

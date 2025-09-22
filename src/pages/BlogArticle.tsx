@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, User, Tag, Languages, Share2, Facebook, Twitter, Linkedin, Copy } from 'lucide-react';
+import { ArrowLeft, Tag, Languages } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -64,36 +64,6 @@ const BlogArticle = () => {
     setLanguage(language === 'en' ? 'ar' : 'en');
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href);
-    toast({
-      title: language === 'en' ? 'Link copied!' : 'تم نسخ الرابط!',
-      description: language === 'en' ? 'Article link has been copied to clipboard.' : 'تم نسخ رابط المقال إلى الحافظة.',
-    });
-  };
-
-  const shareOnSocial = (platform: string) => {
-    const url = encodeURIComponent(window.location.href);
-  const title = encodeURIComponent(post.title[lang] ?? post.title['en'] ?? '');
-    
-    let shareUrl = '';
-    switch (platform) {
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-        break;
-      case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-        break;
-      case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-        break;
-    }
-    
-    if (shareUrl) {
-      window.open(shareUrl, '_blank', 'width=600,height=400');
-    }
-  };
-
   const relatedPosts = blogPosts
     .filter(p => p.id !== post.id && (p.category?.[lang] ?? p.category?.['en']) === (post.category?.[lang] ?? post.category?.['en']))
     .slice(0, 3);
@@ -144,60 +114,7 @@ const BlogArticle = () => {
             </p>
           </div>
 
-          {/* Meta Information */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-neutral-200 mb-8">
-            <div className="flex items-center">
-              <User className="w-5 h-5 mr-2 text-accent" />
-              <span className="font-semibold text-base">{post.author}</span>
-            </div>
-            <div className="flex items-center">
-              <Calendar className="w-5 h-5 mr-2 text-accent" />
-              <span className="text-base">{formatDate(post.date)}</span>
-            </div>
-            <div className="flex items-center">
-              <Clock className="w-5 h-5 mr-2 text-accent" />
-              <span className="text-base">{post.readTime?.[lang] ?? post.readTime?.['en']}</span>
-            </div>
-          </div>
-
-          {/* Share Buttons */}
-          <div className="flex items-center justify-center gap-4">
-            <span className="text-base font-semibold text-white mr-4">
-              {language === 'en' ? 'Share:' : 'مشاركة:'}
-            </span>
-            <Button
-              onClick={() => shareOnSocial('twitter')}
-              variant="outline"
-              size="sm"
-              className="border-2 border-accent bg-accent/20 text-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 p-3 backdrop-blur-sm"
-            >
-              <Twitter className="h-5 w-5" />
-            </Button>
-            <Button
-              onClick={() => shareOnSocial('facebook')}
-              variant="outline"
-              size="sm"
-              className="border-2 border-accent bg-accent/20 text-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 p-3 backdrop-blur-sm"
-            >
-              <Facebook className="h-5 w-5" />
-            </Button>
-            <Button
-              onClick={() => shareOnSocial('linkedin')}
-              variant="outline"
-              size="sm"
-              className="border-2 border-accent bg-accent/20 text-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 p-3 backdrop-blur-sm"
-            >
-              <Linkedin className="h-5 w-5" />
-            </Button>
-            <Button
-              onClick={copyToClipboard}
-              variant="outline"
-              size="sm"
-              className="border-2 border-accent bg-accent/20 text-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 p-3 backdrop-blur-sm"
-            >
-              <Copy className="h-5 w-5" />
-            </Button>
-          </div>
+          {/* Meta information removed as requested */}
         </div>
       </section>
 

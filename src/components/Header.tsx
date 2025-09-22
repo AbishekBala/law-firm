@@ -39,7 +39,8 @@ const Header = () => {
   const aboutDropdown = [
     { name: t('about'), href: '/about' },
     { name: t('team'), href: '/team' },
-    { name: t('careers'), href: '/careers' },
+    // Temporarily disabled careers
+    // { name: t('careers'), href: '/careers' },
     { name: t('testimonials'), href: '/testimonials' },
   ];
 
