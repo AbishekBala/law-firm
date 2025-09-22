@@ -49,7 +49,17 @@ const saveServices = (data: ServicePageData) => {
 export const serviceService = {
   // Get all services
   getAll: (): ServicePageData => {
-    return getStoredServices();
+    const data = getStoredServices();
+    console.log('Getting all services:', data);
+    
+    // If no services found, try to initialize them
+    if (!data.services || data.services.length === 0) {
+      console.log('No services found, initializing default services...');
+      initializeDefaultServices(true);
+      return getStoredServices();
+    }
+    
+    return data;
   },
 
   // Get a single service by ID
@@ -119,37 +129,66 @@ export const serviceService = {
 };
 
 // Initialize with default services if none exist
-export const initializeDefaultServices = () => {
-  if (typeof window !== 'undefined' && !localStorage.getItem(STORAGE_KEY)) {
-    const defaultServiceData: ServicePageData = {
-      superHeading: { 
-        en: 'Our Services', 
-        ar: 'خدماتنا' 
-      },
-      superDescription: { 
-        en: 'Comprehensive legal services tailored to your needs',
-        ar: 'خدمات قانونية شاملة مصممة خصيصًا لاحتياجاتك'
-      },
-      services: defaultServices.services.map(service => ({
+export const initializeDefaultServices = (force = false) => {
+  if (typeof window === 'undefined') return;
+  
+  const storedData = localStorage.getItem(STORAGE_KEY);
+  
+  // If we already have data and we're not forcing a reinitialization, return early
+  if (storedData && !force) {
+    try {
+      const parsed = JSON.parse(storedData);
+      if (parsed.services && parsed.services.length > 0) {
+        console.log('Services already initialized with', parsed.services.length, 'services');
+        return;
+      }
+    } catch (e) {
+      console.error('Error parsing stored services, will reinitialize', e);
+    }
+  }
+  
+  console.log('Initializing default services...');
+  
+  // Get the default services from the imported data
+  const servicesToInitialize = defaultServices.services || [];
+  
+  const defaultServiceData: ServicePageData = {
+    superHeading: { 
+      en: 'Our Services', 
+      ar: 'خدماتنا' 
+    },
+    superDescription: { 
+      en: 'Comprehensive legal services tailored to your needs',
+      ar: 'خدمات قانونية شاملة مصممة خصيصًا لاحتياجاتك'
+    },
+    services: servicesToInitialize.map(service => {
+      // Create a basic service item with English content
+      const serviceItem: ServiceItem = {
         id: service.id || uuidv4(),
         en: {
-          title: service.title,
-          description: service.description,
-          points: service.points
+          title: service.title || 'Untitled Service',
+          description: service.description || 'No description available',
+          points: Array.isArray(service.points) ? service.points : []
         },
+        // For Arabic, we'll use the same content as English for now
+        // You should add proper Arabic translations later
         ar: {
-          title: service.title, // You should add Arabic translations
-          description: service.description, // You should add Arabic translations
-          points: service.points // You should add Arabic translations
+          title: service.title || 'خدمة بدون عنوان',
+          description: service.description || 'لا يوجد وصف متاح',
+          points: Array.isArray(service.points) ? service.points.map(p => p) : []
         },
         tags: [],
         createdAt: new Date(),
         updatedAt: new Date()
-      }))
-    };
-    
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultServiceData));
-  }
+      };
+      
+      console.log('Created service item:', serviceItem);
+      return serviceItem;
+    })
+  };
+  
+  console.log('Saving default services to localStorage:', defaultServiceData);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultServiceData));
 };
 
 // Initialize on import

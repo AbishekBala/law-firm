@@ -53,7 +53,8 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/contact" element={<Contact />} />
-            {/* Admin area - local dev only */}
+            {/* Admin area */}
+            <Route path="/admin" element={<Navigate to="/admin/signin" replace />} />
             <Route path="/admin/signin" element={<SignIn />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Navigate to="services" replace />} />

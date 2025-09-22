@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAdminAuth } from '@/services/adminAuth';
 import logo from '@/assets/logo-white.png';
 import ensureSeedData from '@/services/seedAdminData';
@@ -9,10 +9,16 @@ import { FileText, Briefcase, User } from 'lucide-react';
 const AdminLayout = () => {
   const { isAuthenticated, signOut } = useAdminAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     ensureSeedData();
-  }, []);
+    
+    // Redirect to signin if not authenticated and not already on signin page
+    if (!isAuthenticated && !location.pathname.endsWith('/signin')) {
+      navigate('/admin/signin', { replace: true });
+    }
+  }, [isAuthenticated, location.pathname, navigate]);
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-[#071427]">
