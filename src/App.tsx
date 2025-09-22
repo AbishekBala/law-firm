@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -19,13 +19,14 @@ import Careers from "./pages/Careers";
 import CareerDetail from "./pages/CareerDetail";
 import AdminLayout from './pages/admin/AdminLayout';
 import SignIn from './pages/admin/SignIn';
-import Dashboard from './pages/admin/Dashboard';
 import BlogsList from './pages/admin/BlogsList';
 import BlogEditor from './pages/admin/BlogEditor';
 import CareersList from './pages/admin/CareersList';
 import CareerEditor from './pages/admin/CareerEditor';
 import TeamList from './pages/admin/TeamList';
 import TeamEditor from './pages/admin/TeamEditor';
+import ServicesList from './pages/admin/ServicesList';
+import ServiceEditor from './pages/admin/ServiceEditor';
 import { AdminPrivateRoute } from './services/adminAuth';
 
 const queryClient = new QueryClient();
@@ -55,7 +56,10 @@ const App = () => (
             {/* Admin area - local dev only */}
             <Route path="/admin/signin" element={<SignIn />} />
             <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<AdminPrivateRoute><Dashboard /></AdminPrivateRoute>} />
+              <Route index element={<Navigate to="services" replace />} />
+              <Route path="services" element={<AdminPrivateRoute><ServicesList /></AdminPrivateRoute>} />
+              <Route path="services/new" element={<AdminPrivateRoute><ServiceEditor /></AdminPrivateRoute>} />
+              <Route path="services/edit/:id" element={<AdminPrivateRoute><ServiceEditor /></AdminPrivateRoute>} />
               <Route path="blogs" element={<AdminPrivateRoute><BlogsList /></AdminPrivateRoute>} />
               <Route path="blogs/new" element={<AdminPrivateRoute><BlogEditor /></AdminPrivateRoute>} />
               <Route path="blogs/:id" element={<AdminPrivateRoute><BlogEditor /></AdminPrivateRoute>} />

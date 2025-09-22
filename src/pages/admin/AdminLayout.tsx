@@ -4,7 +4,7 @@ import { useAdminAuth } from '@/services/adminAuth';
 import logo from '@/assets/logo-white.png';
 import ensureSeedData from '@/services/seedAdminData';
 import avatarPlaceholder from '@/assets/logo.png';
-import { Grid, FileText, Briefcase, Users, User } from 'lucide-react';
+import { FileText, Briefcase, User } from 'lucide-react';
 
 const AdminLayout = () => {
   const { isAuthenticated, signOut } = useAdminAuth();
@@ -30,10 +30,8 @@ const AdminLayout = () => {
           </div>
 
           <nav className="space-y-2 mt-4 px-1 text-sm">
-            <Link to="/admin" className={`admin-sidebar-link ${window.location.pathname === '/admin' ? 'active' : ''}`}><Grid className="inline mr-3 align-middle" /> <span className="align-middle">Dashboard</span></Link>
+            <Link to="/admin/services" className={`admin-sidebar-link ${window.location.pathname.startsWith('/admin/services') ? 'active' : ''}`}><Briefcase className="inline mr-3 align-middle" /> <span className="align-middle">Services</span></Link>
             <Link to="/admin/blogs" className={`admin-sidebar-link ${window.location.pathname.startsWith('/admin/blogs') ? 'active' : ''}`}><FileText className="inline mr-3 align-middle" /> <span className="align-middle">Blogs</span></Link>
-            <Link to="/admin/careers" className={`admin-sidebar-link ${window.location.pathname.startsWith('/admin/careers') ? 'active' : ''}`}><Briefcase className="inline mr-3 align-middle" /> <span className="align-middle">Careers</span></Link>
-            <Link to="/admin/team" className={`admin-sidebar-link ${window.location.pathname.startsWith('/admin/team') ? 'active' : ''}`}><Users className="inline mr-3 align-middle" /> <span className="align-middle">Team</span></Link>
           </nav>
         </div>
 
