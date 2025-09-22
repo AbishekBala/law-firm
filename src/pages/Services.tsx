@@ -29,13 +29,13 @@ const Services = () => {
                 <Link to={`/services/${service.id}`} className="h-full block">
                   <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all h-full flex flex-col p-6 border border-gray-100 hover:border-accent/30">
                     <h3 className="text-xl font-bold text-legal-navy mb-4 leading-tight">
-                      {t(service.titleKey)}
+                      {service.title}
                     </h3>
                     <p className="text-gray-600 mb-4 flex-grow">
-                      {t(service.descriptionKey)}
+                      {service.description}
                     </p>
                     <div className="flex items-center text-accent font-medium mt-auto pt-4 border-t border-gray-100">
-                      <span className="text-sm font-semibold">{t('learnMore')}</span>
+                      <span className="text-sm font-semibold">Learn more</span>
                       <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>

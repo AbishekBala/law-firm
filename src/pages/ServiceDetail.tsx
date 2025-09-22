@@ -13,7 +13,7 @@ const ServiceDetail = () => {
   }
 
   const service = getServiceById(serviceId);
-
+  
   if (!service) {
     return <Navigate to="/services" replace />;
   }
@@ -29,47 +29,50 @@ const ServiceDetail = () => {
             <span>/</span>
             <Link to="/services" className="hover:text-white">{t('services')}</Link>
             <span>/</span>
-            <span className="text-white">{t(service.titleKey)}</span>
+            <span className="text-white">{service.title}</span>
           </div>
 
-          {/* Super Heading - Using translation keys */}
-          <h1 className="text-3xl md:text-4xl font-bold mb-6">
-            {t('servicesTitle')}
-          </h1>
+          {/* Super Heading */}
+          {servicesData.superHeading && (
+            <h1 className="text-3xl md:text-4xl font-bold mb-6">
+              {servicesData.superHeading}
+            </h1>
+          )}
           
-          {/* Super Description - Using translation keys */}
-          <p className="text-lg text-neutral-200 leading-relaxed mb-8">
-            {t('servicesDescription')}
-          </p>
+          {/* Super Description */}
+          {servicesData.superDescription && (
+            <p className="text-lg text-neutral-200 leading-relaxed mb-8">
+              {servicesData.superDescription}
+            </p>
+          )}
 
           {/* Service Title */}
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {t(service.titleKey)}
+            {service.title}
           </h2>
 
           {/* Service Description */}
           <p className="text-lg text-neutral-200 mb-6">
-            {t(service.descriptionKey)}
+            {service.description}
           </p>
 
           {/* Service Points */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-4">
-              {t(service.titleKey)} {t('includes')}:
-            </h3>
-            <ul className="space-y-2">
-              {Array(6).fill(0).map((_, index) => {
-                const pointKey = `${service.pointsKey}_${index}`;
-                const point = t(pointKey);
-                return point !== pointKey ? (
-                  <li key={index} className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>{point}</span>
-                  </li>
-                ) : null;
-              })}
-            </ul>
-          </div>
+          {service.points && service.points.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4">Key Features</h3>
+              <div className="flex flex-wrap gap-3 mt-3">
+                {service.points.map((point, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className="px-4 py-2 rounded-md text-sm font-medium bg-white text-legal-navy border-2 border-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-legal-navy/50"
+                  >
+                    {point}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -91,32 +94,26 @@ const ServiceDetail = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Repeat Service Title */}
           <h2 className="text-2xl font-bold text-legal-navy mb-6">
-            {t(service.titleKey)} - {t('inDepth')}
+            {service.title} - {t('inDepth')}
           </h2>
           
           {/* Repeat Description */}
           <div className="prose max-w-none mb-8">
             <p className="text-gray-700 mb-6">
-              {t(service.descriptionKey)}
+              {service.description}
             </p>
           </div>
 
           {/* What We Offer Section */}
           <div className="mb-12">
-            <h3 className="text-xl font-semibold text-legal-navy mb-6">
-              {t('whatWeOffer')}
-            </h3>
+            <h3 className="text-xl font-semibold text-legal-navy mb-6">{t('whatWeOffer')}</h3>
             <ul className="space-y-3">
-              {Array(6).fill(0).map((_, index) => {
-                const pointKey = `${service.pointsKey}_${index}`;
-                const point = t(pointKey);
-                return point !== pointKey ? (
-                  <li key={index} className="text-gray-700 flex items-start">
-                    <span className="mr-2">•</span>
-                    <span>{point}</span>
-                  </li>
-                ) : null;
-              })}
+              {service.points.map((point, index) => (
+                <li key={index} className="text-gray-700 flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
