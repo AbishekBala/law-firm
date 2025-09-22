@@ -22,6 +22,13 @@ export const commonTranslations = {
     viewProfile: 'View Profile',
     scheduleFreeConsultation: 'Schedule Free Consultation',
     contactOurTeam: 'Contact Our Team',
+    backToServices: 'Back to All Services',
+    inDepth: 'In Depth',
+    whatWeOffer: 'What We Offer',
+    needThisService: 'Need This Service',
+    contactUsForExpertAssistance: 'Contact us today to discuss your specific requirements and get expert legal assistance.',
+    sendEmail: 'Send Email',
+    includes: 'includes',
 
     // Stats
     yearsExperience: 'Years Experience',
@@ -92,6 +99,13 @@ export const commonTranslations = {
     viewProfile: 'عرض الملف الشخصي',
     scheduleFreeConsultation: 'احجز استشارة مجانية',
     contactOurTeam: 'تواصل مع فريقنا',
+    backToServices: 'العودة إلى جميع الخدمات',
+    inDepth: 'بالتفصيل',
+    whatWeOffer: 'ما نقدمه',
+    needThisService: 'هل تحتاج هذه الخدمة',
+    contactUsForExpertAssistance: 'اتصل بنا اليوم لمناقشة متطلباتك المحددة والحصول على مساعدة قانونية متخصصة.',
+    sendEmail: 'إرسال بريد إلكتروني',
+    includes: 'يشمل',
 
     // Stats
     yearsExperience: 'سنوات الخبرة',

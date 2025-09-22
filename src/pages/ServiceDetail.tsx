@@ -25,54 +25,51 @@ const ServiceDetail = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Breadcrumb */}
           <div className="flex items-center space-x-2 text-sm text-neutral-300 mb-6">
-            <Link to="/" className="hover:text-white">Home</Link>
+            <Link to="/" className="hover:text-white">{t('home')}</Link>
             <span>/</span>
-            <Link to="/services" className="hover:text-white">Services</Link>
+            <Link to="/services" className="hover:text-white">{t('services')}</Link>
             <span>/</span>
-            <span className="text-white">{service.title}</span>
+            <span className="text-white">{t(service.titleKey)}</span>
           </div>
 
-          {/* Super Heading */}
-          {servicesData.superHeading && (
-            <h1 className="text-3xl md:text-4xl font-bold mb-6">
-              {servicesData.superHeading}
-            </h1>
-          )}
+          {/* Super Heading - Using translation keys */}
+          <h1 className="text-3xl md:text-4xl font-bold mb-6">
+            {t('servicesTitle')}
+          </h1>
           
-          {/* Super Description */}
-          {servicesData.superDescription && (
-            <p className="text-lg text-neutral-200 leading-relaxed mb-8">
-              {servicesData.superDescription}
-            </p>
-          )}
+          {/* Super Description - Using translation keys */}
+          <p className="text-lg text-neutral-200 leading-relaxed mb-8">
+            {t('servicesDescription')}
+          </p>
 
           {/* Service Title */}
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {service.title}
+            {t(service.titleKey)}
           </h2>
 
           {/* Service Description */}
           <p className="text-lg text-neutral-200 mb-6">
-            {service.description}
+            {t(service.descriptionKey)}
           </p>
 
           {/* Service Points */}
-          {service.points && service.points.length > 0 && (
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4">Key Features</h3>
-              <div className="flex flex-wrap gap-3 mt-3">
-                {service.points.map((point, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    className="px-4 py-2 rounded-md text-sm font-medium bg-white text-legal-navy border-2 border-legal-navy hover:bg-legal-navy hover:text-white transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-legal-navy/50"
-                  >
-                    {point}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-4">
+              {t(service.titleKey)} {t('includes')}:
+            </h3>
+            <ul className="space-y-2">
+              {Array(6).fill(0).map((_, index) => {
+                const pointKey = `${service.pointsKey}_${index}`;
+                const point = t(pointKey);
+                return point !== pointKey ? (
+                  <li key={index} className="flex items-start">
+                    <span className="text-accent mr-2">•</span>
+                    <span>{point}</span>
+                  </li>
+                ) : null;
+              })}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -84,7 +81,7 @@ const ServiceDetail = () => {
             className="inline-flex items-center text-neutral-600 hover:text-legal-navy"
           >
             <ChevronLeft className="h-4 w-4 mr-1" />
-            Back to All Services
+            {t('backToServices')}
           </Link>
         </div>
       </section>
@@ -94,36 +91,42 @@ const ServiceDetail = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Repeat Service Title */}
           <h2 className="text-2xl font-bold text-legal-navy mb-6">
-            {service.title} - In Depth
+            {t(service.titleKey)} - {t('inDepth')}
           </h2>
           
           {/* Repeat Description */}
           <div className="prose max-w-none mb-8">
             <p className="text-gray-700 mb-6">
-              {service.description}
+              {t(service.descriptionKey)}
             </p>
           </div>
 
           {/* What We Offer Section */}
           <div className="mb-12">
-            <h3 className="text-xl font-semibold text-legal-navy mb-6">What We Offer</h3>
+            <h3 className="text-xl font-semibold text-legal-navy mb-6">
+              {t('whatWeOffer')}
+            </h3>
             <ul className="space-y-3">
-              <li className="text-gray-700">• Corporate and Commercial Law</li>
-              <li className="text-gray-700">• Dispute Resolution and Litigation</li>
-              <li className="text-gray-700">• Intellectual Property Law</li>
-              <li className="text-gray-700">• Personal Legal Support</li>
-              <li className="text-gray-700">• Regulatory Compliance</li>
-              <li className="text-gray-700">• Risk Assessment and Mitigation</li>
+              {Array(6).fill(0).map((_, index) => {
+                const pointKey = `${service.pointsKey}_${index}`;
+                const point = t(pointKey);
+                return point !== pointKey ? (
+                  <li key={index} className="text-gray-700 flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>{point}</span>
+                  </li>
+                ) : null;
+              })}
             </ul>
           </div>
 
           {/* Contact CTA */}
           <div className="bg-legal-navy/5 rounded-xl p-8 text-center">
             <h3 className="text-xl font-semibold text-legal-navy mb-4">
-              Need This Service?
+              {t('needThisService')}?
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Contact us today to discuss your specific requirements and get expert legal assistance.
+              {t('contactUsForExpertAssistance')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -131,14 +134,14 @@ const ServiceDetail = () => {
                 className="inline-flex items-center justify-center bg-accent hover:bg-accent/90 text-legal-navy font-semibold px-6 py-3 rounded-lg transition-colors"
               >
                 <Phone className="h-4 w-4 mr-2" />
-                Contact Us
+                {t('contactUs')}
               </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center border border-legal-navy text-legal-navy hover:bg-legal-navy hover:text-white font-semibold px-6 py-3 rounded-lg transition-colors"
               >
                 <Mail className="h-4 w-4 mr-2" />
-                Send Email
+                {t('sendEmail')}
               </Link>
             </div>
           </div>
