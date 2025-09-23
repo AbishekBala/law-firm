@@ -2,6 +2,9 @@ export interface ServiceContent {
   title: string;
   description: string;
   points: string[];
+  superTitle?: string;
+  superDescription?: string;
+  tags?: string[];
 }
 
 export interface ServiceItem {
@@ -11,6 +14,8 @@ export interface ServiceItem {
   tags: string[];
   createdAt: Date;
   updatedAt: Date;
+  superTitle?: string;
+  superDescription?: string;
 }
 
 export interface ServicePageData {

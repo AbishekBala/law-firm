@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Edit, Trash2, Search, X, FileText, Globe } from 'lucide-react';
+import { Plus, Edit, Trash2, Search, X, FileText, Globe, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { serviceService } from '@/services/serviceService';
 import { ServiceItem, initialServiceItem } from '@/types/service';
 import { Button } from '@/components/ui/button';
@@ -292,21 +293,27 @@ const ServicesList: React.FC = () => {
                     {service[activeTab].description}
                   </CardDescription>
                 </div>
-                <div className="flex space-x-2">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleEditService(service)}
-                  >
-                    <Edit className="h-4 w-4" />
+                <div className="flex space-x-1">
+                  <Button asChild variant="ghost" size="icon" className="h-8 w-8">
+                    <Link to={`/services/${service.id}`} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </Link>
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => handleDeleteClick(service.id)}
-                    className="text-destructive hover:text-destructive/90"
+                    className="h-8 w-8"
+                    onClick={() => handleEditService(service)}
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Edit className="h-3.5 w-3.5" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-destructive hover:text-destructive/90"
+                    onClick={() => handleDeleteClick(service.id)}
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
                   </Button>
                 </div>
               </div>

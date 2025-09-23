@@ -162,23 +162,44 @@ export const servicesData: { services: ServiceData[] } = {
 import { ServiceItem } from '@/types/service';
 
 export const getServiceById = (id: string): ServiceItem | undefined => {
+  console.log('Looking for service with ID:', id);
+  console.log('Available services:', servicesData.services.map(s => s.id));
+  
   const service = servicesData.services.find(service => service.id === id);
-  if (!service) return undefined;
+  
+  if (!service) {
+    console.error(`Service with ID ${id} not found`);
+    return undefined;
+  }
 
-  return {
+  console.log('Found service:', service);
+
+  // Transform the service data to match ServiceItem type
+  const serviceItem: ServiceItem = {
     id: service.id,
     en: {
       title: service.title,
       description: service.description,
-      points: service.points
+      points: service.points || [],
+      superTitle: service.title,
+      superDescription: service.description,
+      tags: []
     },
     ar: {
-      title: service.title, // You should add proper Arabic translations
-      description: service.description, // You should add proper Arabic translations
-      points: service.points // You should add proper Arabic translations
+      title: service.title, // TODO: Add proper Arabic translations
+      description: service.description, // TODO: Add proper Arabic translations
+      points: service.points || [], // TODO: Add proper Arabic translations
+      superTitle: service.title, // TODO: Add proper Arabic translations
+      superDescription: service.description, // TODO: Add proper Arabic translations
+      tags: []
     },
     tags: [],
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    superTitle: service.title,
+    superDescription: service.description,
   };
+
+  console.log('Transformed service item:', serviceItem);
+  return serviceItem;
 };
