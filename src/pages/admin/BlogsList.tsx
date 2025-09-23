@@ -1,24 +1,27 @@
 import { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BlogService } from '@/services/storageService';
+import { blogPosts } from '@/data/blogData';
 import { Button } from '@/components/ui/button';
 
 const BlogsList = () => {
-  const all = BlogService.list();
   const [query, setQuery] = useState('');
-  const [items, setItems] = useState(all);
+  const [items, setItems] = useState(blogPosts);
   const navigate = useNavigate();
 
-  const remove = (id: string) => {
+  // Dummy remove for frontend-only demo
+  const remove = (id: number) => {
     if (!confirm('Delete this post?')) return;
-    BlogService.remove(id);
-    const updated = BlogService.list();
-    setItems(updated);
+    setItems(items.filter(post => post.id !== id));
   };
 
   const filtered = useMemo(() => {
     if (!query) return items;
-    return items.filter(i => i.title.toLowerCase().includes(query.toLowerCase()) || (i.content || '').toLowerCase().includes(query.toLowerCase()));
+    return items.filter(i =>
+      i.title.en.toLowerCase().includes(query.toLowerCase()) ||
+      i.title.ar.toLowerCase().includes(query.toLowerCase()) ||
+      i.excerpt.en.toLowerCase().includes(query.toLowerCase()) ||
+      i.excerpt.ar.toLowerCase().includes(query.toLowerCase())
+    );
   }, [items, query]);
 
   return (
@@ -41,13 +44,13 @@ const BlogsList = () => {
           <article key={it.id} className="p-4 bg-white rounded-xl shadow-sm flex flex-col gap-3 border border-neutral-100">
             <div className="flex items-start justify-between">
               <div>
-                <div className="font-semibold text-compact-heading">{it.title}</div>
-                <div className="text-sm text-neutral-500 mt-1">{it.category} • {new Date(it.createdAt).toLocaleDateString()}</div>
+                <div className="font-semibold text-compact-heading">{it.title.en}</div>
+                <div className="text-sm text-neutral-500 mt-1">{it.category.en} • {new Date(it.date).toLocaleDateString()}</div>
               </div>
-              <div className="text-sm text-neutral-400">{it.tags?.join(', ')}</div>
+              <div className="text-sm text-neutral-400">{it.tags.en.join(', ')}</div>
             </div>
 
-            <p className="text-sm text-neutral-600 mt-1 line-clamp-3">{(it.content || '').replace(/<[^>]+>/g, '').slice(0, 200)}{(it.content || '').length > 200 ? '…' : ''}</p>
+            <p className="text-sm text-neutral-600 mt-1 line-clamp-3">{it.excerpt.en.slice(0, 200)}{it.excerpt.en.length > 200 ? '…' : ''}</p>
 
             <div className="mt-2 flex items-center gap-2">
               <Link to={`/admin/blogs/${it.id}`}>
