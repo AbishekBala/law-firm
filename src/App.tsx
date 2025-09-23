@@ -18,7 +18,6 @@ import NotFound from "./pages/NotFound";
 import Careers from "./pages/Careers";
 import CareerDetail from "./pages/CareerDetail";
 import AdminLayout from './pages/admin/AdminLayout';
-import SignIn from './pages/admin/SignIn';
 import BlogsList from './pages/admin/BlogsList';
 import BlogEditor from './pages/admin/BlogEditor';
 import CareersList from './pages/admin/CareersList';
@@ -27,7 +26,6 @@ import TeamList from './pages/admin/TeamList';
 import TeamEditor from './pages/admin/TeamEditor';
 import ServicesList from './pages/admin/ServicesList';
 import ServiceEditor from './pages/admin/ServiceEditor';
-import { AdminPrivateRoute } from './services/adminAuth';
 
 const queryClient = new QueryClient();
 
@@ -53,25 +51,21 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/contact" element={<Contact />} />
-            {/* Admin area */}
-            <Route path="/admin" element={<Navigate to="/admin/signin" replace />} />
-            <Route path="/admin/signin" element={<SignIn />} />
+            {/* Admin area - No authentication required for development */}
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Navigate to="services" replace />} />
-              <Route path="services" element={<AdminPrivateRoute><ServicesList /></AdminPrivateRoute>} />
-              <Route path="services/new" element={<AdminPrivateRoute><ServiceEditor /></AdminPrivateRoute>} />
-              <Route path="services/edit/:id" element={<AdminPrivateRoute><ServiceEditor /></AdminPrivateRoute>} />
-              <Route path="blogs" element={<AdminPrivateRoute><BlogsList /></AdminPrivateRoute>} />
-              <Route path="blogs/new" element={<AdminPrivateRoute><BlogEditor /></AdminPrivateRoute>} />
-              <Route path="blogs/:id" element={<AdminPrivateRoute><BlogEditor /></AdminPrivateRoute>} />
-              {/* Temporarily disabled career admin routes
-              <Route path="careers" element={<AdminPrivateRoute><CareersList /></AdminPrivateRoute>} />
-              <Route path="careers/new" element={<AdminPrivateRoute><CareerEditor /></AdminPrivateRoute>} />
-              */}
-              <Route path="careers/:id" element={<AdminPrivateRoute><CareerEditor /></AdminPrivateRoute>} />
-              <Route path="team" element={<AdminPrivateRoute><TeamList /></AdminPrivateRoute>} />
-              <Route path="team/new" element={<AdminPrivateRoute><TeamEditor /></AdminPrivateRoute>} />
-              <Route path="team/:id" element={<AdminPrivateRoute><TeamEditor /></AdminPrivateRoute>} />
+              <Route path="services" element={<ServicesList />} />
+              <Route path="services/new" element={<ServiceEditor />} />
+              <Route path="services/edit/:id" element={<ServiceEditor />} />
+              <Route path="blogs" element={<BlogsList />} />
+              <Route path="blogs/new" element={<BlogEditor />} />
+              <Route path="blogs/:id" element={<BlogEditor />} />
+              <Route path="careers" element={<CareersList />} />
+              <Route path="careers/new" element={<CareerEditor />} />
+              <Route path="careers/:id" element={<CareerEditor />} />
+              <Route path="team" element={<TeamList />} />
+              <Route path="team/new" element={<TeamEditor />} />
+              <Route path="team/:id" element={<TeamEditor />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
