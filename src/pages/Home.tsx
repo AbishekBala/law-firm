@@ -1,4 +1,5 @@
 import { ArrowRight, Award, Users, TrendingUp, Heart, Shield, Lightbulb, Scale, Clock, CheckCircle } from 'lucide-react';
+import HeroScrollAnimation from '@/components/ui/hero-scroll-animation';
 import { Button } from '@/components/ui/button';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { AnimatedSection } from '@/components/AnimatedSection';
@@ -94,7 +95,7 @@ const Home = () => {
                   onClick={() => navigate('/contact')}
                   className="btn-primary shadow-button hover:shadow-lg transition-all duration-300"
                 >
-                  {t('scheduleConsultation')}
+                  {t('Contact Us')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button 
@@ -361,41 +362,8 @@ const Home = () => {
         </section>
       </AnimatedSection>
 
-      {/* Core Values */}
-      <AnimatedSection animation="fadeInUp">
-        <section className="section-padding bg-neutral-50">
-          <div className="container-max text-center">
-            <h2 className="heading-lg text-legal-navy mb-4">{t('coreValuesTitle')}</h2>
-            <p className="text-xl text-neutral-600 mb-12 max-w-3xl mx-auto">
-              {t('coreValuesSubtitle')}
-            </p>
-            
-            <div 
-              ref={elementRef}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            >
-              {coreValues.map((value, index) => (
-                <div
-                  key={index}
-                  className={`transform transition-all duration-500 ease-out ${
-                    isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-5 scale-95'
-                  }`}
-                  style={{
-                    transitionDelay: isVisible ? `${index * 150}ms` : '0ms',
-                    willChange: 'transform, opacity',
-                  }}
-                >
-                  <GradientCard
-                    icon={value.icon}
-                    title={value.title}
-                    description={value.description}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+      {/* Core Values Animation */}
+      <HeroScrollAnimation />
 
       {/* Our Mission */}
       <AnimatedSection animation="fadeInUp">
