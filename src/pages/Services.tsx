@@ -46,28 +46,28 @@ const Services = () => {
 
           {/* CTA Section */}
           <div className="mt-16 bg-legal-navy rounded-2xl p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t('needLegalHelp')}
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4">
+              {t('Trusted Legal Advice')}
             </h2>
-            <p className="text-gray-200 mb-8 max-w-2xl mx-auto">
-              {t('contactUsForExpertAdvice')}
+            <p className="text-gray-200 mb-8 max-w-2xl mx-auto text-base md:text-lg">
+              {t('ContactUs For Expert Advice')}
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center bg-accent hover:bg-accent/90 text-legal-navy font-semibold px-6 py-3 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-3 rounded-lg transition-colors w-full sm:w-auto max-w-xs"
               >
                 {t('getInTouch')}
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center border border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center border border-white text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-lg transition-colors w-full sm:w-auto max-w-xs"
               >
-                {t('learnMoreAboutUs')}
+                {t('Learn About Us')}
               </Link>
             </div>
-          </div>
+          </div> 
         </div>
       </section>
     </div>
