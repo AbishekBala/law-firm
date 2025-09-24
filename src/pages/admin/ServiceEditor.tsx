@@ -17,13 +17,19 @@ import { toast } from 'sonner';
 
 const serviceSchema = z.object({
   en: z.object({
+    superTitle: z.string().min(1, 'Super Title is required'),
+    superDescription: z.string().min(1, 'Super Description is required'),
     title: z.string().min(1, 'Title is required'),
-    description: z.string().min(1, 'Description is required'),
+    description: z.string().min(1, 'Content is required'),
+    keyPointsTitle: z.string().min(1, 'Title for Key Points is required'),
     points: z.array(z.string().min(1, 'Point cannot be empty')).min(1, 'At least one point is required'),
   }),
   ar: z.object({
+    superTitle: z.string().min(1, 'العنوان الرئيسي مطلوب'),
+    superDescription: z.string().min(1, 'الوصف الرئيسي مطلوب'),
     title: z.string().min(1, 'العنوان مطلوب'),
-    description: z.string().min(1, 'الوصف مطلوب'),
+    description: z.string().min(1, 'المحتوى مطلوب'),
+    keyPointsTitle: z.string().min(1, 'عنوان النقاط الرئيسية مطلوب'),
     points: z.array(z.string().min(1, 'النقطة لا يمكن أن تكون فارغة')).min(1, 'مطلوب نقطة واحدة على الأقل'),
   }),
   tags: z.array(z.string().min(1, 'Tag cannot be empty')).optional(),
@@ -43,8 +49,22 @@ const ServiceEditor: React.FC = () => {
   const { control, handleSubmit, formState: { errors }, reset, setValue } = useForm<ServiceFormData>({
     resolver: zodResolver(serviceSchema),
     defaultValues: {
-      en: { ...initialServiceItem.en, points: [...initialServiceItem.en.points] },
-      ar: { ...initialServiceItem.ar, points: [...initialServiceItem.ar.points] },
+      en: {
+        superTitle: '',
+        superDescription: '',
+        title: '',
+        description: '',
+        keyPointsTitle: '',
+        points: ['']
+      },
+      ar: {
+        superTitle: '',
+        superDescription: '',
+        title: '',
+        description: '',
+        keyPointsTitle: '',
+        points: ['']
+      },
       tags: []
     }
   });
@@ -59,8 +79,22 @@ const ServiceEditor: React.FC = () => {
       const service = serviceService.getById(id);
       if (service) {
         reset({
-          en: service.en,
-          ar: service.ar,
+          en: {
+            superTitle: service.en.superTitle || '',
+            superDescription: service.en.superDescription || '',
+            title: service.en.title || '',
+            description: service.en.description || '',
+            keyPointsTitle: service.en.keyPointsTitle || '',
+            points: service.en.points || ['']
+          },
+          ar: {
+            superTitle: service.ar.superTitle || '',
+            superDescription: service.ar.superDescription || '',
+            title: service.ar.title || '',
+            description: service.ar.description || '',
+            keyPointsTitle: service.ar.keyPointsTitle || '',
+            points: service.ar.points || ['']
+          },
           tags: service.tags || []
         });
       } else {
@@ -77,13 +111,19 @@ const ServiceEditor: React.FC = () => {
       // Ensure all required fields are present
       const serviceData = {
         en: {
+          superTitle: data.en.superTitle || '',
+          superDescription: data.en.superDescription || '',
           title: data.en.title || '',
           description: data.en.description || '',
+          keyPointsTitle: data.en.keyPointsTitle || '',
           points: data.en.points?.filter(p => p.trim() !== '') || []
         },
         ar: {
+          superTitle: data.ar.superTitle || '',
+          superDescription: data.ar.superDescription || '',
           title: data.ar.title || '',
           description: data.ar.description || '',
+          keyPointsTitle: data.ar.keyPointsTitle || '',
           points: data.ar.points?.filter(p => p.trim() !== '') || []
         },
         tags: data.tags || []
@@ -158,13 +198,49 @@ const ServiceEditor: React.FC = () => {
             <TabsTrigger value="ar">العربية</TabsTrigger>
           </TabsList>
 
+          {/* ENGLISH TAB */}
           <TabsContent value="en" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>English Content</CardTitle>
-                <CardDescription>Service details in English</CardDescription>
+                <CardTitle>Service Details (English)</CardTitle>
+                <CardDescription>Enter the main details for this service in English</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="en.superTitle">Super Title *</Label>
+                  <Controller
+                    name="en.superTitle"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        id="en.superTitle"
+                        placeholder="Enter super title in English"
+                        {...field}
+                      />
+                    )}
+                  />
+                  {errors.en?.superTitle && (
+                    <p className="text-sm text-red-500">{errors.en.superTitle.message}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="en.superDescription">Super Description *</Label>
+                  <Controller
+                    name="en.superDescription"
+                    control={control}
+                    render={({ field }) => (
+                      <Textarea
+                        id="en.superDescription"
+                        placeholder="Enter super description in English"
+                        rows={2}
+                        {...field}
+                      />
+                    )}
+                  />
+                  {errors.en?.superDescription && (
+                    <p className="text-sm text-red-500">{errors.en.superDescription.message}</p>
+                  )}
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="en.title">Title *</Label>
                   <Controller
@@ -182,17 +258,16 @@ const ServiceEditor: React.FC = () => {
                     <p className="text-sm text-red-500">{errors.en.title.message}</p>
                   )}
                 </div>
-
                 <div className="space-y-2">
-                  <Label htmlFor="en.description">Description *</Label>
+                  <Label htmlFor="en.description">Content *</Label>
                   <Controller
                     name="en.description"
                     control={control}
                     render={({ field }) => (
                       <Textarea
                         id="en.description"
-                        placeholder="Enter service description in English"
-                        rows={4}
+                        placeholder="Enter service content in English"
+                        rows={6}
                         {...field}
                       />
                     )}
@@ -201,7 +276,49 @@ const ServiceEditor: React.FC = () => {
                     <p className="text-sm text-red-500">{errors.en.description.message}</p>
                   )}
                 </div>
-
+                <div className="space-y-2">
+                  <Label htmlFor="en.keyPointsTitle">Title for Key Points *</Label>
+                  <Controller
+                    name="en.keyPointsTitle"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        id="en.keyPointsTitle"
+                        placeholder="Enter title for key points in English"
+                        {...field}
+                      />
+                    )}
+                  />
+                  {errors.en?.keyPointsTitle && (
+                    <p className="text-sm text-red-500">{errors.en.keyPointsTitle.message}</p>
+                  )}
+                </div>
+                {/* keyPointsTitle moved below into its own card above Key Points */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Title for Key Points</CardTitle>
+                    <CardDescription>Heading displayed above the key points</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="en.keyPointsTitle">Title for Key Points *</Label>
+                      <Controller
+                        name="en.keyPointsTitle"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            id="en.keyPointsTitle"
+                            placeholder="Enter title for key points in English"
+                            {...field}
+                          />
+                        )}
+                      />
+                      {errors.en?.keyPointsTitle && (
+                        <p className="text-sm text-red-500">{errors.en.keyPointsTitle.message}</p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <Label>Key Points *</Label>
@@ -248,13 +365,51 @@ const ServiceEditor: React.FC = () => {
             </Card>
           </TabsContent>
 
+          {/* ARABIC TAB */}
           <TabsContent value="ar" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>المحتوى العربي</CardTitle>
-                <CardDescription>تفاصيل الخدمة بالعربية</CardDescription>
+                <CardTitle>تفاصيل الخدمة (بالعربية)</CardTitle>
+                <CardDescription>أدخل التفاصيل الرئيسية لهذه الخدمة بالعربية</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="ar.superTitle">العنوان الرئيسي *</Label>
+                  <Controller
+                    name="ar.superTitle"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        id="ar.superTitle"
+                        dir="rtl"
+                        placeholder="أدخل العنوان الرئيسي بالعربية"
+                        {...field}
+                      />
+                    )}
+                  />
+                  {errors.ar?.superTitle && (
+                    <p className="text-sm text-red-500" dir="rtl">{errors.ar.superTitle.message}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="ar.superDescription">الوصف الرئيسي *</Label>
+                  <Controller
+                    name="ar.superDescription"
+                    control={control}
+                    render={({ field }) => (
+                      <Textarea
+                        id="ar.superDescription"
+                        dir="rtl"
+                        placeholder="أدخل الوصف الرئيسي بالعربية"
+                        rows={2}
+                        {...field}
+                      />
+                    )}
+                  />
+                  {errors.ar?.superDescription && (
+                    <p className="text-sm text-red-500" dir="rtl">{errors.ar.superDescription.message}</p>
+                  )}
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="ar.title">العنوان *</Label>
                   <Controller
@@ -273,9 +428,8 @@ const ServiceEditor: React.FC = () => {
                     <p className="text-sm text-red-500" dir="rtl">{errors.ar.title.message}</p>
                   )}
                 </div>
-
                 <div className="space-y-2">
-                  <Label htmlFor="ar.description">الوصف *</Label>
+                  <Label htmlFor="ar.description">المحتوى *</Label>
                   <Controller
                     name="ar.description"
                     control={control}
@@ -283,8 +437,8 @@ const ServiceEditor: React.FC = () => {
                       <Textarea
                         id="ar.description"
                         dir="rtl"
-                        placeholder="أدخل وصف الخدمة بالعربية"
-                        rows={4}
+                        placeholder="أدخل محتوى الخدمة بالعربية"
+                        rows={6}
                         {...field}
                       />
                     )}
@@ -293,7 +447,51 @@ const ServiceEditor: React.FC = () => {
                     <p className="text-sm text-red-500" dir="rtl">{errors.ar.description.message}</p>
                   )}
                 </div>
-
+                <div className="space-y-2">
+                  <Label htmlFor="ar.keyPointsTitle">عنوان النقاط الرئيسية *</Label>
+                  <Controller
+                    name="ar.keyPointsTitle"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        id="ar.keyPointsTitle"
+                        dir="rtl"
+                        placeholder="أدخل عنوان النقاط الرئيسية بالعربية"
+                        {...field}
+                      />
+                    )}
+                  />
+                  {errors.ar?.keyPointsTitle && (
+                    <p className="text-sm text-red-500" dir="rtl">{errors.ar.keyPointsTitle.message}</p>
+                  )}
+                </div>
+                {/* keyPointsTitle moved below into its own card above Key Points */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>عنوان النقاط الرئيسية</CardTitle>
+                    <CardDescription>العنوان الذي سيظهر أعلى النقاط الرئيسية</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2" dir="rtl">
+                    <div className="space-y-2">
+                      <Label htmlFor="ar.keyPointsTitle">عنوان النقاط الرئيسية *</Label>
+                      <Controller
+                        name="ar.keyPointsTitle"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            id="ar.keyPointsTitle"
+                            dir="rtl"
+                            placeholder="أدخل عنوان النقاط الرئيسية بالعربية"
+                            {...field}
+                          />
+                        )}
+                      />
+                      {errors.ar?.keyPointsTitle && (
+                        <p className="text-sm text-red-500" dir="rtl">{errors.ar.keyPointsTitle.message}</p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <Label>النقاط الرئيسية *</Label>
@@ -307,7 +505,7 @@ const ServiceEditor: React.FC = () => {
                     </Button>
                   </div>
                   <div className="space-y-2">
-                  {arPoints.map((point, index) => (
+                    {arPoints.map((point, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <div className="flex-1">
                           <Controller
