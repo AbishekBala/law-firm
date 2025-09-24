@@ -44,7 +44,7 @@ export const teamTranslations = {
     // Team CTA
     readyToWorkWithTeam: 'Ready to Work with Our Team?',
     teamCTA: 'Connect with our experienced legal professionals who are committed to providing exceptional service and results.',
-    scheduleConsultation: 'Schedule Consultation',
+  scheduleConsultation: 'Contact Us',
     contactUs: 'Contact Us'
   },
   ar: {
@@ -92,7 +92,7 @@ export const teamTranslations = {
     // Team CTA
     readyToWorkWithTeam: 'مستعد للعمل مع فريقنا؟',
     teamCTA: 'تواصل مع محترفينا القانونيين ذوي الخبرة الذين يلتزمون بتقديم خدمة استثنائية ونتائج.',
-    scheduleConsultation: 'احجز استشارة',
+  scheduleConsultation: 'اتصل بنا',
     contactUs: 'اتصل بنا'
   }
 };

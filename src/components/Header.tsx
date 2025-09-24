@@ -230,7 +230,7 @@ const Header = () => {
                       before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300`}
                   >
                     <span className="relative z-10 flex items-center">
-                      {t('getFreeConsultation')}
+                      {t('contactUs')}
                       <svg className={`w-4 h-4 ml-2 ${isRTL ? 'transform rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
@@ -337,7 +337,7 @@ const Header = () => {
                       }}
                       className="w-full justify-center bg-gradient-to-r from-legal-navy to-legal-navy/90 hover:from-legal-navy/90 hover:to-legal-navy/80 text-white py-3 text-sm font-semibold transition-all duration-300 hover:shadow-lg"
                     >
-                      {t('getFreeConsultation')}
+                      {t('contactUs')}
                     </Button>
                   </div>
                 </div>

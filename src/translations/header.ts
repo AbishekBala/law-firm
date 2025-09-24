@@ -25,7 +25,7 @@ export const headerTranslations = {
     arabic: 'العربية',
 
     // CTA Buttons
-    scheduleConsultation: 'Schedule Consultation',
+  scheduleConsultation: 'Contact Us',
     contactUs: 'Contact Us',
     getQuote: 'Get Quote',
 
@@ -59,7 +59,7 @@ export const headerTranslations = {
     arabic: 'العربية',
 
     // CTA Buttons
-    scheduleConsultation: 'احجز استشارة',
+  scheduleConsultation: 'اتصل بنا',
     contactUs: 'اتصل بنا',
     getQuote: 'احصل على عرض أسعار',
 

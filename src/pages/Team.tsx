@@ -233,7 +233,7 @@ const Team = () => {
                 onClick={() => navigate('/contact')}
                 className="btn-primary shadow-button hover:shadow-lg transition-all duration-300"
               >
-                {t('scheduleConsultation')}
+                {t('contactUs')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 

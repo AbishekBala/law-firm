@@ -226,13 +226,13 @@ const ServiceDetail = () => {
               )}
             </div>
 
-            <div className="w-full md:w-96 bg-white/5 rounded-xl p-6 backdrop-blur-sm border border-white/10">
+              <div className="w-full md:w-96 bg-white/5 rounded-xl p-6 backdrop-blur-sm border border-white/10">
               <div>
                   <h3 className="text-lg font-semibold mb-3">
-                    {pageLanguage === 'ar' ? t('contactUs') : 'Contact Us'}
+                    {t('contactUs')}
                 </h3>
                   <p className="text-neutral-200 mb-4 text-sm">
-                    {pageLanguage === 'ar' ? t('contactUsText') : 'Get in touch with our experts to learn more about this service'}
+                    {t('contactUsText')}
                 </p>
               </div>
 

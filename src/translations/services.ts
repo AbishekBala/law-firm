@@ -11,7 +11,7 @@ export const servicesTranslations = {
     // Services CTA
     readyToGetStarted: 'Ready to Get Started?',
     servicesCTA: 'Don\'t let legal challenges hinder your business. Partner with Ali Bin Fahad Law Firm to get expert legal solutions that protect your interests and drive your success forward.',
-    scheduleFreeConsultation: 'Schedule Free Consultation',
+  scheduleFreeConsultation: 'Contact Us',
     contactOurTeam: 'Contact Our Team',
     successfulCases: 'Successful Cases',
     clientSatisfaction: 'Client Satisfaction',
@@ -170,7 +170,7 @@ export const servicesTranslations = {
     // Services CTA
     readyToGetStarted: 'مستعد للبدء؟',
     servicesCTA: 'لا تدع التحديات القانونية تعيق أعمالك. تعاون مع مكتب المحامي علي بن فهد للحصول على حلول قانونية خبيرة تحمي مصالحك وتدفع نجاحك إلى الأمام.',
-    scheduleFreeConsultation: 'احجز استشارة مجانية',
+  scheduleFreeConsultation: 'اتصل بنا',
     contactOurTeam: 'تواصل مع فريقنا',
     successfulCases: 'قضايا ناجحة',
     clientSatisfaction: 'رضا العملاء',

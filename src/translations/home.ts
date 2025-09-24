@@ -62,7 +62,7 @@ export const homeTranslations = {
     support247: '24/7 Support',
     ourMission: 'Our Mission',
     missionDescription: 'To be the leading law firm in Saudi Arabia, recognized for our expertise, integrity, and commitment to delivering exceptional legal services that exceed client expectations.',
-    scheduleConsultation: 'Schedule Consultation',
+  scheduleConsultation: 'Contact Us',
   },
   ar: {
     // Hero Section
@@ -127,6 +127,6 @@ export const homeTranslations = {
     support247: 'الدعم 24/7',
     ourMission: 'مهمتنا',
     missionDescription: 'أن نكون مكتب المحاماة الرائد في المملكة العربية السعودية، والمعترف بنا لخبرتنا ونزاهتنا والتزامنا بتقديم خدمات قانونية استثنائية تفوق توقعات العملاء.',
-    scheduleConsultation: 'حجز استشارة',
+  scheduleConsultation: 'اتصل بنا',
   }
 };
