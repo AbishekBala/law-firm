@@ -52,7 +52,6 @@ const Header = () => {
     { name: t('about'), href: '/about' },
     { name: t('team'), href: '/team' },
     { name: t('testimonials'), href: '/testimonials' },
-    { name: t('careers'), href: '/careers' },
   ];
 
   // Update document direction when language changes

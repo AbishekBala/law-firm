@@ -13,11 +13,11 @@ const Layout = ({ children }: LayoutProps) => {
 
   // Scroll to top on route change
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    // Jump to top immediately when navigating to a new route so page starts at top
+    // (avoid smooth scrolling which can leave user mid-page)
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
   }, [location.pathname]);
 
   // hide global header/footer/fab on admin routes to show admin shell
