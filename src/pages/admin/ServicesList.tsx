@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Edit, Trash2, Search, X, FileText, Globe, ExternalLink } from 'lucide-react';
+import { Plus, Edit, Trash2, Search, X, FileText, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { serviceService } from '@/services/serviceService';
 import { ServiceItem, initialServiceItem } from '@/types/service';
@@ -294,11 +294,6 @@ const ServicesList: React.FC = () => {
                   </CardDescription>
                 </div>
                 <div className="flex space-x-1">
-                  <Button asChild variant="ghost" size="icon" className="h-8 w-8">
-                    <Link to={`/services/${service.id}`} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </Link>
-                  </Button>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -429,7 +424,7 @@ const ServicesList: React.FC = () => {
               </Card>
             )}
 
-            {/* Service Details */}
+            {/* Service Details (includes Super Title, Super Description, Tags, Title, Content, Key Points Title) */}
             <Card className="border">
               <CardHeader className="bg-muted/30 px-6 py-4 border-b">
                 <CardTitle className="text-base font-medium">
@@ -437,57 +432,48 @@ const ServicesList: React.FC = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-6">
+                {/* Super Title */}
                 <div className="space-y-2">
-                  <Label htmlFor={`${activeTab}-title`}>
-                    {activeTab === 'en' ? 'Title' : 'العنوان'}
+                  <Label htmlFor={`${activeTab}-superTitle`}>
+                    {activeTab === 'en' ? 'Super Title' : 'العنوان الرئيسي'}
                   </Label>
                   <Input
-                    id={`${activeTab}-title`}
-                    value={newService[activeTab].title}
+                    id={`${activeTab}-superTitle`}
+                    value={newService[activeTab].superTitle || ''}
                     onChange={(e) => setNewService(prev => ({
                       ...prev,
                       [activeTab]: {
                         ...prev[activeTab],
-                        title: e.target.value
+                        superTitle: e.target.value
                       }
                     }))}
-                    placeholder={activeTab === 'en' 
-                      ? 'Enter service title' 
-                      : 'أدخل عنوان الخدمة'}
+                    placeholder={activeTab === 'en' ? 'e.g. Expert Legal Consultation' : 'مثال: الاستشارات القانونية المتخصصة'}
                   />
                 </div>
+
+                {/* Super Description */}
                 <div className="space-y-2">
-                  <Label htmlFor={`${activeTab}-description`}>
-                    {activeTab === 'en' ? 'Description' : 'الوصف'}
+                  <Label htmlFor={`${activeTab}-superDescription`}>
+                    {activeTab === 'en' ? 'Super Description' : 'الوصف الرئيسي'}
                   </Label>
                   <Textarea
-                    id={`${activeTab}-description`}
-                    value={newService[activeTab].description}
+                    id={`${activeTab}-superDescription`}
+                    value={newService[activeTab].superDescription || ''}
                     onChange={(e) => setNewService(prev => ({
                       ...prev,
                       [activeTab]: {
                         ...prev[activeTab],
-                        description: e.target.value
+                        superDescription: e.target.value
                       }
                     }))}
-                    placeholder={activeTab === 'en' 
-                      ? 'Enter service description' 
-                      : 'أدخل وصف الخدمة'}
-                    rows={4}
+                    placeholder={activeTab === 'en' ? 'e.g. Looking for expert legal advice in Saudi Arabia? Our experienced...' : 'مثال: هل تبحث عن استشارات قانونية متخصصة في السعودية؟ يقدم محامونا...'}
+                    rows={2}
                   />
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Tags Section */}
-            <Card className="border">
-              <CardHeader className="bg-muted/30 px-6 py-4 border-b">
-                <CardTitle className="text-base font-medium">
-                  {activeTab === 'en' ? 'Tags' : 'العلامات'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
+                {/* Tags (moved into Service Details to match requested order) */}
+                <div className="space-y-2">
+                  <Label>{activeTab === 'en' ? 'Tags' : 'العلامات'}</Label>
                   <form onSubmit={addTag} className="flex flex-wrap gap-2">
                     <Input
                       value={newTag}
@@ -518,6 +504,74 @@ const ServicesList: React.FC = () => {
                     </div>
                   )}
                 </div>
+
+                {/* Title */}
+                <div className="space-y-2">
+                  <Label htmlFor={`${activeTab}-title`}>
+                    {activeTab === 'en' ? 'Title' : 'العنوان'}
+                  </Label>
+                  <Input
+                    id={`${activeTab}-title`}
+                    value={newService[activeTab].title}
+                    onChange={(e) => setNewService(prev => ({
+                      ...prev,
+                      [activeTab]: {
+                        ...prev[activeTab],
+                        title: e.target.value
+                      }
+                    }))}
+                    placeholder={activeTab === 'en' 
+                      ? 'Enter service title' 
+                      : 'أدخل عنوان الخدمة'}
+                  />
+                </div>
+
+                {/* Content (larger textarea) */}
+                <div className="space-y-2">
+                  <Label htmlFor={`${activeTab}-description`}>
+                    {activeTab === 'en' ? 'Content' : 'المحتوى'}
+                  </Label>
+                  <Textarea
+                    id={`${activeTab}-description`}
+                    value={newService[activeTab].description}
+                    onChange={(e) => setNewService(prev => ({
+                      ...prev,
+                      [activeTab]: {
+                        ...prev[activeTab],
+                        description: e.target.value
+                      }
+                    }))}
+                    placeholder={activeTab === 'en' 
+                      ? 'Enter service content' 
+                      : 'أدخل محتوى الخدمة'}
+                    rows={6}
+                  />
+                </div>
+
+                {/* Title for Key Points moved into its own card (will appear above Key Points) */}
+              </CardContent>
+            </Card>
+
+            {/* Title for Key Points Card (separate) */}
+            <Card className="border">
+              <CardHeader className="bg-muted/30 px-6 py-4 border-b">
+                <CardTitle className="text-base font-medium">
+                  {activeTab === 'en' ? 'Title for Key Points' : 'عنوان النقاط الرئيسية'}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <Input
+                  id={`${activeTab}-keyPointsTitle`}
+                  value={newService[activeTab].keyPointsTitle || ''}
+                  onChange={(e) => setNewService(prev => ({
+                    ...prev,
+                    [activeTab]: {
+                      ...prev[activeTab],
+                      keyPointsTitle: e.target.value
+                    }
+                  }))}
+                  placeholder={activeTab === 'en' ? 'e.g. Key Benefits' : 'مثال: الفوائد الرئيسية'}
+                />
               </CardContent>
             </Card>
 

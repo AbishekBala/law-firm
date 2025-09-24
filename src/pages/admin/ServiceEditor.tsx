@@ -293,6 +293,32 @@ const ServiceEditor: React.FC = () => {
                     <p className="text-sm text-red-500">{errors.en.keyPointsTitle.message}</p>
                   )}
                 </div>
+                {/* keyPointsTitle moved below into its own card above Key Points */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Title for Key Points</CardTitle>
+                    <CardDescription>Heading displayed above the key points</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="en.keyPointsTitle">Title for Key Points *</Label>
+                      <Controller
+                        name="en.keyPointsTitle"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            id="en.keyPointsTitle"
+                            placeholder="Enter title for key points in English"
+                            {...field}
+                          />
+                        )}
+                      />
+                      {errors.en?.keyPointsTitle && (
+                        <p className="text-sm text-red-500">{errors.en.keyPointsTitle.message}</p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <Label>Key Points *</Label>
@@ -439,6 +465,33 @@ const ServiceEditor: React.FC = () => {
                     <p className="text-sm text-red-500" dir="rtl">{errors.ar.keyPointsTitle.message}</p>
                   )}
                 </div>
+                {/* keyPointsTitle moved below into its own card above Key Points */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>عنوان النقاط الرئيسية</CardTitle>
+                    <CardDescription>العنوان الذي سيظهر أعلى النقاط الرئيسية</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2" dir="rtl">
+                    <div className="space-y-2">
+                      <Label htmlFor="ar.keyPointsTitle">عنوان النقاط الرئيسية *</Label>
+                      <Controller
+                        name="ar.keyPointsTitle"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            id="ar.keyPointsTitle"
+                            dir="rtl"
+                            placeholder="أدخل عنوان النقاط الرئيسية بالعربية"
+                            {...field}
+                          />
+                        )}
+                      />
+                      {errors.ar?.keyPointsTitle && (
+                        <p className="text-sm text-red-500" dir="rtl">{errors.ar.keyPointsTitle.message}</p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <Label>النقاط الرئيسية *</Label>
