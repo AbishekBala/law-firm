@@ -129,9 +129,9 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
 
       <section className="section-padding bg-white">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
             {/* Contact Information */}
-            <div>
+            <div className="flex flex-col justify-between h-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="text-center md:text-left">
@@ -169,7 +169,7 @@ Sent from Ali Bin Fahad Law Firm website contact form`;
             </div>
 
             {/* Contact Form */}
-            <div className="bg-neutral-50 rounded-2xl p-8">
+            <div className="bg-neutral-100 rounded-2xl p-8 h-full">
               <h2 className="text-2xl font-semibold text-legal-navy mb-2">
                 {t('sendUsMessage')}
               </h2>
