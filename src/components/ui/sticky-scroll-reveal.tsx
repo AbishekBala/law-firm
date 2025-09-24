@@ -7,6 +7,9 @@ import { cn } from "@/lib/utils";
 export const StickyScroll = ({
   content,
   contentClassName,
+  autoPlay = true,
+  intervalMs = 4500,
+  pauseOnHover = true,
 }: {
   content: {
     title: string;
@@ -14,6 +17,9 @@ export const StickyScroll = ({
     content?: React.ReactNode | any;
   }[];
   contentClassName?: string;
+  autoPlay?: boolean;
+  intervalMs?: number;
+  pauseOnHover?: boolean;
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef<any>(null);
@@ -22,6 +28,11 @@ export const StickyScroll = ({
     offset: ["start start", "end start"],
   });
   const cardLength = content.length;
+
+  // autoplay state and refs
+  const autoPlayRef = useRef<boolean>(autoPlay);
+  const timerRef = useRef<number | null>(null);
+  const resumeTimeoutRef = useRef<number | null>(null);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const cardsBreakpoints = content.map((_, index) => index / cardLength);
@@ -37,6 +48,12 @@ export const StickyScroll = ({
     );
     setActiveCard(closestBreakpointIndex);
   });
+
+  // keep a ref of activeCard to avoid stale closures inside intervals
+  const activeCardRef = useRef<number>(0);
+  useEffect(() => {
+    activeCardRef.current = activeCard;
+  }, [activeCard]);
 
   const backgroundColors = [
     "rgb(17 24 39)", // slate-900 - deep navy
@@ -58,6 +75,66 @@ export const StickyScroll = ({
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
   }, [activeCard]);
 
+  // scroll to a specific card index
+  const scrollToIndex = (index: number) => {
+    const el = ref.current;
+    if (!el) return;
+    // find the card element by data attribute and scroll to its offsetTop
+    const cards = el.querySelectorAll('[data-sticky-card]');
+    const card = cards[index] as HTMLElement | undefined;
+    if (card) {
+      const top = card.offsetTop;
+      try {
+        el.scrollTo({ top, behavior: 'smooth' });
+      } catch (e) {
+        el.scrollTop = top;
+      }
+    }
+  };
+
+  // autoplay handlers
+  const clearTimer = () => {
+    if (timerRef.current) {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  const startAutoPlay = () => {
+    clearTimer();
+    if (!autoPlayRef.current) return;
+    timerRef.current = window.setInterval(() => {
+      const current = activeCardRef.current ?? 0;
+      const next = (current + 1) % cardLength;
+      scrollToIndex(next);
+    }, intervalMs) as unknown as number;
+  };
+
+  const pauseAutoPlayTemporary = (ms = 4000) => {
+    autoPlayRef.current = false;
+    clearTimer();
+    if (resumeTimeoutRef.current) {
+      window.clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
+    resumeTimeoutRef.current = window.setTimeout(() => {
+      autoPlayRef.current = autoPlay;
+      startAutoPlay();
+    }, ms) as unknown as number;
+  };
+
+  useEffect(() => {
+    autoPlayRef.current = autoPlay;
+    if (autoPlay) startAutoPlay();
+    return () => {
+      clearTimer();
+      if (resumeTimeoutRef.current) {
+        window.clearTimeout(resumeTimeoutRef.current);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoPlay, intervalMs, cardLength, /* activeCard intentionally omitted */]);
+
   return (
     <motion.div
       animate={{
@@ -69,6 +146,11 @@ export const StickyScroll = ({
       }}
       className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-lg p-10 scroll-smooth snap-y snap-mandatory shadow-lg border border-slate-200/20"
       ref={ref}
+      onPointerDown={() => pauseAutoPlayTemporary(6000)}
+      onWheel={() => pauseAutoPlayTemporary(6000)}
+      onTouchStart={() => pauseAutoPlayTemporary(6000)}
+      onMouseEnter={() => { if (pauseOnHover) { pauseAutoPlayTemporary(999999); } }}
+      onMouseLeave={() => { if (pauseOnHover) { autoPlayRef.current = autoPlay; startAutoPlay(); } }}
       style={{
         scrollSnapType: 'y mandatory',
         scrollBehavior: 'smooth'
@@ -77,7 +159,7 @@ export const StickyScroll = ({
       <div className="div relative flex items-start px-4">
         <div className="max-w-2xl text-center">
           {content.map((item, index) => (
-            <div key={item.title + index} className="min-h-[30rem] flex flex-col justify-center snap-start snap-always text-center" style={{ scrollSnapAlign: 'start' }}>
+            <div data-sticky-card key={item.title + index} className="min-h-[30rem] flex flex-col justify-center snap-start snap-always text-center" style={{ scrollSnapAlign: 'start' }}>
               <motion.h2
                 initial={{
                   opacity: 0,

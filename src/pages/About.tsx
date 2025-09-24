@@ -135,7 +135,7 @@ const About = () => {
                 {t('ourLegalJourneyDesc')}
               </p>
             </div>
-            <StickyScroll content={stickyContent} />
+            <StickyScroll content={stickyContent} intervalMs={3000} autoPlay={true} pauseOnHover={true} />
           </div>
         </section>
       </AnimatedSection>
