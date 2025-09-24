@@ -4,6 +4,7 @@ export interface ServiceContent {
   points: string[];
   superTitle?: string;
   superDescription?: string;
+  keyPointsTitle?: string;
   tags?: string[];
 }
 
@@ -34,7 +35,10 @@ export interface ServicePageData {
 export const initialServiceContent: ServiceContent = {
   title: '',
   description: '',
-  points: ['']
+  points: [''],
+  superTitle: '',
+  superDescription: '',
+  keyPointsTitle: ''
 };
 
 export const initialServiceItem: Omit<ServiceItem, 'id' | 'createdAt' | 'updatedAt'> = {
