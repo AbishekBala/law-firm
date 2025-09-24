@@ -226,7 +226,7 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
               {/* Saudi Bar Association */}
               <AnimatedSection animation="scaleIn" delay={0}>
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-accent/10 group">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-accent/10 group flex flex-col h-full">
                   <div className="relative mb-8">
                     <div className="bg-gradient-to-r from-accent/10 to-yellow-500/10 rounded-xl p-6 mb-6 group-hover:from-accent/20 group-hover:to-yellow-500/20 transition-all duration-300">
                       <img 
@@ -239,12 +239,14 @@ const About = () => {
                       <Award className="w-3 h-3 text-white" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
-                    Saudi Bar Association
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed mb-4">
-                    Certified by the Saudi Bar Association and a main member with full practicing privileges
-                  </p>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
+                      Saudi Bar Association
+                    </h3>
+                    <p className="text-neutral-600 leading-relaxed mb-4">
+                      Certified by the Saudi Bar Association and a main member with full practicing privileges
+                    </p>
+                  </div>
                   <div className="pt-4 border-t border-accent/10">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">
                       Licensed Attorney
@@ -255,7 +257,7 @@ const About = () => {
 
               {/* SAIP */}
               <AnimatedSection animation="scaleIn" delay={200}>
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-accent/10 group">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-accent/10 group flex flex-col h-full">
                   <div className="relative mb-8">
                     <div className="bg-gradient-to-r from-accent/10 to-yellow-500/10 rounded-xl p-6 mb-6 group-hover:from-accent/20 group-hover:to-yellow-500/20 transition-all duration-300">
                       <img 
@@ -268,12 +270,14 @@ const About = () => {
                       <Shield className="w-3 h-3 text-white" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
-                    Saudi Authority for Intellectual Property
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed mb-4">
-                    Authorized by SAIP for registering trademarks, industrial models, and patents with full IP protection services
-                  </p>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
+                      Saudi Authority for Intellectual Property
+                    </h3>
+                    <p className="text-neutral-600 leading-relaxed mb-4">
+                      Authorized by SAIP for registering trademarks, industrial models, and patents with full IP protection services
+                    </p>
+                  </div>
                   <div className="pt-4 border-t border-accent/10">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">
                       IP Specialist
@@ -284,7 +288,7 @@ const About = () => {
 
               {/* Ministry of Justice */}
               <AnimatedSection animation="scaleIn" delay={400}>
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-accent/10 group">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-accent/10 group flex flex-col h-full">
                   <div className="relative mb-8">
                     <div className="bg-gradient-to-r from-accent/10 to-yellow-500/10 rounded-xl p-6 mb-6 group-hover:from-accent/20 group-hover:to-yellow-500/20 transition-all duration-300">
                       <img 
@@ -297,12 +301,14 @@ const About = () => {
                       <CheckCircle className="w-3 h-3 text-white" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
-                    Ministry of Justice
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed mb-4">
-                    Licensed by the Ministry of Justice to provide comprehensive legal services across all legal domains
-                  </p>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-legal-navy mb-4 group-hover:text-accent transition-colors duration-300">
+                      Ministry of Justice
+                    </h3>
+                    <p className="text-neutral-600 leading-relaxed mb-4">
+                      Licensed by the Ministry of Justice to provide comprehensive legal services across all legal domains
+                    </p>
+                  </div>
                   <div className="pt-4 border-t border-accent/10">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">
                       Legal Services Provider

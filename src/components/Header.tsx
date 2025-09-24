@@ -12,6 +12,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownCloseTimer = useRef<number | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { language, setLanguage, isRTL } = useLanguage();
@@ -31,12 +32,22 @@ const Header = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsAboutDropdownOpen(false);
+        // If there is a pending close timer, clear it
+        if (dropdownCloseTimer.current) {
+          window.clearTimeout(dropdownCloseTimer.current);
+          dropdownCloseTimer.current = null;
+        }
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      // clear timer on unmount
+      if (dropdownCloseTimer.current) {
+        window.clearTimeout(dropdownCloseTimer.current);
+        dropdownCloseTimer.current = null;
+      }
     };
   }, []);
 
@@ -131,8 +142,24 @@ const Header = () => {
               <div 
                 ref={dropdownRef}
                 className="relative group"
-                onMouseEnter={() => setIsAboutDropdownOpen(true)}
-                onMouseLeave={() => setIsAboutDropdownOpen(false)}
+                onMouseEnter={() => {
+                  // Open immediately and clear any pending close timer
+                  setIsAboutDropdownOpen(true);
+                  if (dropdownCloseTimer.current) {
+                    window.clearTimeout(dropdownCloseTimer.current);
+                    dropdownCloseTimer.current = null;
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Start a 2 second timer to close the dropdown
+                  if (dropdownCloseTimer.current) {
+                    window.clearTimeout(dropdownCloseTimer.current);
+                  }
+                  dropdownCloseTimer.current = window.setTimeout(() => {
+                    setIsAboutDropdownOpen(false);
+                    dropdownCloseTimer.current = null;
+                  }, 2000);
+                }}
               >
                 <button
                   className={`flex items-center px-4 py-2.5 text-sm font-medium relative group overflow-hidden transition-all duration-300 ${
